@@ -15,7 +15,7 @@ const Navbar = () => {
     <nav className="w-full flex justify-center items-center text-white">
       <div className="flex flex-row w-[80%] max-w-[1600px] justify-between items-center p-6 mt-3 mb-3 bg-ieeeBlue rounded-xl">
       <div className="">
-        <Link href="https://ieee-cs-usf-website.vercel.app" target="_blank" rel="noopener noreferrer">
+        <Link href="/">
           <Image 
               src="/ieee_cs_usf_logo_white.png" 
               alt="IEEE-CS Logo" 
@@ -29,7 +29,7 @@ const Navbar = () => {
           <Link 
             key={link.path} 
             href={link.path} 
-            className="hover:text-ieeeOrange transition-colors duration-100 font-medium"
+            className="hover:text-ieeeOrange transition-colors duration-100 font-medium text-lg"
           >
             {link.name}
           </Link>
