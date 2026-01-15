@@ -9,9 +9,9 @@ interface NavLink {
 
 const navLinks: NavLink[] = [
   { name: 'Home', path: '/', mobileVisible: true },
-  { name: 'About', path: '/about', mobileVisible: false },
-  { name: 'IEEE', path: '/ieee', mobileVisible: false },
-  { name: 'TechX', path: '/techx', mobileVisible: false },
+  { name: 'About', path: '/', mobileVisible: false },
+  { name: 'IEEE', path: '/', mobileVisible: false },
+  { name: 'TechX', path: '/', mobileVisible: false },
   { name: 'People', path: '/people', mobileVisible: true },
   { name: 'Events', path: '/events', mobileVisible: true },
 ];
