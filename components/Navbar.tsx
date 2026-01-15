@@ -12,25 +12,32 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-2 left-1/2 -translate-x-1/2 w-[85%] max-w-7xl bg-ieeeOrange/60 backdrop-blur-md rounded-xl border border-gray-200 z-50 px-6 py-3 flex justify-between items-center">
-      <div className="flex items-center">
-        <Image 
-            src="/ieee_cs_usf_logo_white.png" 
-            alt="IEEE-CS Logo" 
-            width={120} 
-            height={40} 
-        /></div>
-      <div className="space-x-6">
+    <nav className="w-full flex justify-center items-center text-white">
+      <div className="flex flex-row w-[80%] max-w-[1600px] justify-between items-center p-6 mt-3 mb-3 bg-ieeeBlue rounded-xl">
+      <div className="">
+        <Link href="https://ieee-cs-usf-website.vercel.app" target="_blank" rel="noopener noreferrer">
+          <Image 
+              src="/ieee_cs_usf_logo_white.png" 
+              alt="IEEE-CS Logo" 
+              width={120} 
+              height={40} 
+          />
+        </Link>
+      </div>
+      <div className="flex flex-row gap-6 items-center">
         {navLinks.map((link) => (
           <Link 
             key={link.path} 
             href={link.path} 
-            className="hover:text-blue-500 transition-colors font-medium"
+            className="hover:text-ieeeOrange transition-colors duration-100 font-medium"
           >
             {link.name}
           </Link>
         ))}
       </div>
+
+      </div>
+
     </nav>
   );
 };
