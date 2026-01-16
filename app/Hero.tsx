@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import StatCard from '@/components/StatCard'
 import { heroStats } from './heroData'
-import techx from "./techx.webp"
+import heroImg from "../public/hero.png"
 
 export default function Hero() {
 
@@ -36,9 +36,9 @@ export default function Hero() {
   
           <div className='flex justify-center'>
             <Image 
-              src={techx}
+              src={heroImg}
               alt="TechX"
-              className='w-90 md:w-[700px] rounded-xl shadow-xl'
+              className='w-95 md:w-[700px] rounded-xl shadow-xl'
             />
           </div>
   
