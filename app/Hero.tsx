@@ -15,7 +15,7 @@ export default function Hero() {
   
             <div className='mb-5 md:mb-10'>
               <h1 className='font-bold text-ieeeDark text-3xl md:text-5xl mb-4'>IEEE Computer Society at USF</h1>
-              <p className='font-medium text-md md:text-xl'>Premier tech student organization on University of South Florida campus</p>
+              <p className='font-medium text-md md:text-xl'>Premier tech student organization at the University of South Florida</p>
   
             </div>
   
