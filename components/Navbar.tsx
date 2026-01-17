@@ -1,25 +1,44 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 interface NavLink {
   name: string;
   path: string;
-  mobileVisible: boolean;
 }
 
 const navLinks: NavLink[] = [
-  { name: 'Home', path: '/', mobileVisible: true },
-  { name: 'About', path: '/', mobileVisible: false },
-  { name: 'IEEE', path: '/', mobileVisible: false },
-  { name: 'TechX', path: '/', mobileVisible: false },
-  { name: 'People', path: '/people', mobileVisible: true },
-  { name: 'Events', path: '/events', mobileVisible: true },
+  { name: 'Home', path: '/' },
+  { name: 'People', path: '/people' },
+  { name: 'Events', path: '/events' },
+  { name: 'News', path: '/news' },
+  { name: 'Contact', path: '/contact' },
+];
+
+const mobileMenuLinks: NavLink[] = [
+  { name: 'People', path: '/people' },
+  { name: 'Events', path: '/events' },
+  { name: 'News', path: '/news' },
+  { name: 'Contact', path: '/contact' },
 ];
 
 const Navbar = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <nav className="w-full flex justify-center items-center text-white">
-      <div className="flex flex-row w-[95%] md:w-[80%] max-w-[1600px] justify-between items-center p-6 mt-3 mb-3 bg-ieeeBlue rounded-xl">
+      <div className="relative flex flex-row w-[95%] md:w-[80%] max-w-[1600px] justify-between items-center p-6 mt-3 mb-3 bg-ieeeBlue rounded-xl">
+        {/* Logo */}
         <div>
           <Link href="/">
             <Image 
@@ -30,19 +49,80 @@ const Navbar = () => {
             />
           </Link>
         </div>
-        <div className="flex flex-row gap-4 md:gap-6 items-center">
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex flex-row gap-4 items-center">
           {navLinks.map((link) => (
-            <Link 
-              key={link.path} 
-              href={link.path} 
-              className={`hover:text-ieeeOrange transition-colors duration-100 font-medium text-base md:text-lg ${
-                link.mobileVisible ? '' : 'hidden md:block'
-              }`}
-            >
-              {link.name}
-            </Link>
+            <div key={link.path} className="p-3 rounded-lg">
+              <Link 
+                href={link.path} 
+                className="hover:text-ieeeOrange hover:underline transition-colors duration-100 font-medium text-lg"
+              >
+                {link.name}
+              </Link>
+            </div>
           ))}
         </div>
+
+        {/* Mobile Navigation */}
+        <div className="flex md:hidden flex-row gap-2 items-center">
+          {/* Home Button */}
+          <Link 
+            href="/" 
+            className="p-3 rounded-lg hover:text-ieeeOrange hover:underline transition-colors duration-100 font-medium text-base"
+          >
+            Home
+          </Link>
+
+          {/* Hamburger Button */}
+          <button
+            onClick={toggleMobileMenu}
+            className="p-3 rounded-lg hover:bg-white/10 transition-colors duration-100"
+            aria-label="Toggle mobile menu"
+            aria-expanded={isMobileMenuOpen}
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              {isMobileMenuOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </button>
+        </div>
+
+        {/* Mobile Dropdown Menu */}
+        {isMobileMenuOpen && (
+          <div className="absolute md:hidden top-full left-0 right-0 mt-2 mx-4 bg-ieeeBlue rounded-xl shadow-lg z-50">
+            <div className="flex flex-col py-2">
+              {mobileMenuLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  href={link.path}
+                  onClick={closeMobileMenu}
+                  className="px-6 py-3 hover:bg-white/10 hover:text-ieeeOrange transition-colors duration-100 font-medium text-base"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );
