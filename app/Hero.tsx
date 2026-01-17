@@ -14,12 +14,12 @@ export default function Hero() {
           <div className='p-5 pl-3 pr-3 md:pl-1 md:pr-10 flex flex-col justify-center'>
   
             <div className='mb-5 md:mb-10'>
-              <h1 className='font-bold text-ieeeDark text-2xl md:text-5xl mb-6'>IEEE Computer Society at USF</h1>
-              <p className='font-medium text-md md:text-xl'>Premier tech student organization on USF campus</p>
+              <h1 className='font-bold text-ieeeDark text-3xl md:text-5xl mb-4'>IEEE Computer Society at USF</h1>
+              <p className='font-medium text-md md:text-xl'>Premier tech student organization on University of South Florida campus</p>
   
             </div>
   
-            <div className='flex flex-row gap-3 text-xl'>
+            <div className='flex flex-row gap-1 text-xl'>
               {heroStats.map((stat, index) => (
                 <StatCard
                   key={index}
