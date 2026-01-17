@@ -1,5 +1,9 @@
 'use client'
 
+import IEEElogo from "./assets/ieee-logo.png"
+import IEEECSlogo from "./assets/csociety_logo.webp"
+import IEEECSUSFlogo from "../public/ieee_cs_usf_logo_black.png"
+
 export default function About() {
     return (
         <div className='w-full flex flex-col items-center'>
