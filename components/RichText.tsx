@@ -40,7 +40,7 @@ function renderNode(node: Record<string, unknown>): React.ReactNode {
   // Headings
   if (type === 'heading') {
     const tag = node.tag as string
-    const HeadingTag = tag as keyof JSX.IntrinsicElements
+    const HeadingTag = tag as keyof React.JSX.IntrinsicElements
     const headingClasses: Record<string, string> = {
       h1: 'text-4xl font-bold mb-6',
       h2: 'text-3xl font-bold mb-5',
