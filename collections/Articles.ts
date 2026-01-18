@@ -39,6 +39,9 @@ export const Articles: CollectionConfig = {
       name: 'content',
       type: 'richText',
       required: true,
+      admin: {
+        description: 'Write your article content here. Use the toolbar for headers, bold, italic, lists, and more.',
+      },
     },
     {
       name: 'status',
