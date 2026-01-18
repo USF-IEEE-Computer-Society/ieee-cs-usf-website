@@ -10,11 +10,11 @@ export default function WhatIsIEEECS() {
             <div className='pt-16 pb-10 w-full max-w-[1500px] px-4'>
                 <h2 className="text-4xl font-semibold text-ieeeDark text-center mb-4">What is IEEE Computer Society?</h2>
                 <p className="text-center text-gray-600 mb-10 max-w-5xl mx-auto">
-                    Our organization is pronounced as the <strong>I Triple E</strong> Computer Society.
+                    Pronounced as the <strong>I Triple E</strong> Computer Society.
                 </p>
 
                 <div className="flex flex-col md:flex-row gap-6 justify-center">
-                    <div className="w-full md:w-[450px] h-auto flex flex-col bg-white rounded-xl p-6 shadow-sm">
+                    <div className="w-full md:w-[450px] h-auto flex flex-col bg-white rounded-xl p-6 shadow-md">
                         <div className="flex justify-center p-3">
                             <img src={IEEElogo.src} alt="IEEE Logo" width={220} />
                         </div>
@@ -34,7 +34,7 @@ export default function WhatIsIEEECS() {
                         </div>
                     </div>
 
-                    <div className="w-full md:w-[450px] h-auto flex flex-col bg-white rounded-xl p-6 shadow-sm">
+                    <div className="w-full md:w-[450px] h-auto flex flex-col bg-white rounded-xl p-6 shadow-md">
                         <div className="flex justify-center p-3">
                             <img src={IEEECSlogo.src} alt="IEEE Computer Society Logo" width={220} />
                         </div>
