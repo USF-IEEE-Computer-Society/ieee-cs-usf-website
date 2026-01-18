@@ -52,3 +52,18 @@ body {
   scrollbar-width: thin;
   scrollbar-color: var(--ieee-orange) #1a1a1a;
 }
+
+
+/* Selection color */
+
+/* Chrome */
+::selection {
+  background: var(--ieee-orange); 
+  color: #111;       
+}
+
+/* Firefox */
+::-moz-selection {
+  background: var(--ieee-orange);
+  color: #111;
+}

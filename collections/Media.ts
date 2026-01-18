@@ -16,7 +16,7 @@ export const Media: CollectionConfig = {
     {
       name: 'alt',
       type: 'text',
-      required: true,
+      required: false,
       admin: {
         description: 'Alternative text for accessibility',
       },

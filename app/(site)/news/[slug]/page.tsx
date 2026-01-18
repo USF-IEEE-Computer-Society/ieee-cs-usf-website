@@ -55,11 +55,11 @@ export default async function ArticlePage({ params }: Props) {
   const featuredImage = article.featuredImage as Media | null
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-white text-black">
       <article className="container mx-auto px-4 py-16 max-w-4xl">
         <Link
           href="/news"
-          className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-8"
+          className="inline-flex items-center gap-2 text-gray-400 hover:text-black transition-colors mb-8"
         >
           <ArrowLeft size={20} />
           Back to News

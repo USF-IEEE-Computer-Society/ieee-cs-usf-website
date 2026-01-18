@@ -18,15 +18,10 @@ export default async function NewsPage() {
     sort: '-publishedDate',
   })
 
-  console.log(articles)
-
   return (
-    <div className="min-h-screen bg-black text-white">
-      <div className="container mx-auto px-4 py-16">
-        <h1 className="text-5xl font-bold mb-4">News</h1>
-        <p className="text-gray-400 mb-12">
-          Stay up to date with the latest from IEEE CS at USF
-        </p>
+    <div className="min-h-screen bg-white text-black">
+      <div className="container max-w-6xl mx-auto px-4 py-16">
+        <h1 className="text-5xl font-bold mb-8">News</h1>
 
         {articles.docs.length === 0 ? (
           <div className="text-center py-16">
@@ -34,7 +29,7 @@ export default async function NewsPage() {
             <p className="text-gray-500 mt-2">Check back soon for updates!</p>
           </div>
         ) : (
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {articles.docs.map((article) => {
               const typedArticle = article as Article
               const featuredImage = typedArticle.featuredImage as Media | null
@@ -43,7 +38,7 @@ export default async function NewsPage() {
                 <Link
                   key={typedArticle.id}
                   href={`/news/${typedArticle.slug}`}
-                  className="group block bg-gray-900 rounded-lg overflow-hidden hover:bg-gray-800 transition-colors"
+                  className="group block bg-white rounded-lg overflow-hidden transition-colors border-2"
                 >
                   {featuredImage?.url && (
                     <div className="relative h-48 w-full">
@@ -56,7 +51,7 @@ export default async function NewsPage() {
                     </div>
                   )}
                   <div className="p-6">
-                    <time className="text-sm text-gray-400">
+                    <time className="text-sm text-ieeeDark">
                       {new Date(typedArticle.publishedDate).toLocaleDateString(
                         'en-US',
                         {
@@ -66,7 +61,7 @@ export default async function NewsPage() {
                         }
                       )}
                     </time>
-                    <h2 className="text-xl font-semibold mt-2 group-hover:text-blue-400 transition-colors">
+                    <h2 className="text-xl font-semibold mt-2 transition-colors text-black">
                       {typedArticle.title}
                     </h2>
                   </div>
