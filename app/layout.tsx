@@ -24,9 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${montserrat.variable} antialiased`}>
         <PostHogProvider>
-          <Navbar />
             {children}
-          <Footer />
         </PostHogProvider>
       </body>
     </html>
