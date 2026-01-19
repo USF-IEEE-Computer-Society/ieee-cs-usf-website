@@ -6,7 +6,7 @@ import type { Article, Media } from '@/payload-types'
 
 export const dynamic = 'force-dynamic'
 
-const ARTICLES_PER_PAGE = 12
+const ARTICLES_PER_PAGE = 6
 
 export default async function NewsPage({
   searchParams,
@@ -33,7 +33,7 @@ export default async function NewsPage({
 
   return (
     <div className="min-h-screen bg-white text-black">
-      <div className="container max-w-6xl mx-auto px-4 py-16">
+      <div className="container max-w-7xl mx-auto px-4 py-16">
         <h1 className="text-5xl font-bold mb-8">News</h1>
 
         {articles.docs.length === 0 ? (
