@@ -77,12 +77,13 @@ export default async function ArticlePage({ params }: Props) {
         </header>
 
         {featuredImage?.url && (
-          <div className="relative h-64 md:h-96 w-full mb-8 rounded-lg overflow-hidden">
+          <div className="mb-8 rounded-lg overflow-hidden">
             <Image
               src={featuredImage.url}
               alt={featuredImage.alt || article.title}
-              fill
-              className="object-cover"
+              width={featuredImage.width || 1200}
+              height={featuredImage.height || 675}
+              className="w-full h-auto"
               priority
             />
           </div>
