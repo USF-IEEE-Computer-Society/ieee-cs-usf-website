@@ -10,15 +10,7 @@ const currentEboard = [
     imageUrl: "/members/2025/anzhelika.webp"
   },
   {
-    role: "Role",
-    name: "Egor Kharitonov",
-    major: "Computer Science",
-    year: "Juniot",
-    linkedin: "https://www.linkedin.com/in/kharitonov-egor/",
-    imageUrl: "/members/2025/egor.webp"
-  },
-  {
-    role: "Role",
+    role: "Vice President",
     name: "Elan Berezovskiy",
     major: "Computer Engineering",
     year: "Sophomore",
@@ -26,63 +18,7 @@ const currentEboard = [
     imageUrl: "/members/2025/elan.webp"
   },
   {
-    role: "Role",
-    name: "Sara Perez-Soto",
-    major: "Computer Science",
-    year: "Junior",
-    linkedin: "https://www.linkedin.com/in/sarapsoto/",
-    imageUrl: "/members/2025/sara.webp"
-  },
-  {
-    role: "Role",
-    name: "Caio Bahlis",
-    major: "Computer Science",
-    year: "Junior",
-    linkedin: "https://www.linkedin.com/in/cbahlis/",
-    imageUrl: "/members/2025/caio.webp"
-  },
-  {
-    role: "Role",
-    name: "Doung (Eric) Mai",
-    major: "Computer Science",
-    year: "Senior",
-    linkedin: "https://www.linkedin.com/in/duongmai127/",
-    imageUrl: "/members/2025/eric.webp"
-  },
-  {
-    role: "Role",
-    name: "Bernardo Beligolli",
-    major: "Computer Science",
-    year: "Freshman",
-    linkedin: "https://www.linkedin.com/in/bernardo-beligolli-02536a387/",
-    imageUrl: "/members/2025/bernardo.webp"
-  },
-  {
-    role: "Role",
-    name: "Kimberly Bahena",
-    major: "Artificial Intelligence",
-    year: "Sophomore",
-    linkedin: "https://www.linkedin.com/in/kimberly-bahena-03a310325/",
-    imageUrl: "/members/2025/kimberly.webp"
-  },
-  {
-    role: "Role",
-    name: "Cesar Calderon",
-    major: "Mechanical Engineering",
-    year: "Sophomore",
-    linkedin: "https://www.linkedin.com/in/cesarcld/",
-    imageUrl: "/members/2025/cesar.webp"
-  },
-  {
-    role: "Role",
-    name: "Leonardo Henriques",
-    major: "Computer Science",
-    year: "Freshman",
-    linkedin: "https://www.linkedin.com/in/leonardo-hln/",
-    imageUrl: "/members/2025/leonardo.webp"
-  },
-  {
-    role: "Role",
+    role: "Treasurer",
     name: "Zarina Zatildayeva",
     major: "Biomedical Sciences",
     year: "Senior",
@@ -90,12 +26,116 @@ const currentEboard = [
     imageUrl: "/members/2025/zarina.webp"
   },
   {
-    role: "Role",
+    role: "Media Manager",
+    name: "Doung (Eric) Mai",
+    major: "Computer Science",
+    year: "Senior",
+    linkedin: "https://www.linkedin.com/in/duongmai127/",
+    imageUrl: "/members/2025/eric.webp"
+  },
+  {
+    role: "Media Manager",
+    name: "Kimberly Bahena",
+    major: "Artificial Intelligence",
+    year: "Sophomore",
+    linkedin: "https://www.linkedin.com/in/kimberly-bahena-03a310325/",
+    imageUrl: "/members/2025/kimberly.webp"
+  },
+  {
+    role: "Outreach Chair",
+    name: "Egor Kharitonov",
+    major: "Computer Science",
+    year: "Junior",
+    linkedin: "https://www.linkedin.com/in/kharitonov-egor/",
+    imageUrl: "/members/2025/egor.webp"
+  },
+  {
+    role: "Marketing Chair",
+    name: "Cesar Calderon",
+    major: "Mechanical Engineering",
+    year: "Sophomore",
+    linkedin: "https://www.linkedin.com/in/cesarcld/",
+    imageUrl: "/members/2025/cesar.webp"
+  },
+  {
+    role: "Marketing Assistant",
+    name: "Leonardo Henriques",
+    major: "Computer Science",
+    year: "Freshman",
+    linkedin: "https://www.linkedin.com/in/leonardo-hln/",
+    imageUrl: "/members/2025/leonardo.webp"
+  },
+  {
+    role: "Marketing Assistant",
     name: "Rodrigo Molero",
     major: "Computer Engineering",
     year: "Junior",
     linkedin: "https://www.linkedin.com/in/rodrigomoleroroca",
     imageUrl: "/members/2025/rodrigo.webp"
+  },
+  {
+    role: "Marketing Assistant",
+    name: "Laura Schneider",
+    major: "Information Technology",
+    year: "Freshman",
+    linkedin: "https://www.linkedin.com/in/-laura-schneider/",
+    imageUrl: "/members/2025/laura.webp"
+  },
+  {
+    role: "Events Chair",
+    name: "Bernardo Beligolli",
+    major: "Computer Science",
+    year: "Freshman",
+    linkedin: "https://www.linkedin.com/in/bernardo-beligolli-02536a387/",
+    imageUrl: "/members/2025/bernardo.webp"
+  },
+  {
+    role: "Events Assistant",
+    name: "Adelina Albert",
+    major: "Artificial Intelligence",
+    year: "Freshman",
+    linkedin: "https://www.linkedin.com/in/adelina-albert-3906a3386/",
+    imageUrl: "/members/2025/adelina.webp"
+  },
+  {
+    role: "Tech Lead",
+    name: "Boburjon Usmonov",
+    major: "Computer Science",
+    year: "Senior",
+    linkedin: "https://www.linkedin.com/in/boburjonusmonov/",
+    imageUrl: "/members/2025/boburjon.webp"
+  },
+  {
+    role: "Tech Lead",
+    name: "Caio Bahlis",
+    major: "Computer Science",
+    year: "Junior",
+    linkedin: "https://www.linkedin.com/in/cbahlis/",
+    imageUrl: "/members/2025/caio.webp"
+  },
+  {
+    role: "Tech Lead",
+    name: "Sebastian Pulgar",
+    major: "Information Technology",
+    year: "Sophomore",
+    linkedin: "https://www.linkedin.com/in/sebastian-pulgar-9a8b1429b/",
+    imageUrl: "/members/2025/sebastian.webp"
+  },
+  {
+    role: "Tech Lead",
+    name: "Nadia Korostyleva",
+    major: "Biomedical Engineering",
+    year: "Master's",
+    linkedin: "https://www.linkedin.com/in/nadezhda890/",
+    imageUrl: "/members/2025/nadia.webp"
+  },
+  {
+    role: "Webmaster",
+    name: "Sara Perez-Soto",
+    major: "Computer Science",
+    year: "Junior",
+    linkedin: "https://www.linkedin.com/in/sarapsoto/",
+    imageUrl: "/members/2025/sara.webp"
   },
 ];
 

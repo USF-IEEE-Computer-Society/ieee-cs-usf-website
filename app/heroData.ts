@@ -22,7 +22,7 @@ export const heroStats: StatData[] = [
   },
   {
     icon: UserLock,
-    value: 20,
+    value: 17,
     label: 'E-board members',
     showPlus: false
   }
