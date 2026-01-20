@@ -1,9 +1,28 @@
 import type { CollectionConfig } from 'payload'
 
+const formatSlug = (title: string): string => {
+  return title
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '') // Remove special characters
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/-+/g, '-') // Replace multiple hyphens with single
+}
+
 export const Articles: CollectionConfig = {
   slug: 'articles',
   admin: {
     useAsTitle: 'title',
+  },
+  hooks: {
+    beforeChange: [
+      ({ data }) => {
+        if (data?.title && !data?.slug) {
+          data.slug = formatSlug(data.title)
+        }
+        return data
+      },
+    ],
   },
   fields: [
     {
@@ -17,7 +36,7 @@ export const Articles: CollectionConfig = {
       required: true,
       unique: true,
       admin: {
-        description: 'URL-friendly identifier (e.g., "my-first-article")',
+        description: 'Auto-generated from title, or enter custom URL-friendly identifier',
       },
     },
     {
