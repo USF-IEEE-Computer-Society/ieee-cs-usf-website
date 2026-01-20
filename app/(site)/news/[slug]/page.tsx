@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { RichText } from '@/components/RichText'
-import type { Article, Media } from '@/payload-types'
+import type { Article, Media, User } from '@/payload-types'
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 import { ArrowLeft } from 'lucide-react'
 
@@ -45,6 +45,7 @@ export default async function ArticlePage({ params }: Props) {
       slug: { equals: slug },
       status: { equals: 'published' },
     },
+    depth: 1,
   })
 
   if (!docs.length) {
@@ -53,10 +54,11 @@ export default async function ArticlePage({ params }: Props) {
 
   const article = docs[0] as Article
   const featuredImage = article.featuredImage as Media | null
+  const author = article.author as User | null
 
   return (
     <div className="min-h-screen bg-white text-black">
-      <article className="container mx-auto px-4 py-16 max-w-4xl">
+      <article className="container mx-auto px-4 py-10 max-w-4xl">
         <Link
           href="/news"
           className="inline-flex items-center gap-2 text-gray-400 hover:text-black transition-colors mb-8"
@@ -74,6 +76,9 @@ export default async function ArticlePage({ params }: Props) {
             })}
           </time>
           <h1 className="text-4xl md:text-5xl font-bold mt-2">{article.title}</h1>
+          {author && (
+            <p className="text-gray-500 mt-2">By {author.name}</p>
+          )}
         </header>
 
         {featuredImage?.url && (

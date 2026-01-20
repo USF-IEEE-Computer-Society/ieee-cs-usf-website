@@ -26,6 +26,23 @@ export const Articles: CollectionConfig = {
       relationTo: 'media',
     },
     {
+      name: 'content',
+      type: 'richText',
+      required: true,
+      admin: {
+        description: 'Write your article content here. Use the toolbar for headers, bold, italic, lists, and more.',
+      },
+    },
+    {
+      name: 'author',
+      type: 'relationship',
+      relationTo: 'users',
+      hasMany: false,
+      admin: {
+        description: 'Select the author of this article',
+      },
+    },
+    {
       name: 'publishedDate',
       type: 'date',
       required: true,
@@ -35,14 +52,7 @@ export const Articles: CollectionConfig = {
         },
       },
     },
-    {
-      name: 'content',
-      type: 'richText',
-      required: true,
-      admin: {
-        description: 'Write your article content here. Use the toolbar for headers, bold, italic, lists, and more.',
-      },
-    },
+
     {
       name: 'status',
       type: 'select',
@@ -53,5 +63,6 @@ export const Articles: CollectionConfig = {
       defaultValue: 'draft',
       required: true,
     },
+
   ],
 }

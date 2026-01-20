@@ -53,6 +53,7 @@ export interface Article {
     [k: string]: unknown
   }
   status: 'draft' | 'published'
+  author?: string | User | null
   createdAt: string
   updatedAt: string
 }
