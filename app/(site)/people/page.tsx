@@ -1,16 +1,16 @@
 "use client";
 import { useState } from 'react';
 import MemberCard from '@/components/MemberCard';
-import { eboard2425 } from '@/members_data/eboard-24-25';
-import { eboard2526 } from '@/members_data/eboard-25-26';
+import { eboard25fall } from '@/members_data/eboard-25-fall';
+import { eboard26spring } from '@/members_data/eboard-26-spring';
 
 const dataMap = {
-  "2024-2025": eboard2425,
-  "2025-2026": eboard2526,
+  "fall25": eboard25fall,
+  "spring26": eboard26spring,
 };
 
 export default function Page() {
-  const [selectedYear, setSelectedYear] = useState("2025-2026");
+  const [selectedYear, setSelectedYear] = useState("spring26");
   const currentList = dataMap[selectedYear as keyof typeof dataMap];
 
   return (
@@ -24,8 +24,8 @@ export default function Page() {
             onChange={(e) => setSelectedYear(e.target.value)}
             className="p-2 border border-gray-300 rounded-md bg-white text-gray-700"
           >
-            <option value="2025-2026">2025-2026</option>
-            <option value="2024-2025">2024-2025</option>
+            <option value="spring26">Spring 2026</option>
+            <option value="fall25">Fall 2025</option>
           </select>
         </div>
 

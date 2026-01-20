@@ -1,11 +1,13 @@
-export const eboard2526 = [
+// FIX ME : fix order of appearence; fix new people; add spring 25 and fall 24
+
+export const eboard25fall = [
   {
     role: "President",
     name: "Anzhelika Kurnikova",
     major: "Computer Science",
     year: "Senior",
     linkedin: "https://www.linkedin.com/in/anzhelika-kurnikova/",
-    imageUrl: "/members/25-26/anzhelika.webp"
+    imageUrl: "/members/anzhelika.webp"
   },
   {
     role: "Vice President",
@@ -13,7 +15,7 @@ export const eboard2526 = [
     major: "Computer Engineering",
     year: "Sophomore",
     linkedin: "https://www.linkedin.com/in/elan-berezovskiy-5a7618263/",
-    imageUrl: "/members/25-26/elan.webp"
+    imageUrl: "/members/elan.webp"
   },
   {
     role: "Treasurer",
@@ -21,7 +23,7 @@ export const eboard2526 = [
     major: "Biomedical Sciences",
     year: "Senior",
     linkedin: "https://www.linkedin.com/in/zarina-zatildayeva-b928b826a/",
-    imageUrl: "/members/25-26/zarina.webp"
+    imageUrl: "/members/zarina.webp"
   },
   {
     role: "Media Manager",
@@ -29,7 +31,7 @@ export const eboard2526 = [
     major: "Computer Science",
     year: "Senior",
     linkedin: "https://www.linkedin.com/in/duongmai127/",
-    imageUrl: "/members/25-26/eric.webp"
+    imageUrl: "/members/eric.webp"
   },
   {
     role: "Media Manager",
@@ -37,7 +39,7 @@ export const eboard2526 = [
     major: "Artificial Intelligence",
     year: "Sophomore",
     linkedin: "https://www.linkedin.com/in/kimberly-bahena-03a310325/",
-    imageUrl: "/members/25-26/kimberly.webp"
+    imageUrl: "/members/kimberly.webp"
   },
   {
     role: "Outreach Chair",
@@ -45,7 +47,7 @@ export const eboard2526 = [
     major: "Computer Science",
     year: "Junior",
     linkedin: "https://www.linkedin.com/in/kharitonov-egor/",
-    imageUrl: "/members/25-26/egor.webp"
+    imageUrl: "/members/egor.webp"
   },
   {
     role: "Marketing Chair",
@@ -53,47 +55,31 @@ export const eboard2526 = [
     major: "Mechanical Engineering",
     year: "Sophomore",
     linkedin: "https://www.linkedin.com/in/cesarcld/",
-    imageUrl: "/members/25-26/cesar.webp"
+    imageUrl: "/members/cesar.webp"
   },
   {
-    role: "Marketing Assistant",
+    role: "TechX Ambassador",
     name: "Leonardo Henriques",
     major: "Computer Science",
     year: "Freshman",
     linkedin: "https://www.linkedin.com/in/leonardo-hln/",
-    imageUrl: "/members/25-26/leonardo.webp"
+    imageUrl: "/members/leonardo.webp"
   },
   {
-    role: "Marketing Assistant",
+    role: "TechX Ambassador",
     name: "Rodrigo Molero",
     major: "Computer Engineering",
     year: "Junior",
     linkedin: "https://www.linkedin.com/in/rodrigomoleroroca",
-    imageUrl: "/members/25-26/rodrigo.webp"
+    imageUrl: "/members/rodrigo.webp"
   },
   {
-    role: "Marketing Assistant",
-    name: "Laura Schneider",
-    major: "Information Technology",
-    year: "Freshman",
-    linkedin: "https://www.linkedin.com/in/-laura-schneider/",
-    imageUrl: "/members/25-26/laura.webp"
-  },
-  {
-    role: "Events Chair",
+    role: "TechX Ambassador",
     name: "Bernardo Beligolli",
     major: "Computer Science",
     year: "Freshman",
     linkedin: "https://www.linkedin.com/in/bernardo-beligolli-02536a387/",
-    imageUrl: "/members/25-26/bernardo.webp"
-  },
-  {
-    role: "Events Assistant",
-    name: "Adelina Albert",
-    major: "Artificial Intelligence",
-    year: "Freshman",
-    linkedin: "https://www.linkedin.com/in/adelina-albert-3906a3386/",
-    imageUrl: "/members/25-26/adelina.webp"
+    imageUrl: "/members/bernardo.webp"
   },
   {
     role: "Tech Lead",
@@ -101,7 +87,7 @@ export const eboard2526 = [
     major: "Computer Science",
     year: "Senior",
     linkedin: "https://www.linkedin.com/in/boburjonusmonov/",
-    imageUrl: "/members/25-26/boburjon.webp"
+    imageUrl: "/members/boburjon.webp"
   },
   {
     role: "Tech Lead",
@@ -109,7 +95,7 @@ export const eboard2526 = [
     major: "Computer Science",
     year: "Junior",
     linkedin: "https://www.linkedin.com/in/cbahlis/",
-    imageUrl: "/members/25-26/caio.webp"
+    imageUrl: "/members/caio.webp"
   },
   {
     role: "Tech Lead",
@@ -117,7 +103,7 @@ export const eboard2526 = [
     major: "Information Technology",
     year: "Sophomore",
     linkedin: "https://www.linkedin.com/in/sebastian-pulgar-9a8b1429b/",
-    imageUrl: "/members/25-26/sebastian.webp"
+    imageUrl: "/members/sebastian.webp"
   },
   {
     role: "Tech Lead",
@@ -125,7 +111,7 @@ export const eboard2526 = [
     major: "Biomedical Engineering",
     year: "Master's",
     linkedin: "https://www.linkedin.com/in/nadezhda890/",
-    imageUrl: "/members/25-26/nadia.webp"
+    imageUrl: "/members/nadia.webp"
   },
   {
     role: "Webmaster",
@@ -133,6 +119,38 @@ export const eboard2526 = [
     major: "Computer Science",
     year: "Junior",
     linkedin: "https://www.linkedin.com/in/sarapsoto/",
-    imageUrl: "/members/25-26/sara.webp"
+    imageUrl: "/members/sara.webp"
+  },
+  {
+    role: "",
+    name: "Amber",
+    major: "Computer Science",
+    year: "Junior",
+    linkedin: "https://www.linkedin.com/in/sarapsoto/",
+    imageUrl: "/members/sara.webp"
+  },
+  {
+    role: "",
+    name: "Akmal",
+    major: "Computer Science",
+    year: "Junior",
+    linkedin: "https://www.linkedin.com/in/sarapsoto/",
+    imageUrl: "/members/sara.webp"
+  },
+  {
+    role: "",
+    name: "Sofia",
+    major: "Computer Science",
+    year: "Junior",
+    linkedin: "https://www.linkedin.com/in/sarapsoto/",
+    imageUrl: "/members/sara.webp"
+  },
+  {
+    role: "",
+    name: "Vama",
+    major: "Computer Science",
+    year: "Junior",
+    linkedin: "https://www.linkedin.com/in/sarapsoto/",
+    imageUrl: "/members/sara.webp"
   },
 ];
