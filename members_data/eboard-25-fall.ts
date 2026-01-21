@@ -1,4 +1,5 @@
-// FIX ME : fix order of appearence; fix new people; add spring 25 and fall 24
+// FIX ME : add spring 25 and fall 24
+// FIX ME : amber and akmal role
 
 export const eboard25fall = [
   {
@@ -11,19 +12,19 @@ export const eboard25fall = [
   },
   {
     role: "Vice President",
+    name: "Vama Shah",
+    major: "Industrial Engineering",
+    year: "Sophomore",
+    linkedin: "https://www.linkedin.com/in/vamashah08/",
+    imageUrl: "/members/vama.webp"
+  },
+  {
+    role: "Treasurer",
     name: "Elan Berezovskiy",
     major: "Computer Engineering",
     year: "Sophomore",
     linkedin: "https://www.linkedin.com/in/elan-berezovskiy-5a7618263/",
     imageUrl: "/members/elan.webp"
-  },
-  {
-    role: "Treasurer",
-    name: "Zarina Zatildayeva",
-    major: "Biomedical Sciences",
-    year: "Senior",
-    linkedin: "https://www.linkedin.com/in/zarina-zatildayeva-b928b826a/",
-    imageUrl: "/members/zarina.webp"
   },
   {
     role: "Media Manager",
@@ -43,11 +44,11 @@ export const eboard25fall = [
   },
   {
     role: "Outreach Chair",
-    name: "Egor Kharitonov",
-    major: "Computer Science",
+    name: "Sofia Mitsuyuki",
+    major: "Computer Engineering",
     year: "Junior",
-    linkedin: "https://www.linkedin.com/in/kharitonov-egor/",
-    imageUrl: "/members/egor.webp"
+    linkedin: "https://www.linkedin.com/in/sofiamitsu/",
+    imageUrl: "/members/sofia.webp"
   },
   {
     role: "Marketing Chair",
@@ -58,28 +59,20 @@ export const eboard25fall = [
     imageUrl: "/members/cesar.webp"
   },
   {
-    role: "TechX Ambassador",
-    name: "Leonardo Henriques",
-    major: "Computer Science",
-    year: "Freshman",
-    linkedin: "https://www.linkedin.com/in/leonardo-hln/",
-    imageUrl: "/members/leonardo.webp"
+    role: "Events Chair",
+    name: "Zarina Zatildayeva",
+    major: "Biomedical Sciences",
+    year: "Senior",
+    linkedin: "https://www.linkedin.com/in/zarina-zatildayeva-b928b826a/",
+    imageUrl: "/members/zarina.webp"
   },
   {
-    role: "TechX Ambassador",
-    name: "Rodrigo Molero",
-    major: "Computer Engineering",
+    role: "Tech Lead",
+    name: "Egor Kharitonov",
+    major: "Computer Science",
     year: "Junior",
-    linkedin: "https://www.linkedin.com/in/rodrigomoleroroca",
-    imageUrl: "/members/rodrigo.webp"
-  },
-  {
-    role: "TechX Ambassador",
-    name: "Bernardo Beligolli",
-    major: "Computer Science",
-    year: "Freshman",
-    linkedin: "https://www.linkedin.com/in/bernardo-beligolli-02536a387/",
-    imageUrl: "/members/bernardo.webp"
+    linkedin: "https://www.linkedin.com/in/kharitonov-egor/",
+    imageUrl: "/members/egor.webp"
   },
   {
     role: "Tech Lead",
@@ -122,35 +115,43 @@ export const eboard25fall = [
     imageUrl: "/members/sara.webp"
   },
   {
-    role: "",
-    name: "Amber",
+    role: "TechX Ambassador",
+    name: "Leonardo Henriques",
     major: "Computer Science",
-    year: "Junior",
-    linkedin: "https://www.linkedin.com/in/sarapsoto/",
-    imageUrl: "/members/sara.webp"
+    year: "Freshman",
+    linkedin: "https://www.linkedin.com/in/leonardo-hln/",
+    imageUrl: "/members/leonardo.webp"
   },
   {
-    role: "",
-    name: "Akmal",
-    major: "Computer Science",
+    role: "TechX Ambassador",
+    name: "Rodrigo Molero",
+    major: "Computer Engineering",
     year: "Junior",
-    linkedin: "https://www.linkedin.com/in/sarapsoto/",
-    imageUrl: "/members/sara.webp"
+    linkedin: "https://www.linkedin.com/in/rodrigomoleroroca",
+    imageUrl: "/members/rodrigo.webp"
   },
   {
-    role: "",
-    name: "Sofia",
+    role: "TechX Ambassador",
+    name: "Bernardo Beligolli",
     major: "Computer Science",
-    year: "Junior",
-    linkedin: "https://www.linkedin.com/in/sarapsoto/",
-    imageUrl: "/members/sara.webp"
+    year: "Freshman",
+    linkedin: "https://www.linkedin.com/in/bernardo-beligolli-02536a387/",
+    imageUrl: "/members/bernardo.webp"
   },
   {
-    role: "",
-    name: "Vama",
+    role: ".",
+    name: "Amber Nguyen",
+    major: "Computer Engineering",
+    year: "Senior",
+    linkedin: "https://www.linkedin.com/in/ambern3/",
+    imageUrl: "/members/amber.webp"
+  },
+  {
+    role: ".",
+    name: "Akmal Kurbanov",
     major: "Computer Science",
-    year: "Junior",
-    linkedin: "https://www.linkedin.com/in/sarapsoto/",
-    imageUrl: "/members/sara.webp"
+    year: "Senior",
+    linkedin: "https://www.linkedin.com/in/akmal-kurbanov/",
+    imageUrl: "/members/akmal.webp"
   },
 ];

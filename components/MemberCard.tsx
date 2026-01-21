@@ -12,7 +12,7 @@ interface MemberProps {
 
 export default function MemberCard({ role, name, major, year, linkedin, imageUrl }: MemberProps) {
   return (
-    <div className="flex flex-col items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+    <div className="flex flex-col items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 transition-shadow border border-gray-100">
       <div className="relative w-32 h-32 mb-4 overflow-hidden rounded-full border-2 border-ieeeBlue">
         <Image 
           src={imageUrl} 
