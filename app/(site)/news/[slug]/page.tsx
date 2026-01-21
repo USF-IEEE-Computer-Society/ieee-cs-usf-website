@@ -7,6 +7,7 @@ import { RichText } from '@/components/RichText'
 import type { Article, Media, User } from '@/payload-types'
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 import { ArrowLeft } from 'lucide-react'
+import ShareButtons from './ShareButtons'
 
 export const dynamic = 'force-dynamic'
 
@@ -68,17 +69,23 @@ export default async function ArticlePage({ params }: Props) {
         </Link>
 
         <header className="mb-8">
-          <time className="text-gray-400">
-            {new Date(article.publishedDate).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
-          </time>
-          <h1 className="text-4xl md:text-5xl font-bold mt-2">{article.title}</h1>
-          {author && (
-            <p className="text-gray-500 mt-2">By {author.name}</p>
-          )}
+          <h1 className="text-3xl md:text-4xl font-bold mb-2">{article.title}</h1>
+          <div className="flex items-center gap-2 text-gray-500 mb-6">
+            {author && (
+              <>
+                <span>{author.name}</span>
+                <span>•</span>
+              </>
+            )}
+            <time>
+              {new Date(article.publishedDate).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </time>
+          </div>
+          <ShareButtons title={article.title} slug={article.slug} />
         </header>
 
         {featuredImage?.url && (
@@ -88,7 +95,7 @@ export default async function ArticlePage({ params }: Props) {
               alt={featuredImage.alt || article.title}
               width={featuredImage.width || 1200}
               height={featuredImage.height || 675}
-              className="w-full h-auto"
+              className="w-full md:w-[75%] md:mx-auto h-auto"
               priority
             />
           </div>

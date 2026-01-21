@@ -6,7 +6,7 @@ import type { Article, Media } from '@/payload-types'
 
 export const dynamic = 'force-dynamic'
 
-const ARTICLES_PER_PAGE = 6
+const ARTICLES_PER_PAGE = 9
 
 export default async function NewsPage({
   searchParams,
@@ -43,7 +43,7 @@ export default async function NewsPage({
           </div>
         ) : (
           <>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {articles.docs.map((article) => {
                 const typedArticle = article as Article
                 const featuredImage = typedArticle.featuredImage as Media | null
@@ -52,7 +52,7 @@ export default async function NewsPage({
                   <Link
                     key={typedArticle.id}
                     href={`/news/${typedArticle.slug}`}
-                    className="block bg-white rounded-lg overflow-hidden transition-colors border-2"
+                    className="block bg-gray-50/10 rounded-lg overflow-hidden transition-colors shadow-md"
                   >
                     {featuredImage?.url && (
                       <div className="relative h-48 w-full">
