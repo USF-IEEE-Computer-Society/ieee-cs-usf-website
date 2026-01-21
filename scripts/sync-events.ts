@@ -1,6 +1,7 @@
 import https from 'https';
 import http from 'http';
-import { JSDOM, VirtualConsole } from 'jsdom';
+import * as cheerio from 'cheerio';
+import type { Element } from 'domhandler';
 import { URL } from 'url';
 import { neon, NeonQueryFunction } from '@neondatabase/serverless';
 
@@ -11,10 +12,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const EVENTS_URL = 'https://bullsconnect.usf.edu/ieeecs/events/';
-
-// Create virtual console to suppress CSS parsing errors
-const virtualConsole = new VirtualConsole();
-virtualConsole.on('error', () => { /* ignore CSS errors */ });
 
 // Database connection - initialized lazily
 function getDb(): NeonQueryFunction<false, false> {
@@ -92,17 +89,15 @@ function fetchPage(urlString: string, maxRedirects = 10): Promise<{ html: string
 }
 
 async function parseEventsList(html: string): Promise<{ name: string; url: string }[]> {
-  const dom = new JSDOM(html, { virtualConsole });
-  const document = dom.window.document;
+  const $ = cheerio.load(html);
   
   const events: { name: string; url: string }[] = [];
-  const featureDivs = document.querySelectorAll('div.feature');
   
-  featureDivs.forEach(div => {
+  $('div.feature').each((_: number, div: Element) => {
     try {
-      const titleLink = div.querySelector('h3.h4 a');
-      const title = titleLink ? titleLink.textContent?.trim() : null;
-      const eventUrl = titleLink ? titleLink.getAttribute('href') : null;
+      const titleLink = $(div).find('h3.h4 a');
+      const title = titleLink.text()?.trim() || null;
+      const eventUrl = titleLink.attr('href') || null;
       
       if (title && eventUrl) {
         events.push({
@@ -128,8 +123,7 @@ async function parseEventDetails(html: string, finalUrl: string): Promise<{
   tags: string[];
   finalUrl: string;
 }> {
-  const dom = new JSDOM(html, { virtualConsole });
-  const document = dom.window.document;
+  const $ = cheerio.load(html);
   
   const details: {
     description: string | null;
@@ -152,11 +146,9 @@ async function parseEventDetails(html: string, finalUrl: string): Promise<{
   };
   
   // Try to parse JSON-LD schema - may have multiple scripts, find the Event one
-  const jsonLdScripts = document.querySelectorAll('script[type="application/ld+json"]');
-  
-  for (const jsonLdScript of jsonLdScripts) {
+  $('script[type="application/ld+json"]').each((_: number, script: Element) => {
     try {
-      const jsonData = JSON.parse(jsonLdScript.textContent || '{}');
+      const jsonData = JSON.parse($(script).html() || '{}');
       
       // Handle both direct Event type and @graph array
       let eventData = null;
@@ -180,32 +172,29 @@ async function parseEventDetails(html: string, finalUrl: string): Promise<{
         // Location is not fetched (requires authentication)
         // details.location remains null
         
-        // Found Event data, break the loop
-        break;
+        // Found Event data, return false to break the loop
+        return false;
       }
     } catch (e) {
       console.error('  Error parsing JSON-LD:', (e as Error).message);
     }
-  }
+  });
   
   // Get registered count - look for the number before "Registered"
-  const registeredDivs = document.querySelectorAll('div');
-  for (const div of registeredDivs) {
-    if (div.textContent?.trim() === 'Registered') {
-      const parent = div.parentElement;
-      if (parent) {
-        const numberSpan = parent.querySelector('span.number');
-        if (numberSpan) {
-          details.registered = parseInt(numberSpan.textContent?.trim() || '0', 10) || 0;
-          break;
-        }
+  $('div').each((_: number, div: Element) => {
+    if ($(div).text()?.trim() === 'Registered') {
+      const parent = $(div).parent();
+      const numberSpan = parent.find('span.number');
+      if (numberSpan.length) {
+        details.registered = parseInt(numberSpan.text()?.trim() || '0', 10) || 0;
+        return false; // break the loop
       }
     }
-  }
+  });
   
   // Alternative: try to find number span near "Registered" text
   if (details.registered === null) {
-    const allText = document.body ? document.body.innerHTML : '';
+    const allText = $.html();
     const match = allText.match(/<span[^>]*class="number"[^>]*>(\d+)<\/span>[\s\S]*?Registered/i);
     if (match) {
       details.registered = parseInt(match[1], 10) || 0;
@@ -214,21 +203,19 @@ async function parseEventDetails(html: string, finalUrl: string): Promise<{
   
   // Extract tags - they are in <a> elements with href containing "topic_tags" 
   // or in <span class="label label-tag"> elements
-  const tagLinks = document.querySelectorAll('a[href*="topic_tags"], a[href*="event_type"]');
   const tagsSet = new Set<string>();
   
-  tagLinks.forEach(link => {
+  $('a[href*="topic_tags"], a[href*="event_type"]').each((_: number, link: Element) => {
     // Get the text content, which might be nested in spans
-    const text = link.textContent?.trim();
+    const text = $(link).text()?.trim();
     if (text && text.length > 0 && text.length < 100) {
       tagsSet.add(text);
     }
   });
   
   // Also try to find tags by label class
-  const labelSpans = document.querySelectorAll('span.label-tag, span.label-default');
-  labelSpans.forEach(span => {
-    const text = span.textContent?.trim();
+  $('span.label-tag, span.label-default').each((_: number, span: Element) => {
+    const text = $(span).text()?.trim();
     if (text && text.length > 0 && text.length < 100) {
       tagsSet.add(text);
     }

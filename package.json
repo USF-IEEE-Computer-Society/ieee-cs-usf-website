@@ -19,7 +19,7 @@
     "@payloadcms/storage-vercel-blob": "^3.72.0",
     "dotenv": "^17.2.3",
     "graphql": "^16.12.0",
-    "jsdom": "^27.0.1",
+    "cheerio": "^1.0.0",
     "lucide-react": "^0.561.0",
     "next": "^15.4.10",
     "payload": "^3.72.0",
@@ -33,7 +33,6 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/jsdom": "^27.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
