@@ -2,7 +2,15 @@ import type { NextConfig } from "next";
 import { withPayload } from "@payloadcms/next/withPayload";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'bullsconnect.usf.edu',
+        pathname: '/**',
+      },
+    ],
+  },
 
   async rewrites() {
     return [
