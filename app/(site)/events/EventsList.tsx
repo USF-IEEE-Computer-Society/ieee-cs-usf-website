@@ -19,6 +19,7 @@ async function getEvents() {
       tags,
       "registeredCount"
     FROM events
+    WHERE "endDate" >= NOW()
     ORDER BY "startDate" ASC
   `;
   return events;
