@@ -274,13 +274,13 @@ async function upsertEvent(event: ScrapedEvent, sql: NeonQueryFunction<false, fa
   try {
     // Check if event exists
     const existing = await sql`
-      SELECT id FROM events WHERE bullsconnect_id = ${bullsconnectId}
+      SELECT id FROM egor.events WHERE bullsconnect_id = ${bullsconnectId}
     `;
     
     if (existing.length > 0) {
       // Update existing event
       await sql`
-        UPDATE events SET
+        UPDATE egor.events SET
           name = ${event.name},
           "originalURL" = ${event.originalUrl},
           "finalURL" = ${event.finalUrl || null},
@@ -297,7 +297,7 @@ async function upsertEvent(event: ScrapedEvent, sql: NeonQueryFunction<false, fa
     } else {
       // Insert new event
       await sql`
-        INSERT INTO events (
+        INSERT INTO egor.events (
           bullsconnect_id,
           name,
           "originalURL",

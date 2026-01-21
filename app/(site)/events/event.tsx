@@ -60,7 +60,7 @@ export default function Event({
                         <h2>{moment(startDate).format('ddd, MMMM Do')}</h2>
                         <h2>{moment(startDate).format("LT")} - {moment(endDate).format("LT")}</h2>
                     </div>
-                    <Link href={eventUrl} target="_blank" rel="noopener noreferrer" className='w-full h-[50px] p-4 bg-[#006747] rounded-md shadow-md flex items-center justify-center text-white font-medium'>View on BullsConnect</Link>
+                    <Link href={eventUrl} target="_blank" rel="noopener noreferrer" className='w-full h-[50px] p-4 bg-usfGreen rounded-md shadow-md flex items-center justify-center text-white font-medium'>View on BullsConnect</Link>
                 </div>}
         </div>
     )

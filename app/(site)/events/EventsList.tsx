@@ -18,7 +18,7 @@ async function getEvents() {
       location,
       tags,
       "registeredCount"
-    FROM events
+    FROM egor.events
     WHERE "endDate" >= NOW()
     ORDER BY "startDate" ASC
   `;
