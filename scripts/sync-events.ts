@@ -2,11 +2,13 @@ import https from 'https';
 import http from 'http';
 import { JSDOM, VirtualConsole } from 'jsdom';
 import { URL } from 'url';
-import { neon } from '@neondatabase/serverless';
-import { config } from 'dotenv';
+import { neon, NeonQueryFunction } from '@neondatabase/serverless';
 
-// Load environment variables
-config({ path: '.env.local' });
+// Load environment variables only in local development
+if (process.env.NODE_ENV !== 'production') {
+  const { config } = require('dotenv');
+  config({ path: '.env.local' });
+}
 
 const EVENTS_URL = 'https://bullsconnect.usf.edu/ieeecs/events/';
 
@@ -14,14 +16,14 @@ const EVENTS_URL = 'https://bullsconnect.usf.edu/ieeecs/events/';
 const virtualConsole = new VirtualConsole();
 virtualConsole.on('error', () => { /* ignore CSS errors */ });
 
-// Database connection
-const DATABASE_URL = process.env.DATABASE_URL;
-if (!DATABASE_URL) {
-  console.error('❌ DATABASE_URL environment variable is not set');
-  process.exit(1);
+// Database connection - initialized lazily
+function getDb(): NeonQueryFunction<false, false> {
+  const DATABASE_URL = process.env.DATABASE_URL;
+  if (!DATABASE_URL) {
+    throw new Error('DATABASE_URL environment variable is not set');
+  }
+  return neon(DATABASE_URL);
 }
-
-const sql = neon(DATABASE_URL);
 
 interface EventLocation {
   name: string | null;
@@ -271,7 +273,7 @@ function extractBullsconnectId(url: string): string | null {
   }
 }
 
-async function upsertEvent(event: ScrapedEvent): Promise<{ action: 'inserted' | 'updated' | 'skipped'; id: string | null }> {
+async function upsertEvent(event: ScrapedEvent, sql: NeonQueryFunction<false, false>): Promise<{ action: 'inserted' | 'updated' | 'skipped'; id: string | null }> {
   // Try originalUrl first (has event_uid), then finalUrl as fallback
   const bullsconnectId = extractBullsconnectId(event.originalUrl) || extractBullsconnectId(event.finalUrl || '');
   
@@ -346,6 +348,9 @@ async function main() {
   console.log('🔄 Starting BullsConnect Events Sync\n');
   console.log(`📅 ${new Date().toISOString()}\n`);
   
+  // Get database connection
+  const sql = getDb();
+  
   try {
     console.log('Fetching events list from IEEE CS USF...\n');
     
@@ -386,7 +391,7 @@ async function main() {
         console.log(`  ✓ Got details (registered: ${details.registered}, tags: ${details.tags.length}, location: ${details.location ? 'yes' : 'no'})`);
         
         // Upsert to database
-        const { action, id } = await upsertEvent(scrapedEvent);
+        const { action, id } = await upsertEvent(scrapedEvent, sql);
         
         if (action === 'inserted') {
           console.log(`  ✅ Inserted new event (bullsconnect_id: ${id})\n`);
