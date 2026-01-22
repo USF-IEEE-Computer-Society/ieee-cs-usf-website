@@ -43,7 +43,7 @@ export default function TechX() {
         <div className='w-full flex flex-col items-center'>
             <div className='w-full flex justify-center relative overflow-hidden bg-black'>
                 {/* Mosaic Background */}
-                <div className='absolute inset-0 grid grid-cols-2 md:grid-cols-6 lg:grid-cols-6 gap-0 opacity-40'>
+                <div className='absolute inset-0 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-0 opacity-30'>
                     {techxImages.map((src, index) => (
                         <div key={index} className='aspect-square overflow-hidden'>
                             <img 
@@ -57,7 +57,7 @@ export default function TechX() {
                 </div>
                 
                 <div className='pt-16 pb-16 w-full max-w-[1300px] pl-4 pr-4 relative z-10'>
-                    <h2 className="text-4xl font-semibold text-ieeeDark text-center mb-4">TechX</h2>
+                    <h2 className="text-[2.5rem] font-semibold text-ieeeDark text-center mb-4">TechX</h2>
                     <p className="text-center text-ieeeDark mb-8 max-w-4xl mx-auto">
                         Our flagship annual conference
                     </p>
@@ -94,42 +94,42 @@ export default function TechX() {
                         </div>
 
                         {/* Info Blocks */}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl md:h-[250px]">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl md:h-[250px]">
                             {/* Talks Block */}
-                            <div className="bg-white/65 rounded-xl p-6 shadow-md border border-gray-200 ">
+                            <div className="bg-white/10 rounded-xl p-6 shadow-md border border-gray-200 ">
                                 <div className="flex items-center gap-3 mb-4">
                                     <div className="p-2 bg-ieeeDark/10 rounded-md">
                                         <MicVocal className="text-ieeeDark" strokeWidth={1.5} size={28} />
                                     </div>
                                     <h3 className="text-xl font-semibold text-ieeeDark">Industry Talks</h3>
                                 </div>
-                                <p className="text-black text-sm leading-relaxed">
+                                <p className="text-white text-sm leading-relaxed">
                                     11 presentations from AI leaders at <span className="font-medium">Microsoft</span>, <span className="font-medium">JP Morgan</span>, <span className="font-medium">Verizon</span>, <span className="font-medium">Intel</span>, including &quot;Careers in Tech&quot; panel discussion.
                                 </p>
                             </div>
 
                             {/* Attendees Block */}
-                            <div className="bg-white/65 rounded-xl p-6 shadow-md border border-gray-200">
+                            <div className="bg-white/10 rounded-xl p-6 shadow-md border border-gray-200">
                                 <div className="flex items-center gap-3 mb-4">
                                     <div className="p-2 bg-ieeeBlue/10 rounded-md">
                                         <Users className="text-ieeeBlue" strokeWidth={1.5} size={28} />
                                     </div>
-                                    <h3 className="text-xl font-semibold text-ieeeDark">Record Attendance</h3>
+                                    <h3 className="text-xl font-semibold text-ieeeDark">Attendance</h3>
                                 </div>
-                                <p className="text-black text-sm leading-relaxed">
+                                <p className="text-white text-sm leading-relaxed">
                                     <span className="font-medium">336 attendees</span> from <span className="font-medium">500+ registrations</span>, representing 9 educational institutions with <span className="font-medium">40% being professionals</span> from the Tampa Bay area.
                                 </p>
                             </div>
 
                             {/* Companies Block */}
-                            <div className="bg-white/65 rounded-xl p-6 shadow-md border border-gray-200">
+                            <div className="bg-white/10 rounded-xl p-6 shadow-md border border-gray-200">
                                 <div className="flex items-center gap-3 mb-4">
                                     <div className="p-2 bg-ieeeDarkblue/10 rounded-md">
                                         <Building2 className="text-ieeeDarkblue" strokeWidth={1.5} size={28} />
                                     </div>
-                                    <h3 className="text-xl font-semibold text-ieeeDark">Tabling</h3>
+                                    <h3 className="text-xl font-semibold text-ieeeDark">Career Fair</h3>
                                 </div>
-                                <p className="text-black text-sm leading-relaxed">
+                                <p className="text-white text-sm leading-relaxed">
                                     5 hours of career fair with <span className="font-medium">9 companies</span>: Verizon, Uber AI, ICode, ISACA, USF IT, IronEagleX, Tampa Devs, and more.
                                 </p>
                             </div>

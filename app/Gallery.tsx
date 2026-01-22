@@ -29,7 +29,7 @@ interface GalleryImage {
 const galleryImages: GalleryImage[] = [
 
     { src: b753b8de, name: "Tabling at Marshall Student Center" },
-    { src: bellini_mentorship, name: "Bellini Mentorship Mixer" },
+
     //{ src: build_pc, name: "Building a PC Workshop" },
     //{ src: DSC_2719, name: "DevFest" },
 
@@ -37,6 +37,7 @@ const galleryImages: GalleryImage[] = [
     { src: image20250912, name: "General Body Meeting Fall 2025" },
     { src: image20251030, name: "Git & Github Workshop" },
     { src: image20251113, name: "Certifications Workshop" },
+    { src: bellini_mentorship, name: "Bellini Mentorship Mixer" },
     { src: whatsapp, name: "Electronics Repair Workshop" },
     { src: a990cd75, name: "BackEnd Workshop" },
     //{ src: IMG_8023, name: "Tabling" },
@@ -110,9 +111,9 @@ export default function Gallery() {
     };
 
     return (
-        <div className='w-full flex flex-col items-center'>
-            <div className='w-full  py-12'>
-                <h2 className="text-4xl font-semibold text-ieeeDark text-center mb-8">Gallery</h2>
+        <div className='w-full flex flex-col items-center bg-gray-100/50'>
+            <div className='w-full py-10'>
+                <h2 className="text-[2.5rem] font-semibold text-ieeeDark text-center mb-8">Gallery</h2>
 
                 {/* Carousel Container */}
                 <div className="relative flex flex-col md:flex-row items-center px-4">
@@ -161,7 +162,7 @@ export default function Gallery() {
                                 </div>
                                 
                                 {/* Caption */}
-                                <p className="text-center mt-4 text-lg text-ieeeDark font-medium">
+                                <p className="text-center mt-4 text-base text-ieeeDark font-medium">
                                     {image.name}
                                 </p>
                             </div>

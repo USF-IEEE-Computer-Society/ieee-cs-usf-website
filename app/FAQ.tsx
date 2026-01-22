@@ -15,9 +15,9 @@ export default function FAQ() {
 
   return (
     <div className='w-full flex flex-col items-center'>
-      <div className='w-full flex justify-center bg-white'>
+      <div className='w-full flex justify-center bg-gray-100/50'>
         <div className='pt-16 pb-16 w-full max-w-[1500px] px-4'>
-          <h2 className="text-4xl font-semibold text-ieeeDark text-center mb-12">FAQ</h2>
+          <h2 className="text-[2.5rem] font-semibold text-ieeeDark text-center mb-12">FAQ</h2>
           
           <div className="w-[90%] max-w-[1200px] grid grid-cols-1 md:grid-cols-2 gap-4 mx-auto">
             {Questions.map(q => {
