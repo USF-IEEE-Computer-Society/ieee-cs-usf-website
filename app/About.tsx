@@ -3,43 +3,6 @@
 export default function About() {
     return (
         <div className='w-full flex flex-col items-center'>
-            {/* <div className='w-full flex justify-center bg-white'>
-                <div className='pt-16 pb-16 w-full max-w-[1500px] px-4'>
-                    <h2 className="text-4xl font-semibold text-ieeeDark text-center mb-4">Who is IEEE Computer Society at USF?</h2>
-                    <p className="text-center text-gray-600 mb-10 max-w-3xl mx-auto">
-                        We are a student branch chapter at USF directly affiliated with the IEEE Computer Society Florida West Coast Section (FWCS).
-                    </p>
-
-                    <div className="flex flex-col items-center gap-8">
-                        <div className="flex justify-center">
-                            <img src={IEEECSUSFlogo.src} alt="IEEE Computer Society USF Logo" width={200} />
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
-                            <div className="bg-gray-50 rounded-xl p-6 border-l-4 border-ieeeBlue">
-                                <h3 className="text-lg font-semibold text-ieeeDark mb-2">#1 in the United States</h3>
-                                <p className="text-gray-700">Highest attendance of events and meetings among all student branch chapters in the US.</p>
-                            </div>
-
-                            <div className="bg-gray-50 rounded-xl p-6 border-l-4 border-ieeeBlue">
-                                <h3 className="text-lg font-semibold text-ieeeDark mb-2">3 USF Awards (2025)</h3>
-                                <p className="text-gray-700">Won "Best Social Media", "Best Workshop Series", and "Best Picture" from USF College of Engineering Student Council.</p>
-                            </div>
-
-                            <div className="bg-gray-50 rounded-xl p-6 border-l-4 border-ieeeBlue">
-                                <h3 className="text-lg font-semibold text-ieeeDark mb-2">FWCS Recognition</h3>
-                                <p className="text-gray-700">Awarded for "Being a National Leader for Total Events and Hosting TechX Conference for 2 years".</p>
-                            </div>
-
-                            <div className="bg-gray-50 rounded-xl p-6 border-l-4 border-ieeeBlue md:col-span-2 lg:col-span-3 lg:max-w-md lg:mx-auto">
-                                <h3 className="text-lg font-semibold text-ieeeDark mb-2">Richard E. Merwin Scholarship</h3>
-                                <p className="text-gray-700">Leaders from our chapter received this prestigious IEEE-CS scholarship <strong>4 times</strong>.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>*/}
-
             <div className='w-full flex justify-center bg-white'>
                 <div className='pt-16 pb-16 w-full max-w-[1500px] px-4'>
                     <h2 className="text-4xl font-semibold text-ieeeDark text-center mb-4">About us</h2>

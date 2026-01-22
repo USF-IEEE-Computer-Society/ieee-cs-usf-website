@@ -3,6 +3,7 @@
 import Hero from "../Hero"
 import WhatIsIEEECS from "../WhatIsIEEECS"
 import About from "../About"
+import Achievements from "../Achievements"
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
         <Hero/>
         <WhatIsIEEECS/>
         <About/>
+        <Achievements/>
     </>    
   );
 }

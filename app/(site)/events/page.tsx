@@ -6,7 +6,7 @@ export default function Page() {
       <div>
 
         <h1 className="text-4xl font-bold mb-3">Upcoming Events</h1>
-        <p className="mb-10">Click on each event to register on BullsConnect</p>
+        <p className="mb-10">Select any event to register through BullsConnect. Event location details will be available once you complete registration.</p>
       <div>
         <EventsList/>
       </div>
