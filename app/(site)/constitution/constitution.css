@@ -1,0 +1,455 @@
+/* ========================================
+   CONSTITUTION PAGE STYLES
+   Old parchment/document styling
+   ======================================== */
+
+/* Google Fonts for constitution */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700;900&family=IM+Fell+English:ital@0;1&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+/* Scrollable container for the constitution */
+.constitution-scroll-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 8px;
+  /* Custom scrollbar for the constitution */
+  scrollbar-width: thin;
+  scrollbar-color: #8B7355 #f0f0f0;
+}
+
+.constitution-scroll-container::-webkit-scrollbar {
+  width: 14px;
+}
+
+.constitution-scroll-container::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 8px;
+}
+
+.constitution-scroll-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #a08060 0%, #8B7355 50%, #6b5540 100%);
+  border-radius: 8px;
+  border: 3px solid #f0f0f0;
+}
+
+.constitution-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #b09070 0%, #9B8365 50%, #7b6550 100%);
+}
+
+/* Main parchment container */
+.constitution-parchment {
+  position: relative;
+  background: 
+    /* Aged paper texture gradient */
+    radial-gradient(ellipse at 20% 20%, rgba(255, 248, 220, 0.3) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(210, 180, 140, 0.3) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(255, 245, 238, 0.2) 0%, transparent 70%),
+    /* Base parchment color */
+    linear-gradient(180deg, 
+      #f5e6c8 0%, 
+      #f0dbb5 5%,
+      #e8d4a8 15%,
+      #f2e0b8 30%,
+      #e5cfa0 50%,
+      #f0dbb5 70%,
+      #e8d4a8 85%,
+      #dcc89a 95%,
+      #d4bc8a 100%
+    );
+  padding: 60px 70px;
+  border-radius: 4px;
+  box-shadow: 
+    /* Outer shadow for depth */
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    /* Inner shadow for aged edges */
+    inset 0 0 100px rgba(139, 115, 85, 0.2),
+    inset 0 0 50px rgba(101, 67, 33, 0.15);
+  /* Rough edges effect */
+  border: 1px solid #c4a574;
+  /* Subtle paper texture */
+  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+}
+
+/* Add noise texture overlay for paper grain */
+.constitution-parchment::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  border-radius: 4px;
+}
+
+/* Burned/aged edges effect */
+.constitution-parchment::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 4px;
+  pointer-events: none;
+  box-shadow: 
+    inset 0 0 120px rgba(139, 90, 43, 0.3),
+    inset 0 0 60px rgba(101, 67, 33, 0.2);
+}
+
+/* Inner content wrapper */
+.constitution-inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* Corner logos */
+img.corner-logo {
+  position: absolute;
+  width: 60px;
+  height: auto;
+  opacity: 0.35;
+  z-index: 10;
+  object-fit: contain;
+}
+
+img.corner-logo.top-left {
+  top: 20px;
+  left: 20px;
+}
+
+img.corner-logo.top-right {
+  top: 20px;
+  right: 20px;
+}
+
+/* Established text */
+.constitution-established {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #6b4423;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  margin-bottom: 1.5rem;
+}
+
+/* Typography - Main Title */
+.constitution-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 4rem;
+  font-weight: 900;
+  color: #2c1810;
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.15),
+    0 0 1px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.constitution-we {
+  display: block;
+  background: linear-gradient(180deg, #1a0f08 0%, #3d2817 50%, #2c1810 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.constitution-subtitle {
+  font-family: 'IM Fell English', serif;
+  font-size: 1.5rem;
+  font-style: italic;
+  color: #5c4a3a;
+  margin: 0.5rem 0;
+  letter-spacing: 0.1em;
+}
+
+.constitution-org-name {
+  font-family: 'Cinzel', serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2c1810;
+  margin: 0.5rem 0;
+  letter-spacing: 0.03em;
+}
+
+.constitution-location {
+  font-family: 'IM Fell English', serif;
+  font-size: 1.25rem;
+  color: #5c4a3a;
+  font-style: italic;
+}
+
+.constitution-meta {
+  font-family: 'Spectral', serif;
+  color: #4a3728;
+}
+
+/* Article Titles */
+.article-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #2c1810;
+  text-align: center;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.1em;
+}
+
+.article-subtitle {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #4a3728;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(139, 115, 85, 0.3);
+}
+
+/* Section headings */
+.section-heading {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #3d2817;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+/* Body text */
+.constitution-article {
+  margin-bottom: 3rem;
+}
+
+.constitution-article p {
+  font-family: 'Spectral', serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #2c1810;
+  text-align: justify;
+  margin-bottom: 1rem;
+  text-indent: 2em;
+}
+
+.constitution-article p:first-of-type {
+  text-indent: 0;
+}
+
+.constitution-article p:first-of-type::first-letter {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 3em;
+  float: left;
+  line-height: 0.8;
+  padding-right: 0.1em;
+  padding-top: 0.1em;
+  color: #3d2817;
+}
+
+/* Lists */
+.constitution-list,
+.constitution-numbered-list,
+.constitution-alpha-list,
+.tc-list {
+  font-family: 'Spectral', serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #2c1810;
+  margin: 1rem 0 1rem 2rem;
+  padding-left: 1rem;
+}
+
+.constitution-list {
+  list-style-type: upper-alpha;
+}
+
+.constitution-numbered-list {
+  list-style-type: decimal;
+}
+
+.constitution-alpha-list {
+  list-style-type: upper-alpha;
+}
+
+.tc-list {
+  list-style-type: decimal;
+}
+
+.constitution-list li,
+.constitution-numbered-list li,
+.constitution-alpha-list li,
+.tc-list li {
+  margin-bottom: 0.75rem;
+  padding-left: 0.5rem;
+}
+
+/* Emphasis styling */
+.constitution-article em {
+  font-style: italic;
+  color: #4a3728;
+}
+
+.constitution-article strong {
+  font-weight: 600;
+  color: #2c1810;
+}
+
+/* Amendment divider */
+.amendment-divider {
+  text-align: center;
+  margin: 4rem 0;
+  position: relative;
+}
+
+.amendment-divider::before,
+.amendment-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 35%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #8B7355, transparent);
+}
+
+.amendment-divider::before {
+  left: 0;
+}
+
+.amendment-divider::after {
+  right: 0;
+}
+
+.divider-ornament {
+  font-size: 2rem;
+  color: #6b4423;
+  padding: 0 1rem;
+  background: #e8d4a8;
+  position: relative;
+  z-index: 1;
+}
+
+/* Amendment section */
+.amendment-section {
+  border-top: 3px double #8B7355;
+  padding-top: 2rem;
+}
+
+.amendment-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2c1810;
+  text-align: center;
+  margin-bottom: 1rem;
+  letter-spacing: 0.1em;
+}
+
+.amendment-subtitle {
+  font-family: 'IM Fell English', serif;
+  font-size: 1.1rem;
+  color: #5c4a3a;
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* Footer seal */
+.constitution-footer {
+  text-align: center;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 2px solid rgba(139, 115, 85, 0.3);
+}
+
+.seal {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8B4513 0%, #654321 50%, #4a3423 100%);
+  padding: 4px;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.seal-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid #d4a574;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #654321 0%, #4a3423 100%);
+}
+
+.seal-text {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #d4a574;
+  letter-spacing: 0.1em;
+}
+
+.seal-subtext {
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  color: #c4a574;
+  letter-spacing: 0.15em;
+}
+
+.footer-text {
+  font-family: 'IM Fell English', serif;
+  font-size: 0.95rem;
+  color: #5c4a3a;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .constitution-parchment {
+    padding: 30px 25px;
+    margin: 0 10px;
+  }
+
+  .constitution-title {
+    font-size: 2.5rem;
+  }
+
+  .constitution-org-name {
+    font-size: 1.5rem;
+  }
+
+  .article-title {
+    font-size: 1.4rem;
+  }
+
+  .constitution-meta {
+    flex-direction: column;
+    gap: 1rem !important;
+  }
+
+  .constitution-meta > div {
+    border-left: none !important;
+    padding-left: 0 !important;
+  }
+
+  img.corner-logo {
+    display: none;
+  }
+
+  .constitution-article p:first-of-type::first-letter {
+    font-size: 2em;
+  }
+}
