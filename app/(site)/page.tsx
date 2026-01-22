@@ -6,6 +6,7 @@ import About from "../About"
 import Achievements from "../Achievements"
 import Gallery from "../Gallery"
 import TechX from "../TechX"
+import FAQ from "../FAQ"
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
         <Gallery/>
         <TechX/>
         <Achievements/>
+        <FAQ/>
     </>    
   );
 }
