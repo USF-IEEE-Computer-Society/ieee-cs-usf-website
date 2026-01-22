@@ -38,7 +38,6 @@ export default function Achievements() {
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }
