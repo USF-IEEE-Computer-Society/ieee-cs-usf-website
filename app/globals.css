@@ -8,6 +8,18 @@
   --ieee-darkblue: #002855;
   --ieee-blue: #00629B;
   --usf-green: #006747;
+  
+  /* IEEE 100% Brand Colors */
+  --ieee-red: #BA0C2F;
+  --ieee-orange-standard: #FFA300;
+  --ieee-yellow: #FFD100;
+  --ieee-lime-green: #78BE20;
+  --ieee-dark-green: #00843D;
+  --ieee-purple: #981D97;
+  --ieee-teal: #009CA6;
+  --ieee-light-blue: #00B5E2;
+  --ieee-black: #000000;
+  --ieee-cool-gray: #75787B;
 }
 
 @theme inline {
@@ -19,6 +31,18 @@
   --color-ieeeDarkblue: var(--ieee-darkblue);
   --color-ieeeBlue: var(--ieee-blue);
   --color-usfGreen: var(--usf-green);
+  
+  /* IEEE 100% Brand Colors */
+  --color-ieeeRed: var(--ieee-red);
+  --color-ieeeOrangeStandard: var(--ieee-orange-standard);
+  --color-ieeeYellow: var(--ieee-yellow);
+  --color-ieeeLimeGreen: var(--ieee-lime-green);
+  --color-ieeeDarkGreen: var(--ieee-dark-green);
+  --color-ieeePurple: var(--ieee-purple);
+  --color-ieeeTeal: var(--ieee-teal);
+  --color-ieeeLightBlue: var(--ieee-light-blue);
+  --color-ieeeBlack: var(--ieee-black);
+  --color-ieeeCoolGray: var(--ieee-cool-gray);
   
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
