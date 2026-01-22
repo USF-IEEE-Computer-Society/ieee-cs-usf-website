@@ -92,14 +92,37 @@ function renderNode(node: Record<string, unknown>): React.ReactNode {
 
   // Link
   if (type === 'link') {
-    const fields = node.fields as { url?: string } | undefined
+    const fields = node.fields as {
+      linkType?: 'custom' | 'internal'
+      url?: string
+      doc?: { relationTo: string; value: string | { slug: string } }
+      newTab?: boolean
+      openInNewTab?: boolean
+    } | undefined
+
+    let href = '#'
+    if (fields?.linkType === 'internal' && fields.doc) {
+      // Internal link to a document
+      const slug = typeof fields.doc.value === 'string' 
+        ? fields.doc.value 
+        : fields.doc.value?.slug
+      if (fields.doc.relationTo === 'articles') {
+        href = `/articles/${slug}`
+      }
+    } else if (fields?.url) {
+      // External/custom link
+      href = fields.url
+    }
+
+    const openInNewTab = fields?.newTab ?? fields?.openInNewTab ?? true
+
     return (
       <a
         key={Math.random()}
-        href={fields?.url || '#'}
+        href={href}
         className="text-blue-400 hover:underline"
-        target="_blank"
-        rel="noopener noreferrer"
+        target={openInNewTab ? '_blank' : '_self'}
+        rel={openInNewTab ? 'noopener noreferrer' : undefined}
       >
         {children?.map(renderNode)}
       </a>

@@ -18,6 +18,7 @@ import {
   InlineCodeFeature,
   ParagraphFeature,
   AlignFeature,
+  FixedToolbarFeature,
 } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -54,6 +55,7 @@ export default buildConfig({
       BlockquoteFeature(),
       HorizontalRuleFeature(),
       AlignFeature(),
+      FixedToolbarFeature(),
     ],
   }),
   collections: [Users, Articles, Media],
