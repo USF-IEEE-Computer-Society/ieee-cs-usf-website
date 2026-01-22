@@ -93,3 +93,10 @@ body {
   background: var(--ieee-orange);
   color: #111;
 }
+
+@layer utilities {
+
+  .WhyAttendIcons {
+    @apply w-[35px] h-[35px] md:w-[50px] md:h-[50px];
+  }
+}
