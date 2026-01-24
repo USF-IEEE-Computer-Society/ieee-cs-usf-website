@@ -1,10 +1,14 @@
 "use client";
 import { useState } from 'react';
 import MemberCard from '@/components/MemberCard';
+import { eboard24fall } from '@/members_data/eboard-24-fall';
+import { eboard25spring } from '@/members_data/eboard-25-spring';
 import { eboard25fall } from '@/members_data/eboard-25-fall';
 import { eboard26spring } from '@/members_data/eboard-26-spring';
 
 const dataMap = {
+  "fall24": eboard24fall,
+  "spring25": eboard25spring,
   "fall25": eboard25fall,
   "spring26": eboard26spring,
 };
@@ -26,6 +30,8 @@ export default function Page() {
           >
             <option value="spring26">Spring 2026</option>
             <option value="fall25">Fall 2025</option>
+            <option value="spring25">Spring 2025</option>
+            <option value="fall24">Fall 2024</option>
           </select>
         </div>
 

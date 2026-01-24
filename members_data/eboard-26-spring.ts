@@ -1,3 +1,5 @@
+// Total members: 17
+
 export const eboard26spring = [
   {
     role: "President",

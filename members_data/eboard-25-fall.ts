@@ -1,5 +1,4 @@
-// FIX ME : add spring 25 and fall 24
-// FIX ME : amber and akmal role
+// Total members: 19
 
 export const eboard25fall = [
   {
@@ -28,19 +27,27 @@ export const eboard25fall = [
   },
   {
     role: "Media Manager",
-    name: "Doung (Eric) Mai",
-    major: "Computer Science",
-    year: "Senior",
-    linkedin: "https://www.linkedin.com/in/duongmai127/",
-    imageUrl: "/members/eric.webp"
-  },
-  {
-    role: "Media Manager",
     name: "Kimberly Bahena",
     major: "Artificial Intelligence",
     year: "Sophomore",
     linkedin: "https://www.linkedin.com/in/kimberly-bahena-03a310325/",
     imageUrl: "/members/kimberly.webp"
+  },
+  {
+    role: "Media Manager",
+    name: "Cesar Calderon",
+    major: "Mechanical Engineering",
+    year: "Sophomore",
+    linkedin: "https://www.linkedin.com/in/cesarcld/",
+    imageUrl: "/members/cesar.webp"
+  },
+  {
+    role: "Graphic Design Chair",
+    name: "Amber Nguyen",
+    major: "Computer Engineering",
+    year: "Senior",
+    linkedin: "https://www.linkedin.com/in/ambern3/",
+    imageUrl: "/members/amber.webp"
   },
   {
     role: "Outreach Chair",
@@ -52,11 +59,11 @@ export const eboard25fall = [
   },
   {
     role: "Marketing Chair",
-    name: "Cesar Calderon",
-    major: "Mechanical Engineering",
-    year: "Sophomore",
-    linkedin: "https://www.linkedin.com/in/cesarcld/",
-    imageUrl: "/members/cesar.webp"
+    name: "Doung (Eric) Mai",
+    major: "Computer Science",
+    year: "Senior",
+    linkedin: "https://www.linkedin.com/in/duongmai127/",
+    imageUrl: "/members/eric.webp"
   },
   {
     role: "Events Chair",
@@ -65,6 +72,14 @@ export const eboard25fall = [
     year: "Senior",
     linkedin: "https://www.linkedin.com/in/zarina-zatildayeva-b928b826a/",
     imageUrl: "/members/zarina.webp"
+  },
+  {
+    role: "Tech Lead",
+    name: "Akmal Kurbanov",
+    major: "Computer Science",
+    year: "Senior",
+    linkedin: "https://www.linkedin.com/in/akmal-kurbanov/",
+    imageUrl: "/members/akmal.webp"
   },
   {
     role: "Tech Lead",
@@ -137,21 +152,5 @@ export const eboard25fall = [
     year: "Freshman",
     linkedin: "https://www.linkedin.com/in/bernardo-beligolli-02536a387/",
     imageUrl: "/members/bernardo.webp"
-  },
-  {
-    role: ".",
-    name: "Amber Nguyen",
-    major: "Computer Engineering",
-    year: "Senior",
-    linkedin: "https://www.linkedin.com/in/ambern3/",
-    imageUrl: "/members/amber.webp"
-  },
-  {
-    role: ".",
-    name: "Akmal Kurbanov",
-    major: "Computer Science",
-    year: "Senior",
-    linkedin: "https://www.linkedin.com/in/akmal-kurbanov/",
-    imageUrl: "/members/akmal.webp"
   },
 ];
