@@ -1,4 +1,4 @@
-// Total members: 13
+// Total members: 12
 
 export const eboard24fall = [
   {
@@ -26,14 +26,6 @@ export const eboard24fall = [
     imageUrl: "/members/nick.webp"
   },
   {
-    role: ".",
-    name: "Vama Shah",
-    major: "Industrial Engineering",
-    year: "Freshman",
-    linkedin: "https://www.linkedin.com/in/vamashah08/",
-    imageUrl: "/members/vama.webp"
-  },
-  {
     role: "Graphic Design Chair",
     name: "Amber Nguyen",
     major: "Computer Engineering",
@@ -55,7 +47,7 @@ export const eboard24fall = [
     major: "Electrical Engineering",
     year: "Junior",
     linkedin: "https://www.linkedin.com/in/sagar-gogineni-389a87249/",
-    imageUrl: "/members/sara.webp"
+    imageUrl: "/members/nerd.webp"
   },
   {
     role: "Tech Lead",
@@ -84,18 +76,18 @@ export const eboard24fall = [
   {
     role: "Tech Lead",
     name: "Sneha Siri Nagabathula",
-    major: ".",
-    year: ".",
-    linkedin: "https://www.linkedin.com/in/akmal-kurbanov/",
-    imageUrl: "/members/akmal.webp"
+    major: "Cybersecurity",
+    year: "Junior",
+    linkedin: "https://www.linkedin.com/in/snehasiri/",
+    imageUrl: "/members/sneha.webp"
   },
   {
     role: "Professional Development Lead",
     name: "Jode Mustafa",
     major: "Computer Science",
     year: "Junior",
-    linkedin: "https://www.linkedin.com/in/sarapsoto/",
-    imageUrl: "/members/sara.webp"
+    linkedin: "https://www.linkedin.com/in/jode-mustafa/",
+    imageUrl: "/members/jode.webp"
   },
   {
     role: "Webmaster",

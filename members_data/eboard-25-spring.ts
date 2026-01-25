@@ -47,7 +47,7 @@ export const eboard25spring = [
     major: "Electrical Engineering",
     year: "Junior",
     linkedin: "https://www.linkedin.com/in/sagar-gogineni-389a87249/",
-    imageUrl: "/members/sara.webp"
+    imageUrl: "/members/nerd.webp"
   },
   {
     role: "Tech Lead",
@@ -86,8 +86,8 @@ export const eboard25spring = [
     name: "Jode Mustafa",
     major: "Computer Science",
     year: "Junior",
-    linkedin: "https://www.linkedin.com/in/sarapsoto/",
-    imageUrl: "/members/sara.webp"
+    linkedin: "https://www.linkedin.com/in/jode-mustafa/",
+    imageUrl: "/members/jode.webp"
   },
   {
     role: "Webmaster",
