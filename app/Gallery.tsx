@@ -9,18 +9,18 @@ interface GalleryImage {
 }
 
 const galleryImages: GalleryImage[] = [
-    { src: "/assets/gallery/b753b8de-9f1a-4453-ad0a-e95ad4f30a82.webp", name: "Tabling at Marshall Student Center" },
-    { src: "/assets/gallery/image-20240913-232123-32df26ea.webp", name: "Building a PC Workshop" },
-    { src: "/assets/gallery/image-20250912-192318-840449a3 1.webp", name: "General Body Meeting Fall 2025" },
-    { src: "/assets/gallery/image-20251030-230821-c83d1d51.webp", name: "Git & Github Workshop" },
-    { src: "/assets/gallery/image-20251113-235726-00b2d023.webp", name: "Certifications Workshop" },
+    { src: "/assets/gallery/tabling_marshall_student_center.webp", name: "Tabling at Marshall Student Center" },
+    { src: "/assets/gallery/building_pc_workshop.webp", name: "Building a PC Workshop" },
+    { src: "/assets/gallery/gbm_fall_2025.webp", name: "General Body Meeting Fall 2025" },
+    { src: "/assets/gallery/git_github_workshop.webp", name: "Git & Github Workshop" },
+    { src: "/assets/gallery/certifications_workshop.webp", name: "Certifications Workshop" },
     { src: "/assets/gallery/bellini_mentorship.webp", name: "Bellini Mentorship Mixer" },
-    { src: "/assets/gallery/WhatsAppImage2024-09-20at21.52.28.webp", name: "Electronics Repair Workshop" },
-    { src: "/assets/gallery/a990cd75-6b89-4ec0-bc4c-d1f4ebe96bc5.webp", name: "BackEnd Workshop" },
-    { src: "/assets/gallery/PXL_20250915_220933519.webp", name: "Panda Express Social" },
-    { src: "/assets/gallery/PXL_20250917_224641292.webp", name: "Senior Students Panel" },
-    { src: "/assets/gallery/PXL_20251009_230407877.webp", name: "IoT Workshop" },
-    { src: "/assets/gallery/e3ac21eb-7d1f-4fe3-9d15-b3cdb5c7ee10.webp", name: "Intern Panel" },
+    { src: "/assets/gallery/electronics_repair_workshop.webp", name: "Electronics Repair Workshop" },
+    { src: "/assets/gallery/backend_workshop.webp", name: "BackEnd Workshop" },
+    { src: "/assets/gallery/panda_express_social.webp", name: "Panda Express Social" },
+    { src: "/assets/gallery/senior_students_panel.webp", name: "Senior Students Panel" },
+    { src: "/assets/gallery/iot_workshop.webp", name: "IoT Workshop" },
+    { src: "/assets/gallery/intern_panel.webp", name: "Intern Panel" },
 ];
 
 export default function Gallery() {
