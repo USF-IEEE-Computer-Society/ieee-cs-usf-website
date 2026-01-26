@@ -14,7 +14,7 @@ export default function Hero() {
           <div className='p-5 pl-3 pr-3 md:pl-1 md:pr-10 flex flex-col justify-center'>
   
             <div className='mb-5 md:mb-10'>
-              <h1 className='font-bold text-ieeeDark text-4xl md:text-5xl mb-4'>IEEE Computer Society at USF</h1>
+              <h1 className='font-bold text-ieeeDark text-5xl mb-4'>IEEE Computer Society at USF</h1>
               <p className='font-medium text-md md:text-xl'>Premier tech student organization at the University of South Florida</p>
   
             </div>
@@ -38,7 +38,7 @@ export default function Hero() {
             <Image 
               src={heroImg}
               alt="TechX"
-              className='w-95 md:w-[700px] rounded-xl shadow-xl'
+              className='w-[95vw] md:w-[700px] rounded-xl shadow-xl'
             />
           </div>
   

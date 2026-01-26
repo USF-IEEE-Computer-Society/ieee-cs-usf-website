@@ -4,7 +4,7 @@ export default function About() {
     return (
         <div className='w-full flex flex-col items-center'>
             <div className='w-full flex justify-center bg-gray-100/50'>
-                <div className='pt-10 pb-10 w-full max-w-[1500px] px-4'>
+                <div className='pt-10 pb-5 md:pb-10 w-full max-w-[1500px] px-4'>
                     <h2 className="text-[2.5rem] font-semibold text-ieeeDark text-center mb-4">About us</h2>
                     <p className="text-center text-gray-600 mb-10 max-w-4xl mx-auto">
                         We are a student branch chapter of IEEE Computer Society at the University of South Florida (Tampa, Florida).

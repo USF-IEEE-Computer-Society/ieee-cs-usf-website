@@ -18,10 +18,10 @@ export default function Page() {
   const currentList = dataMap[selectedYear as keyof typeof dataMap];
 
   return (
-    <main className="min-h-screen pt-24 pb-12 px-8 bg-gray-50">
+    <main className="min-h-screen pt-16 pb-12 px-8 bg-gray-50">
       <div className="max-w-6xl mx-auto">
         <div className="flex justify-between items-center mb-12">
-          <h1 className="text-4xl font-extrabold text-gray-900">Meet the Team</h1>
+          <h1 className="text-4xl md:text-5xl font-bold">Meet the Team</h1>
           {/* Dropdown for year choosing */}
           <select 
             value={selectedYear}

@@ -7,7 +7,7 @@ import IEEECSlogo from "./assets/csociety_logo.webp"
 export default function WhatIsIEEECS() {
     return (
         <div className='w-full flex justify-center bg-gray-100/50'>
-            <div className='pt-16 pb-10 w-full max-w-[1500px] px-4'>
+            <div className='pt-10 pb-5 md:pb-10 w-full max-w-[1500px] px-4'>
                 <h2 className="text-[2.5rem] font-semibold text-ieeeDark text-center mb-4">What is IEEE Computer Society?</h2>
                 <p className="text-center text-gray-600 mb-10 max-w-5xl mx-auto">
                     Pronounced as the <strong>I Triple E</strong> Computer Society.

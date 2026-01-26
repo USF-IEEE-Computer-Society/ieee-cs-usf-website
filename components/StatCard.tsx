@@ -14,8 +14,8 @@ export default function StatCard({ icon: Icon, value, label, showPlus = true }: 
   return (
     <div className='w-1/3 flex flex-col items-center'>
       <Icon size={45} />
-      <div className='flex flex-col items-center mt-4'>
-        <h2 className='text-md md:text-2xl'>
+      <div className='flex flex-col items-center mt-4 text-center'>
+        <h2 className='text-2xl'>
           <CountUp end={value} duration={1.5} />
           {showPlus && '+'}
         </h2>

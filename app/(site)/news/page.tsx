@@ -33,8 +33,8 @@ export default async function NewsPage({
 
   return (
     <div className="min-h-screen bg-white text-black">
-      <div className="container max-w-7xl mx-auto px-4 py-16">
-        <h1 className="text-5xl font-bold mb-8">News</h1>
+      <div className="container max-w-7xl mx-auto px-8 py-16">
+        <h1 className="text-4xl md:text-5xl font-bold mb-8">News</h1>
 
         {articles.docs.length === 0 ? (
           <div className="text-center py-16">

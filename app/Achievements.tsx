@@ -30,7 +30,7 @@ export default function Achievements() {
                                 </div>
 
                             <div className="max-w-[420px] bg-gray-100/70 rounded-xl p-6 border-l-4 border-ieeeBlue flex flex-col">
-                                    <h3 className="text-lg font-semibold text-ieeeDark mb-2">FWCS Recognition</h3>
+                                    <h3 className="text-lg font-semibold text-ieeeDark mb-2">IEEE Recognition</h3>
                                     <p className="text-gray-700">Awarded by IEEE Florida West Coast Section for "Being a National Leader for Total Events and Hosting TechX Conference for 2 years".</p>
 
                                     

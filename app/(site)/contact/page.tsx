@@ -41,9 +41,9 @@ export default function ContactPage() {
   const [activeRole, setActiveRole] = useState(contactRoles[0]);
 
   return (
-    <main className="min-h-screen pt-24 pb-12 px-8 bg-white text-black">
+    <main className="min-h-screen pt-16 pb-12 px-8 bg-white text-black">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-extrabold mb-4">Contact Us</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
         <p className="text-gray-600 mb-12 text-lg">Select who you are so we can help you better.</p>
 
         {/* Role Selection Grid */}
