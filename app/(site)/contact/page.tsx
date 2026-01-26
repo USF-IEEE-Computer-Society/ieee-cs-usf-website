@@ -33,7 +33,7 @@ const contactRoles = [
     id: 'staff',
     label: 'USF Staff',
     icon: <School />,
-    text: "Professor or Staff? We collaborate across departments like the College of Engineering and Bellini!"
+    text: "Professor or Staff? We have collaborated across departments, including the College of Engineering and the Bellini College of AI, Cybersecurity, and Computing!"
   }
 ];
 
@@ -84,7 +84,7 @@ export default function ContactPage() {
           </div>
           <div>
             <label className="block text-sm font-bold mb-2">Message</label>
-            <textarea rows={4} className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder={`Hi IEEE! I am a ${activeRole.label.toLowerCase()} and I'd like to...`}></textarea>
+            <textarea rows={4} className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder={`Hi IEEE Computer Society at USF! I am a ${activeRole.label.toLowerCase()} and I'd like to...`}></textarea>
           </div>
           <button type="submit" className="w-full py-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200">
             Send Message

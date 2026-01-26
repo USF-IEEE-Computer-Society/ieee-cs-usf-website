@@ -22,7 +22,7 @@ export const Questions: Question[] = [
   },
   {
     id: '4',
-    Question: 'Do I have to have an IEEE-CS membership to go to events?',
+    Question: 'Do I have to have an IEEE Computer Society membership to go to events?',
     Response: 'No! Although we encourage buying membership as that increases our potential budget, as a student organization at USF, we welcome everyone to our events!'
   },
   {
