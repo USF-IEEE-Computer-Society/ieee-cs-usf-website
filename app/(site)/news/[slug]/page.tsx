@@ -8,6 +8,7 @@ import type { Article, Media, User } from '@/payload-types'
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 import { ArrowLeft } from 'lucide-react'
 import ShareButtons from './ShareButtons'
+import Button from '@/components/Button'
 
 export const dynamic = 'force-dynamic'
 
@@ -57,6 +58,8 @@ export default async function ArticlePage({ params }: Props) {
   const featuredImage = article.featuredImage as Media | null
   const author = article.author as User | null
 
+  const TechXArticle = article.title.includes("TechX")
+
   return (
     <div className="min-h-screen bg-white text-black">
       <article className="container mx-auto px-4 py-10 max-w-4xl">
@@ -104,6 +107,12 @@ export default async function ArticlePage({ params }: Props) {
         <div className="prose prose-lg prose-invert max-w-none">
           <RichText content={article.content as SerializedEditorState} />
         </div>
+
+        {TechXArticle && (
+          <div className="mt-8 flex justify-center">
+            <Button text="Learn More About TechX 2025" href="https://techxflorida.com/2025/report" />
+          </div>
+        )}
       </article>
     </div>
   )
