@@ -11,7 +11,7 @@ export default function About() {
                     </p>
 
                     <div className="flex flex-col md:flex-row gap-6 max-w-7xl mx-auto">
-                        <div className="bg-white rounded-xl p-8 shadow-md flex-1">
+                        <div className="bg-white p-8 shadow-md border border-gray-100 rounded-xl flex-1">
                             <h3 className="text-2xl font-semibold text-ieeeDark mb-3">Career Preparation</h3>
                             <p className="text-gray-700 mb-3">
                                 We organize <strong>13+ professional development events and workshops</strong> per semester. Our goal is to provide career preparation including certifications, resume building, interview skills, and soft skills development.
@@ -21,7 +21,7 @@ export default function About() {
                             </p>
                         </div>
 
-                        <div className="bg-white rounded-xl p-8 shadow-md flex-1">
+                        <div className="bg-white p-8 shadow-md border border-gray-100 rounded-xl flex-1">
                             <h3 className="text-2xl font-semibold text-ieeeDark mb-3">Hands-on Workshops</h3>
                             <p className="text-gray-700 mb-3">
                                 Our workshops focus on <strong>hands-on</strong> hardware exploration and learning software tools used in professional software development.
@@ -32,7 +32,7 @@ export default function About() {
                         </div>
 
 
-                        <div className="bg-white rounded-xl p-8 shadow-md flex-1">
+                        <div className="bg-white p-8 shadow-md border border-gray-100 rounded-xl flex-1">
                             <h3 className="text-2xl font-semibold text-ieeeDark mb-3">Giveaways & Swag</h3>
                             <p className="text-gray-700 mb-3">
                                 At our events we give away tons of food, cat stickers, and IEEE Computer Society merch!

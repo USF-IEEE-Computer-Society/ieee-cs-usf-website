@@ -52,7 +52,7 @@ export default async function NewsPage({
                   <Link
                     key={typedArticle.id}
                     href={`/news/${typedArticle.slug}`}
-                    className="block bg-gray-50/10 rounded-lg overflow-hidden transition-colors shadow-md"
+                    className="block bg-gray-50/10 rounded-lg overflow-hidden transition-colors shadow-md border border-gray-200"
                   >
                     {featuredImage?.url && (
                       <div className="relative h-48 w-full">

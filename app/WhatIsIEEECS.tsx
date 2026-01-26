@@ -14,7 +14,7 @@ export default function WhatIsIEEECS() {
                 </p>
 
                 <div className="flex flex-col md:flex-row gap-6 justify-center">
-                    <div className="w-full md:w-[450px] h-auto flex flex-col bg-white rounded-xl p-6 shadow-md">
+                    <div className="w-full md:w-[450px] h-auto flex flex-col bg-white shadow-md border border-gray-100 rounded-lg p-6">
                         <div className="flex justify-center p-3">
                             <img src={IEEElogo.src} alt="IEEE Logo" width={220} />
                         </div>
@@ -33,7 +33,7 @@ export default function WhatIsIEEECS() {
                         </div>
                     </div>
 
-                    <div className="w-full md:w-[450px] h-auto flex flex-col bg-white rounded-xl p-6 shadow-md">
+                    <div className="w-full md:w-[450px] h-auto flex flex-col bg-white shadow-md border border-gray-100 rounded-lg p-6">
                         <div className="flex justify-center p-3">
                             <img src={IEEECSlogo.src} alt="IEEE Computer Society Logo" width={220} />
                         </div>
