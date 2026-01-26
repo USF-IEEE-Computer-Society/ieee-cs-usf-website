@@ -153,7 +153,7 @@ export default function TechX() {
                             href="https://www.techxflorida.com/2025/report" 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="text-white hover:underline font-medium mt-3 inline-block bg-ieeeDark/80 px-4 py-2 rounded-lg"
+                            className="text-white hover:underline font-medium mt-3 inline-block bg-ieeeDark/80 px-4 py-3 rounded-lg"
                         >
                             Learn more about TechX Florida 2025 →
                         </a>

@@ -17,7 +17,7 @@ export default function Achievements() {
 
                             <div className="max-w-[420px] bg-gray-100/70 rounded-xl p-6 border-l-4 border-ieeeBlue flex flex-col">
                                     <h3 className="text-lg font-semibold text-ieeeDark mb-2">3 USF Awards (2025)</h3>
-                                    <p className="text-gray-700">Won "Best Social Media", "Best Workshop Series", and "Best Picture" from USF College of Engineering Student Council.</p>
+                                    <p className="text-gray-700">Won "Best Social Media", "Best Workshop Series", and "Best Picture" from University of South Florida College of Engineering Student Council.</p>
 
                                     <a 
                                 href="https://www.ieeecsusf.com/news/ieee-cs-at-usf-wins-three-awards-at-the-usf-engineering-banquet" 
