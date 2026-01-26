@@ -1,51 +1,26 @@
 'use client'
 
 import { useRef, useState } from 'react';
-import Image, { StaticImageData } from "next/image";
-
-// Import gallery images
-import Research_Panel from "./assets/gallery/Research_Panel.JPG";
-import bellini_mentorship from "./assets/gallery/bellini_mentorship.jpeg";
-import build_pc from "./assets/gallery/build_pc.jpeg";
-import DSC_2719 from "./assets/gallery/DSC_2719.JPG";
-import IMG_8023 from "./assets/gallery/IMG_8023.JPG";
-import a990cd75 from "./assets/gallery/a990cd75-6b89-4ec0-bc4c-d1f4ebe96bc5.jpg";
-import b753b8de from "./assets/gallery/b753b8de-9f1a-4453-ad0a-e95ad4f30a82.JPG";
-import e3ac21eb from "./assets/gallery/e3ac21eb-7d1f-4fe3-9d15-b3cdb5c7ee10.JPG";
-import image20240913 from "./assets/gallery/image-20240913-232123-32df26ea.jpeg";
-import image20250912 from "./assets/gallery/image-20250912-192318-840449a3 1.jpeg";
-import image20251030 from "./assets/gallery/image-20251030-230821-c83d1d51.jpeg";
-import image20251113 from "./assets/gallery/image-20251113-235726-00b2d023.jpeg";
-import PXL_20250915 from "./assets/gallery/PXL_20250915_220933519.jpg";
-import PXL_20250917 from "./assets/gallery/PXL_20250917_224641292.jpg";
-import PXL_20251009 from "./assets/gallery/PXL_20251009_230407877.jpg";
-import whatsapp from "./assets/gallery/WhatsAppImage2024-09-20at21.52.28.jpeg";
+import Image from "next/image";
 
 interface GalleryImage {
-    src: StaticImageData;
+    src: string;
     name: string;
 }
 
 const galleryImages: GalleryImage[] = [
-
-    { src: b753b8de, name: "Tabling at Marshall Student Center" },
-
-    //{ src: build_pc, name: "Building a PC Workshop" },
-    //{ src: DSC_2719, name: "DevFest" },
-
-    { src: image20240913, name: "Building a PC Workshop" },
-    { src: image20250912, name: "General Body Meeting Fall 2025" },
-    { src: image20251030, name: "Git & Github Workshop" },
-    { src: image20251113, name: "Certifications Workshop" },
-    { src: bellini_mentorship, name: "Bellini Mentorship Mixer" },
-    { src: whatsapp, name: "Electronics Repair Workshop" },
-    { src: a990cd75, name: "BackEnd Workshop" },
-    //{ src: IMG_8023, name: "Tabling" },
-    { src: PXL_20250915, name: "Panda Express Social" },
-    { src: PXL_20250917, name: "Senior Students Panel" },
-    { src: PXL_20251009, name: "IoT Workshop" },
-
-    { src: e3ac21eb, name: "Intern Panel" },
+    { src: "/assets/gallery/b753b8de-9f1a-4453-ad0a-e95ad4f30a82.JPG", name: "Tabling at Marshall Student Center" },
+    { src: "/assets/gallery/image-20240913-232123-32df26ea.jpeg", name: "Building a PC Workshop" },
+    { src: "/assets/gallery/image-20250912-192318-840449a3 1.jpeg", name: "General Body Meeting Fall 2025" },
+    { src: "/assets/gallery/image-20251030-230821-c83d1d51.jpeg", name: "Git & Github Workshop" },
+    { src: "/assets/gallery/image-20251113-235726-00b2d023.jpeg", name: "Certifications Workshop" },
+    { src: "/assets/gallery/bellini_mentorship.jpeg", name: "Bellini Mentorship Mixer" },
+    { src: "/assets/gallery/WhatsAppImage2024-09-20at21.52.28.jpeg", name: "Electronics Repair Workshop" },
+    { src: "/assets/gallery/a990cd75-6b89-4ec0-bc4c-d1f4ebe96bc5.jpg", name: "BackEnd Workshop" },
+    { src: "/assets/gallery/PXL_20250915_220933519.jpg", name: "Panda Express Social" },
+    { src: "/assets/gallery/PXL_20250917_224641292.jpg", name: "Senior Students Panel" },
+    { src: "/assets/gallery/PXL_20251009_230407877.jpg", name: "IoT Workshop" },
+    { src: "/assets/gallery/e3ac21eb-7d1f-4fe3-9d15-b3cdb5c7ee10.JPG", name: "Intern Panel" },
 ];
 
 export default function Gallery() {

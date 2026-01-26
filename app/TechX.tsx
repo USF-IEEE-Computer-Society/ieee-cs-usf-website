@@ -1,44 +1,45 @@
 'use client'
 
 import { Users, MicVocal, Building2 } from 'lucide-react'
+import Image from 'next/image'
 
 import FadeInSection from '@/components/FadeInSection'
 
 
-// Import all techx-cropped images for the mosaic background
+// Import all techx images for the mosaic background
 const techxImages = [
-    '/assets/techx-cropped/IMG_0241.jpg',
-    '/assets/techx-cropped/IMG_0298.jpg',
-    '/assets/techx-cropped/IMG_2203.jpg',
-    '/assets/techx-cropped/IMG_2363.jpg',
-    '/assets/techx-cropped/IMG_2445.jpg',
-    '/assets/techx-cropped/IMG_2478.jpg',
+    '/assets/techx/IMG_0241.jpg',
+    '/assets/techx/IMG_0298.jpg',
+    '/assets/techx/IMG_2203.jpg',
+    '/assets/techx/IMG_2363.jpg',
+    '/assets/techx/IMG_2445.jpg',
+    '/assets/techx/IMG_2478.jpg',
 
-    '/assets/techx-cropped/IMG_8358.jpg',
-    '/assets/techx-cropped/IMG_8514.jpg',
-    '/assets/techx-cropped/IMG_8547.jpg',
-    '/assets/techx-cropped/USF_CS_TechX_2025-02.jpg',
-    '/assets/techx-cropped/USF_CS_TechX_2025-05.jpg',
-    '/assets/techx-cropped/USF_CS_TechX_2025-06.jpg',
+    '/assets/techx/IMG_8358.jpg',
+    '/assets/techx/IMG_8514.jpg',
+    '/assets/techx/IMG_8547.jpg',
+    '/assets/techx/USF_CS_TechX_2025-02.jpg',
+    '/assets/techx/USF_CS_TechX_2025-05.jpg',
+    '/assets/techx/USF_CS_TechX_2025-06.jpg',
 
-    '/assets/techx-cropped/USF_CS_TechX_2025-09.jpg',
-    '/assets/techx-cropped/USF_CS_TechX_2025-10.jpg',
-    '/assets/techx-cropped/USF_CS_TechX_2025-13.jpg',
-    '/assets/techx-cropped/USF_CS_TechX_2025-16.jpg',
-    '/assets/techx-cropped/USF_CS_TechX_2025-18.jpg',
-    '/assets/techx-cropped/USF_CS_TechX_2025-19.jpg',
-    // '/assets/techx-cropped/USF_CS_TechX_2025-24.jpg',
-    // '/assets/techx-cropped/USF_CS_TechX_2025-26.jpg',
-    // '/assets/techx-cropped/USF_CS_TechX_2025-31.jpg',
-    // '/assets/techx-cropped/USF_CS_TechX_2025-34.jpg',
-    // '/assets/techx-cropped/USF_CS_TechX_2025-37.jpg',
-    // '/assets/techx-cropped/USF_CS_TechX_2025-44.jpg',
-    // '/assets/techx-cropped/USF_CS_TechX_2025-53.jpg',
-    // '/assets/techx-cropped/USF_CS_TechX_2025-57.jpg',
-    // '/assets/techx-cropped/USF_CS_TechX_2025-61.jpg',
-    // '/assets/techx-cropped/USF_CS_TechX_2025-74.jpg',
-    // '/assets/techx-cropped/USF_CS_TechX_2025-76.jpg',
-    // '/assets/techx-cropped/USF_CS_TechX_2025-82.jpg',
+    '/assets/techx/USF_CS_TechX_2025-09.jpg',
+    '/assets/techx/USF_CS_TechX_2025-10.jpg',
+    '/assets/techx/USF_CS_TechX_2025-13.jpg',
+    '/assets/techx/USF_CS_TechX_2025-16.jpg',
+    '/assets/techx/USF_CS_TechX_2025-18.jpg',
+    '/assets/techx/USF_CS_TechX_2025-19.jpg',
+    // '/assets/techx/USF_CS_TechX_2025-24.jpg',
+    // '/assets/techx/USF_CS_TechX_2025-26.jpg',
+    // '/assets/techx/USF_CS_TechX_2025-31.jpg',
+    // '/assets/techx/USF_CS_TechX_2025-34.jpg',
+    // '/assets/techx/USF_CS_TechX_2025-37.jpg',
+    // '/assets/techx/USF_CS_TechX_2025-44.jpg',
+    // '/assets/techx/USF_CS_TechX_2025-53.jpg',
+    // '/assets/techx/USF_CS_TechX_2025-57.jpg',
+    // '/assets/techx/USF_CS_TechX_2025-61.jpg',
+    // '/assets/techx/USF_CS_TechX_2025-74.jpg',
+    // '/assets/techx/USF_CS_TechX_2025-76.jpg',
+    // '/assets/techx/USF_CS_TechX_2025-82.jpg',
 ]
 
 export default function TechX() {
@@ -48,12 +49,13 @@ export default function TechX() {
                 {/* Mosaic Background */}
                 <div className='absolute inset-0 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-0 opacity-30'>
                     {techxImages.map((src, index) => (
-                        <div key={index} className='aspect-square overflow-hidden'>
-                            <img 
+                        <div key={index} className='aspect-square overflow-hidden relative'>
+                            <Image 
                                 src={src} 
                                 alt="" 
-                                className='w-full h-full object-cover'
-                                loading="lazy"
+                                fill
+                                className='object-cover'
+                                sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 16vw"
                             />
                         </div>
                     ))}

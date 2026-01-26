@@ -2,8 +2,8 @@ import sharp from 'sharp';
 import fs from 'fs/promises';
 import path from 'path';
 
-const TECHX_DIR = path.join(process.cwd(), 'app/assets/techx');
-const OUTPUT_DIR = path.join(process.cwd(), 'app/assets/techx-cropped');
+const TECHX_DIR = path.join(process.cwd(), 'public/assets/techx');
+const OUTPUT_DIR = path.join(process.cwd(), 'public/assets/techx-cropped');
 const TARGET_ASPECT_RATIO = 16 / 9;
 
 // Supported image extensions
