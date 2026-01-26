@@ -1,8 +1,5 @@
 import https from 'https';
-import http from 'http';
 import * as cheerio from 'cheerio';
-import type { Element } from 'domhandler';
-import { URL } from 'url';
 import { neon, NeonQueryFunction } from '@neondatabase/serverless';
 
 // Load environment variables only in local development
@@ -11,7 +8,8 @@ if (process.env.NODE_ENV !== 'production') {
   config({ path: '.env.local' });
 }
 
-const EVENTS_URL = 'https://bullsconnect.usf.edu/ieeecs/events/';
+const EVENTS_API_URL = 'https://bullsconnect.usf.edu/mobile_ws/v17/mobile_events_list?range=0&limit=40&filter2=58136';
+const BULLSCONNECT_BASE_URL = 'https://bullsconnect.usf.edu';
 
 // Database connection - initialized lazily
 function getDb(): NeonQueryFunction<false, false> {
@@ -27,10 +25,11 @@ interface EventLocation {
   address: string | null;
 }
 
-interface ScrapedEvent {
+interface ParsedEvent {
+  bullsconnectId: string;
   name: string;
   originalUrl: string;
-  finalUrl?: string;
+  finalUrl: string | null;
   description: string | null;
   image: string | null;
   startDate: string | null;
@@ -38,7 +37,86 @@ interface ScrapedEvent {
   location: EventLocation | null;
   registered: number | null;
   tags: string[];
-  error?: string;
+  category: string | null;
+  timezone: string | null;
+}
+
+interface ApiEventItem {
+  fields: string;
+  listingSeparator: string | null;
+  counter: string;
+  p0: string;  // "false" for events, "true" for separators
+  p1: string;  // eventId for events, date text for separators
+  p2?: string; // eventUid (bullsconnect_id)
+  p3?: string; // eventName
+  p4?: string; // eventDates (HTML)
+  p5?: string; // eventCategory
+  p6?: string; // eventLocation
+  p7?: string; // clubId
+  p8?: string; // clubLogin
+  p9?: string; // clubName
+  p10?: string; // eventAttendees (registered count)
+  p11?: string; // eventPicture
+  p12?: string; // eventPriceRange
+  p13?: string; // eventButtonLabel
+  p14?: string; // eventBadges
+  p15?: string; // totalTicketsSoldValue
+  p16?: string; // checkbox_id
+  p17?: string; // displayAttendees
+  p18?: string; // eventUrl
+  p19?: string; // displayType
+  p20?: string; // registered
+  p21?: string; // waiting_list
+  p22?: string; // eventTags (HTML)
+  p23?: string; // coHostId
+  p24?: string | null; // custom_time_instruction
+  p25?: string; // checkin
+  p26?: string; // registrationStatus
+  p27?: string; // printTicket
+  p28?: string; // eventTimezone
+  p29?: string; // ariaEventDetails
+  p30?: string; // ariaEventDetailsWithLocation
+  p31?: string; // parentEventIds
+  p32?: string; // all_results_hidden
+  p33?: string; // hybrid
+  p34?: string; // eventPhotoDescription
+  p35?: string; // eventFlyerDescription
+  p36?: string; // list_item_acc_label
+  htmlFields?: string[];
+}
+
+function fetchJson(urlString: string): Promise<ApiEventItem[]> {
+  return new Promise((resolve, reject) => {
+    const url = new URL(urlString);
+    
+    const options = {
+      hostname: url.hostname,
+      port: 443,
+      path: url.pathname + url.search,
+      method: 'GET',
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'application/json',
+        'Accept-Language': 'en-US,en;q=0.5',
+      }
+    };
+
+    const req = https.request(options, (res) => {
+      let data = '';
+      res.on('data', (chunk: Buffer) => data += chunk);
+      res.on('end', () => {
+        try {
+          const json = JSON.parse(data);
+          resolve(json);
+        } catch (e) {
+          reject(new Error(`Failed to parse JSON: ${(e as Error).message}`));
+        }
+      });
+    });
+
+    req.on('error', reject);
+    req.end();
+  });
 }
 
 function fetchPage(urlString: string, maxRedirects = 10): Promise<{ html: string; finalUrl: string }> {
@@ -48,23 +126,20 @@ function fetchPage(urlString: string, maxRedirects = 10): Promise<{ html: string
     }
 
     const parsedUrl = new URL(urlString);
-    const protocol = parsedUrl.protocol === 'https:' ? https : http;
-    
-    const headers: Record<string, string> = {
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-      'Accept-Language': 'en-US,en;q=0.5',
-    };
     
     const options = {
       hostname: parsedUrl.hostname,
-      port: parsedUrl.port || (parsedUrl.protocol === 'https:' ? 443 : 80),
+      port: 443,
       path: parsedUrl.pathname + parsedUrl.search,
       method: 'GET',
-      headers
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.5',
+      }
     };
 
-    const req = protocol.request(options, (res) => {
+    const req = https.request(options, (res) => {
       // Handle redirects (301, 302, 303, 307, 308)
       if (res.statusCode && res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
         let redirectUrl = res.headers.location;
@@ -74,7 +149,6 @@ function fetchPage(urlString: string, maxRedirects = 10): Promise<{ html: string
           redirectUrl = new URL(redirectUrl, urlString).href;
         }
         
-        console.log(`  Redirect: ${res.statusCode} -> ${redirectUrl}`);
         return fetchPage(redirectUrl, maxRedirects - 1).then(resolve).catch(reject);
       }
 
@@ -88,142 +162,49 @@ function fetchPage(urlString: string, maxRedirects = 10): Promise<{ html: string
   });
 }
 
-async function parseEventsList(html: string): Promise<{ name: string; url: string }[]> {
-  const $ = cheerio.load(html);
-  
-  const events: { name: string; url: string }[] = [];
-  
-  $('div.feature').each((_: number, div: Element) => {
-    try {
-      const titleLink = $(div).find('h3.h4 a');
-      const title = titleLink.text()?.trim() || null;
-      const eventUrl = titleLink.attr('href') || null;
-      
-      if (title && eventUrl) {
-        events.push({
-          name: title,
-          url: eventUrl.startsWith('http') ? eventUrl : `https://bullsconnect.usf.edu${eventUrl}`
-        });
-      }
-    } catch (e) {
-      // Skip problematic entries
-    }
-  });
-  
-  return events;
-}
-
-async function parseEventDetails(html: string, finalUrl: string): Promise<{
-  description: string | null;
-  image: string | null;
-  startDate: string | null;
-  endDate: string | null;
-  location: EventLocation | null;
-  registered: number | null;
-  tags: string[];
-  finalUrl: string;
-}> {
-  const $ = cheerio.load(html);
-  
-  const details: {
-    description: string | null;
-    image: string | null;
-    startDate: string | null;
-    endDate: string | null;
-    location: EventLocation | null;
-    registered: number | null;
-    tags: string[];
-    finalUrl: string;
-  } = {
-    description: null,
-    image: null,
-    startDate: null,
-    endDate: null,
-    location: null,
-    registered: null,
-    tags: [],
-    finalUrl: finalUrl
-  };
-  
-  // Try to parse JSON-LD schema - may have multiple scripts, find the Event one
-  $('script[type="application/ld+json"]').each((_: number, script: Element) => {
-    try {
-      const jsonData = JSON.parse($(script).html() || '{}');
-      
-      // Handle both direct Event type and @graph array
-      let eventData = null;
-      if (jsonData['@type'] === 'Event') {
-        eventData = jsonData;
-      } else if (jsonData['@graph']) {
-        // Look for Event in @graph array
-        eventData = jsonData['@graph'].find((item: { '@type': string }) => item['@type'] === 'Event');
-      }
-      
-      if (eventData) {
-        details.description = eventData.description || null;
-        details.startDate = eventData.startDate || null;
-        details.endDate = eventData.endDate || null;
+/**
+ * Fetch description and image from event detail page
+ */
+async function fetchEventDetails(eventUrl: string): Promise<{ description: string | null; image: string | null; finalUrl: string }> {
+  try {
+    const { html, finalUrl } = await fetchPage(eventUrl);
+    const $ = cheerio.load(html);
+    
+    let description: string | null = null;
+    let image: string | null = null;
+    
+    // Try to parse JSON-LD schema for description and image
+    $('script[type="application/ld+json"]').each((_, script) => {
+      try {
+        const jsonData = JSON.parse($(script).html() || '{}');
         
-        // Image can be an array or string
-        if (eventData.image) {
-          details.image = Array.isArray(eventData.image) ? eventData.image[0] : eventData.image;
+        // Handle both direct Event type and @graph array
+        let eventData = null;
+        if (jsonData['@type'] === 'Event') {
+          eventData = jsonData;
+        } else if (jsonData['@graph']) {
+          eventData = jsonData['@graph'].find((item: { '@type': string }) => item['@type'] === 'Event');
         }
         
-        // Location is not fetched (requires authentication)
-        // details.location remains null
-        
-        // Found Event data, return false to break the loop
-        return false;
+        if (eventData) {
+          if (eventData.description) {
+            description = eventData.description;
+          }
+          // Image can be an array or string
+          if (eventData.image) {
+            image = Array.isArray(eventData.image) ? eventData.image[0] : eventData.image;
+          }
+          return false; // break loop
+        }
+      } catch {
+        // Skip parse errors
       }
-    } catch (e) {
-      console.error('  Error parsing JSON-LD:', (e as Error).message);
-    }
-  });
-  
-  // Get registered count - look for the number before "Registered"
-  $('div').each((_: number, div: Element) => {
-    if ($(div).text()?.trim() === 'Registered') {
-      const parent = $(div).parent();
-      const numberSpan = parent.find('span.number');
-      if (numberSpan.length) {
-        details.registered = parseInt(numberSpan.text()?.trim() || '0', 10) || 0;
-        return false; // break the loop
-      }
-    }
-  });
-  
-  // Alternative: try to find number span near "Registered" text
-  if (details.registered === null) {
-    const allText = $.html();
-    const match = allText.match(/<span[^>]*class="number"[^>]*>(\d+)<\/span>[\s\S]*?Registered/i);
-    if (match) {
-      details.registered = parseInt(match[1], 10) || 0;
-    }
+    });
+    
+    return { description, image, finalUrl };
+  } catch {
+    return { description: null, image: null, finalUrl: eventUrl };
   }
-  
-  // Extract tags - they are in <a> elements with href containing "topic_tags" 
-  // or in <span class="label label-tag"> elements
-  const tagsSet = new Set<string>();
-  
-  $('a[href*="topic_tags"], a[href*="event_type"]').each((_: number, link: Element) => {
-    // Get the text content, which might be nested in spans
-    const text = $(link).text()?.trim();
-    if (text && text.length > 0 && text.length < 100) {
-      tagsSet.add(text);
-    }
-  });
-  
-  // Also try to find tags by label class
-  $('span.label-tag, span.label-default').each((_: number, span: Element) => {
-    const text = $(span).text()?.trim();
-    if (text && text.length > 0 && text.length < 100) {
-      tagsSet.add(text);
-    }
-  });
-  
-  details.tags = Array.from(tagsSet);
-  
-  return details;
 }
 
 function delay(ms: number): Promise<void> {
@@ -231,43 +212,194 @@ function delay(ms: number): Promise<void> {
 }
 
 /**
- * Extract bullsconnect_id from event URL
- * Example URL: https://bullsconnect.usf.edu/IEEECS/rsvp?event_uid=bb650104e7ec9368730781fca801b468
- * Returns: "bb650104e7ec9368730781fca801b468"
+ * Parse date and time from eventDates HTML string
+ * Example input: "<p style='margin:0;'>Wed, Jan 28, 2026</p>\n<p style='margin:0;'>9:30 AM &ndash;2 PM</p>\n"
+ * Returns: { startDate: ISO string, endDate: ISO string }
  */
-function extractBullsconnectId(url: string): string | null {
+function parseDateTimeFromHtml(eventDatesHtml: string, timezone: string | null): { startDate: string | null; endDate: string | null } {
+  const $ = cheerio.load(eventDatesHtml);
+  const paragraphs = $('p').toArray();
+  
+  if (paragraphs.length < 2) {
+    return { startDate: null, endDate: null };
+  }
+  
+  // First paragraph: date (e.g., "Wed, Jan 28, 2026")
+  const dateText = $(paragraphs[0]).text().trim();
+  // Second paragraph: time range (e.g., "9:30 AM – 2 PM" or "6:30 PM – 7:30 PM")
+  const timeText = $(paragraphs[1]).text().trim();
+  
+  // Parse the time range - handle both "–" (ndash) and "-" (hyphen)
+  const timeMatch = timeText.match(/(\d{1,2}(?::\d{2})?\s*(?:AM|PM))\s*[–-]\s*(\d{1,2}(?::\d{2})?\s*(?:AM|PM))/i);
+  
+  if (!timeMatch) {
+    return { startDate: null, endDate: null };
+  }
+  
+  const startTimeStr = timeMatch[1].trim();
+  const endTimeStr = timeMatch[2].trim();
+  
+  // Parse the date
+  // Remove day of week prefix (e.g., "Wed, " -> "")
+  const dateWithoutDay = dateText.replace(/^[A-Za-z]+,\s*/, '');
+  
   try {
-    const parsedUrl = new URL(url);
+    // Parse start and end times
+    const startDateTime = parseDateTime(dateWithoutDay, startTimeStr);
+    const endDateTime = parseDateTime(dateWithoutDay, endTimeStr);
     
-    // First, check for event_uid query parameter
-    const eventUid = parsedUrl.searchParams.get('event_uid');
-    if (eventUid) {
-      return eventUid;
-    }
-    
-    // Fallback: look in path for ID patterns
-    const pathParts = parsedUrl.pathname.split('/').filter(Boolean);
-    for (const part of pathParts) {
-      // Match hex-like IDs (like bb650104e7ec9368730781fca801b468)
-      if (/^[a-f0-9]{32}$/i.test(part)) {
-        return part;
-      }
-    }
-    
-    return null;
+    return {
+      startDate: startDateTime ? startDateTime.toISOString() : null,
+      endDate: endDateTime ? endDateTime.toISOString() : null
+    };
   } catch {
-    return null;
+    return { startDate: null, endDate: null };
   }
 }
 
-async function upsertEvent(event: ScrapedEvent, sql: NeonQueryFunction<false, false>): Promise<{ action: 'inserted' | 'updated' | 'skipped'; id: string | null }> {
-  // Try originalUrl first (has event_uid), then finalUrl as fallback
-  const bullsconnectId = extractBullsconnectId(event.originalUrl) || extractBullsconnectId(event.finalUrl || '');
+/**
+ * Parse a date string and time string into a Date object
+ */
+function parseDateTime(dateStr: string, timeStr: string): Date | null {
+  // Parse time (e.g., "9:30 AM" or "2 PM")
+  const timeMatch = timeStr.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM)/i);
+  if (!timeMatch) return null;
+  
+  let hours = parseInt(timeMatch[1], 10);
+  const minutes = timeMatch[2] ? parseInt(timeMatch[2], 10) : 0;
+  const period = timeMatch[3].toUpperCase();
+  
+  // Convert to 24-hour format
+  if (period === 'PM' && hours !== 12) {
+    hours += 12;
+  } else if (period === 'AM' && hours === 12) {
+    hours = 0;
+  }
+  
+  // Parse date (e.g., "Jan 28, 2026" or "Feb 4, 2026")
+  const dateMatch = dateStr.match(/([A-Za-z]+)\s+(\d{1,2}),?\s*(\d{4})/);
+  if (!dateMatch) return null;
+  
+  const monthNames: Record<string, number> = {
+    'jan': 0, 'january': 0,
+    'feb': 1, 'february': 1,
+    'mar': 2, 'march': 2,
+    'apr': 3, 'april': 3,
+    'may': 4,
+    'jun': 5, 'june': 5,
+    'jul': 6, 'july': 6,
+    'aug': 7, 'august': 7,
+    'sep': 8, 'september': 8,
+    'oct': 9, 'october': 9,
+    'nov': 10, 'november': 10,
+    'dec': 11, 'december': 11
+  };
+  
+  const monthStr = dateMatch[1].toLowerCase();
+  const day = parseInt(dateMatch[2], 10);
+  const year = parseInt(dateMatch[3], 10);
+  
+  const month = monthNames[monthStr];
+  if (month === undefined) return null;
+  
+  // Create date in EST timezone (UTC-5)
+  // Note: This is a simplification; production code might need proper timezone handling
+  const date = new Date(Date.UTC(year, month, day, hours + 5, minutes, 0));
+  
+  return date;
+}
+
+/**
+ * Extract tags from eventTags HTML
+ */
+function parseTagsFromHtml(eventTagsHtml: string): string[] {
+  if (!eventTagsHtml) return [];
+  
+  const $ = cheerio.load(eventTagsHtml);
+  const tags: string[] = [];
+  
+  $('a[aria-label]').each((_, el) => {
+    const label = $(el).attr('aria-label');
+    if (label && label.length > 0 && label.length < 100) {
+      tags.push(label.trim());
+    }
+  });
+  
+  // Fallback: try to get from span.label-tag
+  if (tags.length === 0) {
+    $('span.label-tag').each((_, el) => {
+      const text = $(el).text().trim();
+      if (text && text.length > 0 && text.length < 100) {
+        tags.push(text);
+      }
+    });
+  }
+  
+  return [...new Set(tags)]; // Remove duplicates
+}
+
+/**
+ * Parse API response into event objects
+ */
+function parseApiResponse(items: ApiEventItem[]): ParsedEvent[] {
+  const events: ParsedEvent[] = [];
+  
+  for (const item of items) {
+    // Skip date separators (p0 === "true" indicates a separator)
+    if (item.p0 === 'true' || item.listingSeparator === 'true') {
+      continue;
+    }
+    
+    // Ensure we have required fields
+    if (!item.p2 || !item.p3) {
+      continue;
+    }
+    
+    // Parse dates
+    const { startDate, endDate } = parseDateTimeFromHtml(item.p4 || '', item.p28 || null);
+    
+    // Parse tags
+    const tags = parseTagsFromHtml(item.p22 || '');
+    
+    // Build image URL
+    const image = item.p11 ? `${BULLSCONNECT_BASE_URL}${item.p11}` : null;
+    
+    // Build original URL - format: /IEEECS/rsvp?event_uid={eventUid}
+    const originalUrl = `${BULLSCONNECT_BASE_URL}/IEEECS/rsvp?event_uid=${item.p2}`;
+    
+    // Parse location
+    const location: EventLocation | null = item.p6 
+      ? { name: item.p6, address: null }
+      : null;
+    
+    // Parse registered count
+    const registered = item.p10 ? parseInt(item.p10, 10) || 0 : 0;
+    
+    events.push({
+      bullsconnectId: item.p2,
+      name: item.p3,
+      originalUrl,
+      finalUrl: null, // Will be populated when fetching description
+      description: null, // Will be populated when fetching description
+      image,
+      startDate,
+      endDate,
+      location,
+      registered,
+      tags,
+      category: item.p5 || null,
+      timezone: item.p28 || null
+    });
+  }
+  
+  return events;
+}
+
+async function upsertEvent(event: ParsedEvent, sql: NeonQueryFunction<false, false>): Promise<{ action: 'inserted' | 'updated' | 'skipped'; id: string | null }> {
+  const bullsconnectId = event.bullsconnectId;
   
   if (!bullsconnectId) {
-    console.error(`  ❌ Could not extract bullsconnect_id from URLs:`);
-    console.error(`     Original: ${event.originalUrl}`);
-    console.error(`     Final: ${event.finalUrl}`);
+    console.error(`  ❌ Missing bullsconnect_id for event: ${event.name}`);
     return { action: 'skipped', id: null };
   }
   
@@ -283,11 +415,11 @@ async function upsertEvent(event: ScrapedEvent, sql: NeonQueryFunction<false, fa
         UPDATE egor.events SET
           name = ${event.name},
           "originalURL" = ${event.originalUrl},
-          "finalURL" = ${event.finalUrl || null},
+          "finalURL" = ${event.finalUrl},
           description = ${event.description},
           "imageURL" = ${event.image},
-          "startDate" = ${event.startDate ? new Date(event.startDate).toISOString() : null},
-          "endDate" = ${event.endDate ? new Date(event.endDate).toISOString() : null},
+          "startDate" = ${event.startDate},
+          "endDate" = ${event.endDate},
           location = ${event.location ? JSON.stringify(event.location) : null},
           tags = ${event.tags.length > 0 ? JSON.stringify(event.tags) : null},
           "registeredCount" = ${event.registered}
@@ -313,11 +445,11 @@ async function upsertEvent(event: ScrapedEvent, sql: NeonQueryFunction<false, fa
           ${bullsconnectId},
           ${event.name},
           ${event.originalUrl},
-          ${event.finalUrl || null},
+          ${event.finalUrl},
           ${event.description},
           ${event.image},
-          ${event.startDate ? new Date(event.startDate).toISOString() : null},
-          ${event.endDate ? new Date(event.endDate).toISOString() : null},
+          ${event.startDate},
+          ${event.endDate},
           ${event.location ? JSON.stringify(event.location) : null},
           ${event.tags.length > 0 ? JSON.stringify(event.tags) : null},
           ${event.registered}
@@ -339,12 +471,13 @@ async function main() {
   const sql = getDb();
   
   try {
-    console.log('Fetching events list from IEEE CS USF...\n');
+    console.log('Fetching events from BullsConnect API...\n');
+    console.log(`URL: ${EVENTS_API_URL}\n`);
     
-    const { html } = await fetchPage(EVENTS_URL);
-    const eventsList = await parseEventsList(html);
+    const apiResponse = await fetchJson(EVENTS_API_URL);
+    const events = parseApiResponse(apiResponse);
     
-    console.log(`Found ${eventsList.length} events. Fetching details and syncing to database...\n`);
+    console.log(`Found ${events.length} events. Syncing to database...\n`);
     
     const stats = {
       inserted: 0,
@@ -353,32 +486,31 @@ async function main() {
       errors: 0
     };
     
-    for (let i = 0; i < eventsList.length; i++) {
-      const event = eventsList[i];
-      console.log(`[${i + 1}/${eventsList.length}] Fetching: ${event.name}`);
-      console.log(`  URL: ${event.url}`);
+    for (let i = 0; i < events.length; i++) {
+      const event = events[i];
+      console.log(`[${i + 1}/${events.length}] Processing: ${event.name}`);
+      console.log(`  ID: ${event.bullsconnectId}`);
+      console.log(`  URL: ${event.originalUrl}`);
+      console.log(`  Category: ${event.category || 'N/A'}`);
+      console.log(`  Registered: ${event.registered}`);
+      console.log(`  Tags: ${event.tags.length > 0 ? event.tags.join(', ') : 'none'}`);
       
       try {
-        const { html: eventHtml, finalUrl } = await fetchPage(event.url);
-        const details = await parseEventDetails(eventHtml, finalUrl);
-        
-        const scrapedEvent: ScrapedEvent = {
-          name: event.name,
-          originalUrl: event.url,
-          finalUrl: details.finalUrl,
-          description: details.description,
-          image: details.image,
-          startDate: details.startDate,
-          endDate: details.endDate,
-          location: details.location,
-          registered: details.registered,
-          tags: details.tags
-        };
-        
-        console.log(`  ✓ Got details (registered: ${details.registered}, tags: ${details.tags.length}, location: ${details.location ? 'yes' : 'no'})`);
+        // Fetch description and image from event detail page
+        console.log(`  Fetching event details...`);
+        const { description, image, finalUrl } = await fetchEventDetails(event.originalUrl);
+        event.description = description;
+        event.finalUrl = finalUrl;
+        // Use image from detail page if available, otherwise keep the one from API
+        if (image) {
+          event.image = image;
+        }
+        console.log(`  Description: ${description ? description.substring(0, 50) + '...' : 'N/A'}`);
+        console.log(`  Image: ${event.image || 'N/A'}`);
+        console.log(`  Final URL: ${finalUrl}`);
         
         // Upsert to database
-        const { action, id } = await upsertEvent(scrapedEvent, sql);
+        const { action, id } = await upsertEvent(event, sql);
         
         if (action === 'inserted') {
           console.log(`  ✅ Inserted new event (bullsconnect_id: ${id})\n`);
@@ -421,7 +553,17 @@ async function main() {
 export { main as syncEvents };
 
 // Run directly if this is the main module
-const isMainModule = import.meta.url === `file://${process.argv[1]?.replace(/\\/g, '/')}`;
+// Check if running directly via tsx/node
+const scriptPath = process.argv[1]?.replace(/\\/g, '/');
+const isMainModule = scriptPath && (
+  import.meta.url === `file://${scriptPath}` ||
+  import.meta.url === `file:///${scriptPath}` ||
+  import.meta.url.endsWith('/sync-events.ts')
+);
+
 if (isMainModule) {
-  main().catch(() => process.exit(1));
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
 }
