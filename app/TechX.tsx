@@ -2,6 +2,9 @@
 
 import { Users, MicVocal, Building2 } from 'lucide-react'
 
+import FadeInSection from '@/components/FadeInSection'
+
+
 // Import all techx-cropped images for the mosaic background
 const techxImages = [
     '/assets/techx-cropped/IMG_0241.jpg',
@@ -96,43 +99,49 @@ export default function TechX() {
                         {/* Info Blocks */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl md:h-[250px]">
                             {/* Talks Block */}
-                            <div className="bg-white/10 rounded-xl p-6 shadow-md border border-gray-200 ">
-                                <div className="flex items-center gap-3 mb-4">
-                                    <div className="p-2 bg-ieeeDark/10 rounded-md">
-                                        <MicVocal className="text-ieeeDark" strokeWidth={1.5} size={28} />
+                            <FadeInSection>
+                                <div className="bg-white/10 rounded-xl p-6 shadow-md border border-gray-200 ">
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <div className="p-2 bg-ieeeDark/10 rounded-md">
+                                            <MicVocal className="text-ieeeDark" strokeWidth={1.5} size={28} />
+                                        </div>
+                                        <h3 className="text-xl font-semibold text-ieeeDark">Industry Talks</h3>
                                     </div>
-                                    <h3 className="text-xl font-semibold text-ieeeDark">Industry Talks</h3>
+                                    <p className="text-white text-sm leading-relaxed">
+                                        11 presentations from AI leaders at <span className="font-medium">Microsoft</span>, <span className="font-medium">JP Morgan</span>, <span className="font-medium">Verizon</span>, <span className="font-medium">Intel</span>, including &quot;Careers in Tech&quot; panel discussion.
+                                    </p>
                                 </div>
-                                <p className="text-white text-sm leading-relaxed">
-                                    11 presentations from AI leaders at <span className="font-medium">Microsoft</span>, <span className="font-medium">JP Morgan</span>, <span className="font-medium">Verizon</span>, <span className="font-medium">Intel</span>, including &quot;Careers in Tech&quot; panel discussion.
-                                </p>
-                            </div>
+                            </FadeInSection>
 
                             {/* Attendees Block */}
-                            <div className="bg-white/10 rounded-xl p-6 shadow-md border border-gray-200">
-                                <div className="flex items-center gap-3 mb-4">
-                                    <div className="p-2 bg-ieeeBlue/10 rounded-md">
-                                        <Users className="text-ieeeBlue" strokeWidth={1.5} size={28} />
+                            <FadeInSection>
+                                <div className="bg-white/10 rounded-xl p-6 shadow-md border border-gray-200">
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <div className="p-2 bg-ieeeBlue/10 rounded-md">
+                                            <Users className="text-ieeeBlue" strokeWidth={1.5} size={28} />
+                                        </div>
+                                        <h3 className="text-xl font-semibold text-ieeeDark">Attendance</h3>
                                     </div>
-                                    <h3 className="text-xl font-semibold text-ieeeDark">Attendance</h3>
+                                    <p className="text-white text-sm leading-relaxed">
+                                        <span className="font-medium">336 attendees</span> from <span className="font-medium">500+ registrations</span>, representing 9 educational institutions with <span className="font-medium">40% being professionals</span> from the Tampa Bay area.
+                                    </p>
                                 </div>
-                                <p className="text-white text-sm leading-relaxed">
-                                    <span className="font-medium">336 attendees</span> from <span className="font-medium">500+ registrations</span>, representing 9 educational institutions with <span className="font-medium">40% being professionals</span> from the Tampa Bay area.
-                                </p>
-                            </div>
+                            </FadeInSection>
 
                             {/* Companies Block */}
-                            <div className="bg-white/10 rounded-xl p-6 shadow-md border border-gray-200">
-                                <div className="flex items-center gap-3 mb-4">
-                                    <div className="p-2 bg-ieeeDarkblue/10 rounded-md">
-                                        <Building2 className="text-ieeeDarkblue" strokeWidth={1.5} size={28} />
+                            <FadeInSection>
+                                <div className="bg-white/10 rounded-xl p-6 shadow-md border border-gray-200">
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <div className="p-2 bg-ieeeDarkblue/10 rounded-md">
+                                            <Building2 className="text-ieeeDarkblue" strokeWidth={1.5} size={28} />
+                                        </div>
+                                        <h3 className="text-xl font-semibold text-ieeeDark">Career Fair</h3>
                                     </div>
-                                    <h3 className="text-xl font-semibold text-ieeeDark">Career Fair</h3>
+                                    <p className="text-white text-sm leading-relaxed">
+                                        5 hours of career fair with <span className="font-medium">9 companies</span>: Verizon, Uber AI, ICode, ISACA, USF IT, IronEagleX, Tampa Devs, and more.
+                                    </p>
                                 </div>
-                                <p className="text-white text-sm leading-relaxed">
-                                    5 hours of career fair with <span className="font-medium">9 companies</span>: Verizon, Uber AI, ICode, ISACA, USF IT, IronEagleX, Tampa Devs, and more.
-                                </p>
-                            </div>
+                            </FadeInSection>
                         </div>
 
                     </div>
