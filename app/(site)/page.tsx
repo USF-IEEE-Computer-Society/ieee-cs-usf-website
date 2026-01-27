@@ -1,5 +1,3 @@
-'use client'
-
 import Hero from "../Hero"
 import WhatIsIEEECS from "../WhatIsIEEECS"
 import About from "../About"

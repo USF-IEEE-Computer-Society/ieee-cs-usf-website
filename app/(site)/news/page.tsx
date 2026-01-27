@@ -3,6 +3,12 @@ import config from '@payload-config'
 import Link from 'next/link'
 import Image from 'next/image'
 import type { Article, Media } from '@/payload-types'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'News',
+  description: 'Stay updated with the latest news, announcements, and articles from IEEE Computer Society at USF.',
+}
 
 export const dynamic = 'force-dynamic'
 

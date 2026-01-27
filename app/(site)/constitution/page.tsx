@@ -1,6 +1,12 @@
 import './constitution.css'
 import foundingFathers from '@/app/assets/founding_fathers.png'
 import Image from 'next/image'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Constitution',
+  description: 'The official constitution of IEEE Computer Society Student Branch Chapter at the University of South Florida, established May 27, 2021.',
+}
 
 export default function ConstitutionPage() {
   return (

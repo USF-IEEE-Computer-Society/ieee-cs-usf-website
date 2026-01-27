@@ -25,6 +25,7 @@ export async function generateMetadata({ params }: Props) {
       slug: { equals: slug },
       status: { equals: 'published' },
     },
+    depth: 1,
   })
 
   if (!docs.length) {
@@ -32,9 +33,36 @@ export async function generateMetadata({ params }: Props) {
   }
 
   const article = docs[0] as Article
+  const featuredImage = article.featuredImage as Media | null
+  const author = article.author as User | null
+  const description = `Read "${article.title}" on IEEE CS at USF`
+
   return {
-    title: `${article.title} | IEEE CS at USF`,
-    description: `Read "${article.title}" on IEEE CS at USF`,
+    title: article.title,
+    description,
+    openGraph: {
+      title: article.title,
+      description,
+      type: 'article',
+      publishedTime: article.publishedDate,
+      authors: author?.name ? [author.name] : undefined,
+      images: featuredImage?.url
+        ? [
+            {
+              url: featuredImage.url,
+              width: featuredImage.width || 1200,
+              height: featuredImage.height || 675,
+              alt: featuredImage.alt || article.title,
+            },
+          ]
+        : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: article.title,
+      description,
+      images: featuredImage?.url ? [featuredImage.url] : undefined,
+    },
   }
 }
 
