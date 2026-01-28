@@ -8,12 +8,12 @@ import FadeInSection from '@/components/FadeInSection'
 
 // Import all techx images for the mosaic background
 const techxImages = [
+    '/assets/techx/USF_CS_TechX_2025-34.webp',
     '/assets/techx/IMG_0241.webp',
     '/assets/techx/IMG_0298.webp',
     '/assets/techx/IMG_2203.webp',
     '/assets/techx/IMG_2363.webp',
     '/assets/techx/IMG_2445.webp',
-    '/assets/techx/IMG_2478.webp',
 
     '/assets/techx/IMG_8358.webp',
     '/assets/techx/IMG_8514.webp',
@@ -27,18 +27,18 @@ const techxImages = [
     '/assets/techx/USF_CS_TechX_2025-13.webp',
     '/assets/techx/USF_CS_TechX_2025-16.webp',
     '/assets/techx/USF_CS_TechX_2025-18.webp',
-    '/assets/techx/USF_CS_TechX_2025-19.webp',
+    '/assets/techx/USF_CS_TechX_2025-76.webp',
     // '/assets/techx/USF_CS_TechX_2025-24.webp',
     // '/assets/techx/USF_CS_TechX_2025-26.webp',
     // '/assets/techx/USF_CS_TechX_2025-31.webp',
-    // '/assets/techx/USF_CS_TechX_2025-34.webp',
+    //+ ,
     // '/assets/techx/USF_CS_TechX_2025-37.webp',
     // '/assets/techx/USF_CS_TechX_2025-44.webp',
     // '/assets/techx/USF_CS_TechX_2025-53.webp',
     // '/assets/techx/USF_CS_TechX_2025-57.webp',
     // '/assets/techx/USF_CS_TechX_2025-61.webp',
     // '/assets/techx/USF_CS_TechX_2025-74.webp',
-    // '/assets/techx/USF_CS_TechX_2025-76.webp',
+    //+ 
     // '/assets/techx/USF_CS_TechX_2025-82.webp',
 ]
 
@@ -119,8 +119,8 @@ export default function TechX() {
                             <FadeInSection>
                                 <div className="bg-white/10 rounded-xl p-6 shadow-md border border-gray-200">
                                     <div className="flex items-center gap-3 mb-4">
-                                        <div className="p-2 bg-ieeeBlue/10 rounded-md">
-                                            <Users className="text-ieeeBlue" strokeWidth={1.5} size={28} />
+                                        <div className="p-2 ieeeDark/10 rounded-md">
+                                            <Users className="text-ieeeDark" strokeWidth={1.5} size={28} />
                                         </div>
                                         <h3 className="text-xl font-semibold text-ieeeDark">Attendance</h3>
                                     </div>
@@ -134,8 +134,8 @@ export default function TechX() {
                             <FadeInSection>
                                 <div className="bg-white/10 rounded-xl p-6 shadow-md border border-gray-200">
                                     <div className="flex items-center gap-3 mb-4">
-                                        <div className="p-2 bg-ieeeDarkblue/10 rounded-md">
-                                            <Building2 className="text-ieeeDarkblue" strokeWidth={1.5} size={28} />
+                                        <div className="p-2 ieeeDark/10 rounded-md">
+                                            <Building2 className="text-ieeeDark" strokeWidth={1.5} size={28} />
                                         </div>
                                         <h3 className="text-xl font-semibold text-ieeeDark">Career Fair</h3>
                                     </div>
