@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 interface NavLink {
   name: string;
@@ -26,6 +27,7 @@ const mobileMenuLinks: NavLink[] = [
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -69,7 +71,9 @@ const Navbar = () => {
           {/* Home Button */}
           <Link 
             href="/" 
-            className="p-3 rounded-lg hover:text-ieeeOrange hover:underline transition-colors duration-100 font-medium text-base"
+            className={`p-3 rounded-lg hover:underline transition-colors duration-100 font-medium text-base ${
+              pathname === '/' ? 'text-ieeeOrange' : 'hover:text-ieeeOrange'
+            }`}
           >
             Home
           </Link>
@@ -108,14 +112,16 @@ const Navbar = () => {
 
         {/* Mobile Dropdown Menu */}
         {isMobileMenuOpen && (
-          <div className="absolute md:hidden top-full left-0 right-0 mt-2 mx-4 bg-ieeeBlue rounded-xl shadow-lg z-50">
+          <div className="absolute md:hidden top-full right-0 mt-2 mr-4 bg-ieeeBlue rounded-xl shadow-lg z-50">
             <div className="flex flex-col py-2">
-              {mobileMenuLinks.map((link) => (
+              {mobileMenuLinks.map((link, index) => (
                 <Link
                   key={link.path}
                   href={link.path}
                   onClick={closeMobileMenu}
-                  className="px-6 py-3 hover:bg-white/10 hover:text-ieeeOrange transition-colors duration-100 font-medium text-base"
+                  className={`px-6 py-3 text-right hover:bg-white/10 transition-colors duration-100 font-medium text-base whitespace-nowrap ${
+                    pathname === link.path ? 'text-ieeeOrange' : 'hover:text-ieeeOrange'
+                  } ${index < mobileMenuLinks.length - 1 ? 'border-b border-white/30' : ''}`}
                 >
                   {link.name}
                 </Link>

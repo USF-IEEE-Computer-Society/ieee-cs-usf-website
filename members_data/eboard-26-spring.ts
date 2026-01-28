@@ -122,7 +122,7 @@ export const eboard26spring = [
     imageUrl: "/members/sebastian.webp"
   },
   {
-    role: "Tech Lead",
+    role: "Hardware Tech Lead",
     name: "Nadia Korostyleva",
     major: "Biomedical Engineering",
     year: "Master's",

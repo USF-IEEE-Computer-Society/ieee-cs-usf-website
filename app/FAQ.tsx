@@ -35,20 +35,24 @@ export default function FAQ() {
                     <button
                       onClick={() => ToggleButton(q.id)}
                       aria-expanded={open}
-                      className="relative w-full flex items-center justify-between px-4 py-4 text-left"
+                      className="relative w-full flex items-center justify-between px-4 py-4 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-ieeeOrange focus-visible:ring-inset rounded-xl"
                     >
-                      <div className="flex items-center gap-3 pr-9">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          className={['w-6 h-6 transition-transform duration-200', open ? 'rotate-180' : 'rotate-0'].join(' ')}
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          aria-hidden="true"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M6 9l6 6 6-6" />
-                        </svg>
+                      <div className="flex items-center gap-3">
+                        <div className='min-w-5'>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            className={['w-6 h-6 transition-transform duration-200', open ? 'rotate-180' : 'rotate-0'].join(' ')}
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            aria-hidden="true"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 9l6 6 6-6" />
+                          </svg>
+
+                        </div>
+
 
                         <span className="text-lg md:text-xl leading-7">{q.Question}</span>
                       </div>
