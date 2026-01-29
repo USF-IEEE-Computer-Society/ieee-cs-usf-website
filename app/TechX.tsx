@@ -102,7 +102,7 @@ export default function TechX() {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl md:h-[250px]">
                             {/* Talks Block */}
                             <FadeInSection>
-                                <div className="bg-white/10 rounded-xl p-6 shadow-md border border-gray-200 ">
+                                <div className="bg-white/10 rounded-xl p-6 shadow-md border border-gray-200 h-full flex flex-col">
                                     <div className="flex items-center gap-3 mb-4">
                                         <div className="p-2 bg-ieeeDark/10 rounded-md">
                                             <MicVocal className="text-ieeeDark" strokeWidth={1.5} size={28} />
@@ -117,9 +117,9 @@ export default function TechX() {
 
                             {/* Attendees Block */}
                             <FadeInSection>
-                                <div className="bg-white/10 rounded-xl p-6 shadow-md border border-gray-200">
+                                <div className="bg-white/10 rounded-xl p-6 shadow-md border border-gray-200 h-full flex flex-col">
                                     <div className="flex items-center gap-3 mb-4">
-                                        <div className="p-2 ieeeDark/10 rounded-md">
+                                        <div className="p-2 bg-ieeeDark/10 rounded-md">
                                             <Users className="text-ieeeDark" strokeWidth={1.5} size={28} />
                                         </div>
                                         <h3 className="text-xl font-semibold text-ieeeDark">Attendance</h3>
@@ -132,9 +132,9 @@ export default function TechX() {
 
                             {/* Companies Block */}
                             <FadeInSection>
-                                <div className="bg-white/10 rounded-xl p-6 shadow-md border border-gray-200">
+                                <div className="bg-white/10 rounded-xl p-6 shadow-md border border-gray-200 h-full flex flex-col">
                                     <div className="flex items-center gap-3 mb-4">
-                                        <div className="p-2 ieeeDark/10 rounded-md">
+                                        <div className="p-2 bg-ieeeDark/10 rounded-md">
                                             <Building2 className="text-ieeeDark" strokeWidth={1.5} size={28} />
                                         </div>
                                         <h3 className="text-xl font-semibold text-ieeeDark">Career Fair</h3>

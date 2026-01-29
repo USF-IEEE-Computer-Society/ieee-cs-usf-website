@@ -9,7 +9,7 @@ export default function Hero() {
 
     return (
         <div className='w-full flex justify-center'>
-        <div className='pt-2 md:pt-10 pb-14 w-full max-w-[1500px] flex flex-col md:flex-row'>
+        <div className='pt-2 md:pt-10 pb-14 w-full max-w-[1500px] flex flex-col xl:flex-row'>
   
           <div className='p-5 pl-3 pr-3 md:pl-1 md:pr-10 flex flex-col justify-center'>
   
