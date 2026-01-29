@@ -11,7 +11,7 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.ieeecsusf.com'),
   title: {
-    default: 'IEEE Computer Society at USF',
+    default: 'IEEE CS at USF',
     template: '%s | IEEE CS at USF',
   },
   description: 'IEEE Computer Society at the University of South Florida - Join workshops, mentorship programs, tech talks, and a thriving community for computer science students in Tampa.',
@@ -38,22 +38,20 @@ export const metadata: Metadata = {
     siteName: 'IEEE CS at USF',
     title: 'IEEE Computer Society at USF',
     description: 'Join workshops, mentorship programs, tech talks, and a thriving community for computer science students at USF.',
-    // TODO: Add your Open Graph image here (recommended size: 1200x630px)
-    // images: [
-    //   {
-    //     url: '/og-image.png',
-    //     width: 1200,
-    //     height: 630,
-    //     alt: 'IEEE Computer Society at USF',
-    //   },
-    // ],
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'IEEE Computer Society at USF',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'IEEE Computer Society at USF',
     description: 'Join workshops, mentorship programs, tech talks, and a thriving community for computer science students at USF.',
-    // TODO: Add your Twitter card image here (recommended size: 1200x630px)
-    // images: ['/og-image.png'],
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,

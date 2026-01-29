@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'Partners',
-  description: 'Partners @ IEEE CS USF',
+  description: 'Learn about partners of IEEE CS at USF',
 }
 
 const logoFiles = [

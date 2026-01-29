@@ -2,8 +2,8 @@ import EventsList from "./EventsList"
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Upcoming Events',
-  description: 'Join IEEE CS at USF workshops, tech talks, mentorship sessions, and networking events. Register through BullsConnect to attend.',
+  title: 'Events',
+  description: 'Join IEEE CS at USF events.',
 }
 
 export default function Page() {

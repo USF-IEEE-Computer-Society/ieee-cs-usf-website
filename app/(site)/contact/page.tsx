@@ -3,7 +3,7 @@ import ContactClient from './ContactClient'
 
 export const metadata: Metadata = {
   title: 'Contact Us',
-  description: 'Get in touch with IEEE Computer Society at USF. Contact us for collaborations, mentorship opportunities, tech talks, or general inquiries.',
+  description: 'Get in touch with IEEE Computer Society at USF.',
 }
 
 export default function Page() {

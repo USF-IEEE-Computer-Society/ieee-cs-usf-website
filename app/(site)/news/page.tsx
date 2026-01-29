@@ -9,7 +9,7 @@ import NewsContent from './NewsContent'
 
 export const metadata: Metadata = {
   title: 'News',
-  description: 'Stay updated with the latest news, announcements, and articles from IEEE Computer Society at USF.',
+  description: 'Stay updated with the latest news from IEEE Computer Society at USF.',
 }
 
 export const dynamic = 'force-dynamic'
