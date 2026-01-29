@@ -36,7 +36,7 @@ export const eboard25fall = [
   {
     role: "Media Manager",
     name: "Cesar Calderon",
-    major: "Mechanical Engineering",
+    major: "Computer Engineering",
     year: "Sophomore",
     linkedin: "https://www.linkedin.com/in/cesarcld/",
     imageUrl: "/members/cesar.webp"
