@@ -1,8 +1,29 @@
 // FIX ME : add backend, verify email, better design
 
 "use client";
-import { useState } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Briefcase, GraduationCap, Building2, Users2, School } from 'lucide-react';
+
+declare global {
+  interface Window {
+    turnstile: {
+      render: (
+        container: string | HTMLElement,
+        options: {
+          sitekey: string;
+          callback?: (token: string) => void;
+          'expired-callback'?: () => void;
+          'error-callback'?: () => void;
+          theme?: 'light' | 'dark' | 'auto';
+          size?: 'normal' | 'compact';
+        }
+      ) => string;
+      reset: (widgetId: string) => void;
+      remove: (widgetId: string) => void;
+    };
+    onTurnstileLoad?: () => void;
+  }
+}
 
 const contactRoles = [
   {
@@ -41,9 +62,73 @@ export default function ContactClient() {
   const [activeRole, setActiveRole] = useState(contactRoles[0]);
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const turnstileContainerRef = useRef<HTMLDivElement>(null);
+  const turnstileWidgetId = useRef<string | null>(null);
+
+  const renderTurnstile = useCallback(() => {
+    if (
+      turnstileContainerRef.current &&
+      window.turnstile &&
+      !turnstileWidgetId.current
+    ) {
+      turnstileWidgetId.current = window.turnstile.render(
+        turnstileContainerRef.current,
+        {
+          sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!,
+          callback: (token: string) => {
+            setTurnstileToken(token);
+          },
+          'expired-callback': () => {
+            setTurnstileToken(null);
+          },
+          'error-callback': () => {
+            setTurnstileToken(null);
+          },
+          theme: 'light',
+        }
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    // Check if Turnstile script is already loaded
+    if (window.turnstile) {
+      renderTurnstile();
+      return;
+    }
+
+    // Set up callback for when script loads
+    window.onTurnstileLoad = () => {
+      renderTurnstile();
+    };
+
+    // Load Turnstile script with explicit rendering
+    const script = document.createElement('script');
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoad';
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+
+    return () => {
+      // Cleanup widget on unmount
+      if (turnstileWidgetId.current && window.turnstile) {
+        window.turnstile.remove(turnstileWidgetId.current);
+        turnstileWidgetId.current = null;
+      }
+      // Clean up global callback
+      delete window.onTurnstileLoad;
+    };
+  }, [renderTurnstile]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!turnstileToken) {
+      setStatus('error');
+      return;
+    }
+
     setLoading(true);
 
     const formData = new FormData(e.currentTarget);
@@ -52,6 +137,7 @@ export default function ContactClient() {
       email: formData.get('email'),
       message: formData.get('message'),
       role: activeRole.label,
+      turnstileToken,
     };
 
     const res = await fetch('/api/send', {
@@ -62,6 +148,11 @@ export default function ContactClient() {
     if (res.ok) {
       setStatus('success');
       (e.target as HTMLFormElement).reset();
+      // Reset Turnstile for next submission
+      if (turnstileWidgetId.current && window.turnstile) {
+        window.turnstile.reset(turnstileWidgetId.current);
+        setTurnstileToken(null);
+      }
     } else {
       setStatus('error');
     }
@@ -132,10 +223,16 @@ export default function ContactClient() {
               placeholder={`Hi IEEE Computer Society at USF! I am a ${activeRole.label.toLowerCase()} and I'd like to...`}
             ></textarea>
           </div>
+
+          {/* Cloudflare Turnstile Widget */}
+          <div className="flex justify-center">
+            <div ref={turnstileContainerRef} />
+          </div>
+
           <button
             type="submit"
-            disabled={loading}
-            className="w-full py-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`"
+            disabled={loading || !turnstileToken}
+            className={`w-full py-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 ${loading || !turnstileToken ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
             {loading ? 'Sending...' : 'Send Message'}
           </button>
