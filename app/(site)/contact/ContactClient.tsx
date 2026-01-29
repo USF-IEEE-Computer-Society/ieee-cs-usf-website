@@ -39,6 +39,34 @@ const contactRoles = [
 
 export default function ContactClient() {
   const [activeRole, setActiveRole] = useState(contactRoles[0]);
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const formData = new FormData(e.currentTarget);
+    const payload = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      message: formData.get('message'),
+      role: activeRole.label,
+    };
+
+    const res = await fetch('/api/send', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    });
+
+    if (res.ok) {
+      setStatus('success');
+      (e.target as HTMLFormElement).reset();
+    } else {
+      setStatus('error');
+    }
+    setLoading(false);
+  };
 
   return (
     <main className="min-h-screen pt-16 pb-12 px-8 bg-white text-black">
@@ -71,24 +99,58 @@ export default function ContactClient() {
         </div>
 
         {/* The Form */}
-        <form className="space-y-6 bg-white border border-gray-200 p-8 rounded-2xl shadow-sm">
+        <form onSubmit={handleSubmit} className="space-y-6 bg-white border border-gray-200 p-8 rounded-2xl shadow-sm">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-bold mb-2">Full Name</label>
-              <input type="text" className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder="John Doe" />
+              <input 
+                name="name"
+                required
+                type="text" 
+                className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                placeholder="John Doe"
+              />
             </div>
             <div>
               <label className="block text-sm font-bold mb-2">Email Address</label>
-              <input type="email" className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder="john@usf.edu" />
+              <input
+                name="email"
+                required
+                type="email"
+                className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                placeholder="john@usf.edu"
+              />
             </div>
           </div>
           <div>
             <label className="block text-sm font-bold mb-2">Message</label>
-            <textarea rows={4} className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder={`Hi IEEE Computer Society at USF! I am a ${activeRole.label.toLowerCase()} and I'd like to...`}></textarea>
+            <textarea
+              name="message"
+              required
+              rows={4}
+              className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+              placeholder={`Hi IEEE Computer Society at USF! I am a ${activeRole.label.toLowerCase()} and I'd like to...`}
+            ></textarea>
           </div>
-          <button type="submit" className="w-full py-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200">
-            Send Message
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full py-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`"
+          >
+            {loading ? 'Sending...' : 'Send Message'}
           </button>
+
+          {/* Status Messages */}
+          {status === 'success' && (
+            <p className="text-green-600 text-center font-bold animate-pulse">
+              Message sent successfully!
+            </p>
+          )}
+          {status === 'error' && (
+            <p className="text-red-600 text-center font-bold">
+              Something went wrong. Please try again.
+            </p>
+          )}
         </form>
       </div>
     </main>
