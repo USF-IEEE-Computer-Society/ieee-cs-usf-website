@@ -4,6 +4,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import type { Article, Media } from '@/payload-types'
 import type { Metadata } from 'next'
+import NewsArticleLink from './NewsArticleLink'
+import NewsContent from './NewsContent'
 
 export const metadata: Metadata = {
   title: 'News',
@@ -38,9 +40,10 @@ export default async function NewsPage({
   const totalPages = articles.totalPages
 
   return (
-    <div className="min-h-screen bg-white text-black">
-      <div className="container max-w-7xl mx-auto px-8 py-16">
-        <h1 className="text-4xl md:text-5xl font-bold mb-8">News</h1>
+    <NewsContent>
+      <div className="min-h-screen bg-white text-black">
+        <div className="container max-w-7xl mx-auto px-8 py-16">
+          <h1 className="text-4xl md:text-5xl font-bold mb-8">News</h1>
 
         {articles.docs.length === 0 ? (
           <div className="text-center py-16">
@@ -55,10 +58,11 @@ export default async function NewsPage({
                 const featuredImage = typedArticle.featuredImage as Media | null
 
                 return (
-                  <Link
+                  <NewsArticleLink
                     key={typedArticle.id}
                     href={`/news/${typedArticle.slug}`}
                     className="block bg-gray-50/10 rounded-lg overflow-hidden transition-colors shadow-md border border-gray-200"
+                    currentPage={currentPage}
                   >
                     {featuredImage?.url && (
                       <div className="relative h-48 w-full">
@@ -85,7 +89,7 @@ export default async function NewsPage({
                         {typedArticle.title}
                       </h2>
                     </div>
-                  </Link>
+                  </NewsArticleLink>
                 )
               })}
             </div>
@@ -136,7 +140,8 @@ export default async function NewsPage({
             )}
           </>
         )}
+        </div>
       </div>
-    </div>
+    </NewsContent>
   )
 }

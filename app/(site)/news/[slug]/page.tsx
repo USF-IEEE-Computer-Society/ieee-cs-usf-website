@@ -6,9 +6,9 @@ import Link from 'next/link'
 import { RichText } from '@/components/RichText'
 import type { Article, Media, User } from '@/payload-types'
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
-import { ArrowLeft } from 'lucide-react'
 import ShareButtons from './ShareButtons'
 import Button from '@/components/Button'
+import BackToNewsLink from './BackToNewsLink'
 
 export const dynamic = 'force-dynamic'
 
@@ -91,13 +91,7 @@ export default async function ArticlePage({ params }: Props) {
   return (
     <div className="min-h-screen bg-white text-black">
       <article className="container mx-auto px-4 py-10 max-w-4xl">
-        <Link
-          href="/news"
-          className="inline-flex items-center gap-2 text-gray-400 hover:text-black transition-colors mb-8"
-        >
-          <ArrowLeft size={20} />
-          Back to News
-        </Link>
+        <BackToNewsLink />
 
         <header className="mb-8">
           <h1 className="text-3xl md:text-4xl font-bold mb-2">{article.title}</h1>
