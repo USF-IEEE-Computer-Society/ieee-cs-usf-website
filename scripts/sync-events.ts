@@ -244,23 +244,20 @@ function parseDateTimeFromHtml(eventDatesHtml: string, timezone: string | null):
   const dateWithoutDay = dateText.replace(/^[A-Za-z]+,\s*/, '');
   
   try {
-    // Parse start and end times
-    const startDateTime = parseDateTime(dateWithoutDay, startTimeStr);
-    const endDateTime = parseDateTime(dateWithoutDay, endTimeStr);
+    // Parse start and end times (now returns ISO string with -05:00 timezone)
+    const startDate = parseDateTime(dateWithoutDay, startTimeStr);
+    const endDate = parseDateTime(dateWithoutDay, endTimeStr);
     
-    return {
-      startDate: startDateTime ? startDateTime.toISOString() : null,
-      endDate: endDateTime ? endDateTime.toISOString() : null
-    };
+    return { startDate, endDate };
   } catch {
     return { startDate: null, endDate: null };
   }
 }
 
 /**
- * Parse a date string and time string into a Date object
+ * Parse a date string and time string into an ISO string with -05:00 timezone
  */
-function parseDateTime(dateStr: string, timeStr: string): Date | null {
+function parseDateTime(dateStr: string, timeStr: string): string | null {
   // Parse time (e.g., "9:30 AM" or "2 PM")
   const timeMatch = timeStr.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM)/i);
   if (!timeMatch) return null;
@@ -302,11 +299,13 @@ function parseDateTime(dateStr: string, timeStr: string): Date | null {
   const month = monthNames[monthStr];
   if (month === undefined) return null;
   
-  // Create date in EST timezone (UTC-5)
-  // Note: This is a simplification; production code might need proper timezone handling
-  const date = new Date(Date.UTC(year, month, day, hours + 5, minutes, 0));
+  // Format as ISO string with -05:00 timezone (EST)
+  const monthPadded = String(month + 1).padStart(2, '0');
+  const dayPadded = String(day).padStart(2, '0');
+  const hoursPadded = String(hours).padStart(2, '0');
+  const minutesPadded = String(minutes).padStart(2, '0');
   
-  return date;
+  return `${year}-${monthPadded}-${dayPadded}T${hoursPadded}:${minutesPadded}:00-05:00`;
 }
 
 /**
