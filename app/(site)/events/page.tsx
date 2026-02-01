@@ -1,6 +1,9 @@
 import EventsList from "./EventsList"
 import type { Metadata } from 'next'
 
+// Force dynamic rendering - fetch fresh events on every page load
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: 'Events',
   description: 'Join IEEE CS at USF events.',
