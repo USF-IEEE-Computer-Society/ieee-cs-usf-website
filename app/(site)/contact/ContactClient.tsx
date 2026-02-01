@@ -29,32 +29,37 @@ const contactRoles = [
   {
     id: 'pro',
     label: 'Professional',
+    pluralLabel: 'Professionals',
     icon: <Briefcase />,
-    text: "Want to give a talk or mentor students? We handle the logistics and marketing for our Mentorship Program and Tech Talks!"
-  },
-  {
-    id: 'student',
-    label: 'Student',
-    icon: <GraduationCap />,
-    text: "Have event ideas or want to volunteer? We document all your volunteering hours!"
+    text: "Want to give a talk or mentor students? We handle the organization and marketing!"
   },
   {
     id: 'company',
     label: 'Company',
+    pluralLabel: 'Companies',
     icon: <Building2 />,
-    text: "Looking for campus outreach? We've hosted Verizon, JP Morgan Chase, Cisco, and more."
+    text: "Looking for campus outreach? In the past we've hosted Verizon, JP Morgan Chase, Cisco, and more."
   },
   {
     id: 'org',
     label: 'Organization',
+    pluralLabel: 'Organizations',
     icon: <Users2 />,
-    text: "Tech community or student org? Let's collaborate like we did with Tampa Devs or ACM!"
+    text: "Tech community or student org? Let's collaborate like we did with Tampa Devs or Google Developers Group!"
+  },
+  {
+    id: 'student',
+    label: 'Student',
+    pluralLabel: 'Students',
+    icon: <GraduationCap />,
+    text: "Have event ideas, want to volunteer or join our eboard? Contact us."
   },
   {
     id: 'staff',
     label: 'USF Staff',
+    pluralLabel: 'USF Staff',
     icon: <School />,
-    text: "Professor or Staff? We have collaborated across departments, including the College of Engineering and the Bellini College of AI, Cybersecurity, and Computing!"
+    text: "Professor or Staff? We have collaborated across departments, including the College of Engineering and the Bellini College of AI."
   }
 ];
 
@@ -185,7 +190,7 @@ export default function ContactClient() {
 
         {/* Dynamic Content Box */}
         <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100 mb-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
-          <h2 className="text-xl font-bold mb-2">For {activeRole.label}s:</h2>
+          <h2 className="text-xl font-bold mb-2">For {activeRole.pluralLabel}:</h2>
           <p className="text-gray-700 leading-relaxed">{activeRole.text}</p>
         </div>
 
@@ -232,7 +237,7 @@ export default function ContactClient() {
           <button
             type="submit"
             disabled={loading || !turnstileToken}
-            className={`w-full py-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 ${loading || !turnstileToken ? 'opacity-50 cursor-not-allowed' : ''}`}
+            className={`w-full py-4 bg-ieeeDarkblue/80 text-white font-bold rounded-lg hover:bg-ieeeDarkblue transition-colors shadow-lg shadow-blue-200 ${loading || !turnstileToken ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
             {loading ? 'Sending...' : 'Send Message'}
           </button>
