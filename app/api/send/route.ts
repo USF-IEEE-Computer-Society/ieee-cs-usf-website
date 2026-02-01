@@ -60,7 +60,7 @@ export async function POST(req: Request) {
       from: 'no-reply@ieeecsusf.com', // IEEE USF Website <no-reply@ieeecsusf.com>
       to: ['ieeecsusf@outlook.com'], // ieeecsusf@outlook.com
       replyTo: email,
-      subject: `[Website] New Contact from ${name} (${role})`,
+      subject: `IEEE CS USF x ${name}`,
       html: `
         <h2>New Message from Website</h2>
         <p><strong>Name:</strong> ${name}</p>
