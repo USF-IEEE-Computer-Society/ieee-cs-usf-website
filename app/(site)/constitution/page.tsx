@@ -1,5 +1,5 @@
 import './constitution.css'
-import foundingFathers from '@/app/assets/founding_fathers.png'
+import foundingFathers from '@/app/(site)/assets/founding_fathers.png'
 import Image from 'next/image'
 import type { Metadata } from 'next'
 
