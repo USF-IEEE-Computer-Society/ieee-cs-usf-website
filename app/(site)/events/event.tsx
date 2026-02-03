@@ -48,10 +48,10 @@ export default function Event({
     }
     
     return (
-        <div className={`w-[350px] h-auto bg-gray-50 rounded-md shadow-md p-2 flex flex-col gap-6 items-center justify-center ${imageURL ? '' : 'p-5'}`}>
+        <div className={`w-[350px] h-auto bg-gray-50 rounded-sm shadow-md flex flex-col gap-6 items-center justify-center ${imageURL ? '' : 'p-5'}`}>
             {imageURL ? (
                 <Link href={eventUrl} target="_blank" rel="noopener noreferrer">
-                    <Image src={imageURL} width={350} height={50} alt={name} className="cursor-pointer hover:opacity-80 transition-opacity" />
+                    <Image src={imageURL} width={350} height={50} alt={name} className="cursor-pointer hover:opacity-80 transition-opacity rounded-sm" />
                 </Link>
             ) : <div className="flex flex-col">
                     <p className="p-4 w-full bg-gray-100 rounded-md text-center mb-3">No image 😭</p>

@@ -1,31 +1,26 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Partners',
   description: 'Learn about partners of IEEE CS at USF',
 }
 
-const logoFiles = [
-
-  'JPMorgan-Chase-Logo-SVG-preview.jpg',
-  'Verizon_GlowWordmark_RGB_2025.webp',
-  'Cisco_logo_blue_2016.svg.png',
-
-
-  'tdevs_long_5000x1000.png',
-
-  'java.webp',
-  'ISACA_logo_WestFlorida_RGB.webp',
-  'information-technology-lightbg-2c-rgb-h.webp',
- 'Op1-Bellini-caicc-green_text-2c-rgb-v.jpg',
-  'usf_foundations_of_engineering_cover.jpg',
-  'Couchbase_Logo.webp',
-  'icode.webp',
-  'IEX_GDIT_black.webp',
-  'uberai.webp',
-
-
+const partners = [
+  { logo: 'JPMorgan-Chase-Logo-SVG-preview.jpg', url: 'https://www.jpmorganchase.com/' },
+  { logo: 'Verizon_GlowWordmark_RGB_2025.webp', url: 'https://www.verizon.com/' },
+  { logo: 'Cisco_logo_blue_2016.svg.png', url: 'https://www.cisco.com/' },
+  { logo: 'tdevs_long_5000x1000.png', url: 'https://tampadevs.com/' },
+  { logo: 'java.webp', url: 'https://www.tampajug.com/' },
+  { logo: 'ISACA_logo_WestFlorida_RGB.webp', url: 'https://engage.isaca.org/westfloridachapter/home' },
+  { logo: 'information-technology-lightbg-2c-rgb-h.webp', url: 'https://www.usf.edu/it/' },
+  { logo: 'Op1-Bellini-caicc-green_text-2c-rgb-v.jpg', url: 'https://www.usf.edu/ai-cybersecurity-computing/' },
+  { logo: 'usf_foundations_of_engineering_cover.jpg', url: 'https://www.usf.edu/engineering/' },
+  { logo: 'Couchbase_Logo.webp', url: 'https://www.couchbase.com/' },
+  { logo: 'icode.webp', url: 'https://www.icodeschool.com/' },
+  { logo: 'IEX_GDIT_black.webp', url: 'https://www.gdit.com/' },
+  { logo: 'uberai.webp', url: 'https://www.uber.com/us/en/ai-solutions/' },
 ]
 
 export default function Partners() {
@@ -36,20 +31,23 @@ export default function Partners() {
         <p className="text-gray-600 mb-12 text-lg">Our valued partners and sponsors.</p>
 
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 items-center justify-items-center">
-          {logoFiles.map((logo, index) => (
-            <div 
+          {partners.map((partner, index) => (
+            <Link
               key={index}
-              className="flex items-center justify-center w-full h-32 p-0 md:p-4 rounded-lg transition-colors duration-200"
+              href={partner.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-full h-32 p-0 md:p-4 rounded-lg transition-opacity duration-200 hover:opacity-70"
             >
               <Image
-                src={`/assets/logos/${logo}`}
-                alt={logo.replace(/\.(webp|svg)$/i, '').replace(/_/g, ' ')}
+                src={`/assets/logos/${partner.logo}`}
+                alt={partner.logo.replace(/\.(webp|svg|png|jpg)$/i, '').replace(/_/g, ' ')}
                 width={200}
                 height={100}
                 className="object-contain max-w-full max-h-full"
                 style={{ width: 'auto', height: 'auto' }}
               />
-            </div>
+            </Link>
           ))}
         </div>
       </div>
