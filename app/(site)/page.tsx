@@ -1,11 +1,4 @@
-import Hero from "../Hero"
-import WhatIsIEEECS from "../WhatIsIEEECS"
-import About from "../About"
-import Achievements from "../Achievements"
-import Gallery from "../Gallery"
-import TechX from "../TechX"
-import Membership from "../Membership"
-import FAQ from "../FAQ"
+import { Hero, WhatIsIEEECS, About, Achievements, Gallery, TechX, Membership, FAQ } from "./home-components"
 
 export default function Home() {
   return (

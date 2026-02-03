@@ -1,6 +1,6 @@
 // Total members: 12
 
-export const eboard24fall = [
+export const eboard25spring = [
   {
     role: "President",
     name: "Anzhelika Kurnikova",
@@ -19,11 +19,11 @@ export const eboard24fall = [
   },
   {
     role: "Treasurer",
-    name: "Nick Nechaiev",
-    major: "Information Technology",
-    year: "Junior",
-    linkedin: "https://www.linkedin.com/in/mykyta-nechaiev/",
-    imageUrl: "/members/nick.webp"
+    name: "Vama Shah",
+    major: "Industrial Engineering",
+    year: "Freshman",
+    linkedin: "https://www.linkedin.com/in/vamashah08/",
+    imageUrl: "/members/vama.webp"
   },
   {
     role: "Graphic Design Chair",
@@ -75,11 +75,11 @@ export const eboard24fall = [
   },
   {
     role: "Tech Lead",
-    name: "Sneha Siri Nagabathula",
-    major: "Cybersecurity",
-    year: "Junior",
-    linkedin: "https://www.linkedin.com/in/snehasiri/",
-    imageUrl: "/members/sneha.webp"
+    name: "Akmal Kurbanov",
+    major: "Computer Science",
+    year: "Senior",
+    linkedin: "https://www.linkedin.com/in/akmal-kurbanov/",
+    imageUrl: "/members/akmal.webp"
   },
   {
     role: "Professional Development Lead",

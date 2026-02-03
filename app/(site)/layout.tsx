@@ -1,6 +1,6 @@
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import { PostHogProvider } from '../providers';
+import Navbar from '@/app/components/Navbar';
+import Footer from '@/app/components/Footer';
+import { PostHogProvider } from './providers';
 
 // Organization structured data for SEO
 const organizationJsonLd = {

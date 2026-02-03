@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Questions } from './faqData'
+import { Questions } from '@/app/(site)/data/faqData'
 
 export default function FAQ() {
   const [OpenMenus, setOpenMenus] = useState<Record<string, boolean>>({})

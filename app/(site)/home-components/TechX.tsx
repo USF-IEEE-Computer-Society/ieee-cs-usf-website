@@ -3,7 +3,7 @@
 import { Users, MicVocal, Building2 } from 'lucide-react'
 import Image from 'next/image'
 
-import FadeInSection from '@/components/FadeInSection'
+import FadeInSection from '@/app/components/FadeInSection'
 
 
 // Import all techx images for the mosaic background

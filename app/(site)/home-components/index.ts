@@ -1,0 +1,8 @@
+export { default as Hero } from './Hero'
+export { default as WhatIsIEEECS } from './WhatIsIEEECS'
+export { default as About } from './About'
+export { default as Gallery } from './Gallery'
+export { default as TechX } from './TechX'
+export { default as Achievements } from './Achievements'
+export { default as Membership } from './Membership'
+export { default as FAQ } from './FAQ'

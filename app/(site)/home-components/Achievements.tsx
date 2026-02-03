@@ -1,6 +1,6 @@
 'use client'
 
-import IEEECSUSFlogo from "../public/ieee_cs_usf_logo_black.png"
+import IEEECSUSFlogo from "@/public/ieee_cs_usf_logo_black.png"
 
 export default function Achievements() {
     return (
@@ -43,7 +43,6 @@ export default function Achievements() {
                                 View Recap →
                             </a>
                                 </div>
-
 
 
 

@@ -1,10 +1,7 @@
 "use client";
 import { useState } from 'react';
-import MemberCard from '@/components/MemberCard';
-import { eboard24fall } from '@/members_data/eboard-24-fall';
-import { eboard25spring } from '@/members_data/eboard-25-spring';
-import { eboard25fall } from '@/members_data/eboard-25-fall';
-import { eboard26spring } from '@/members_data/eboard-26-spring';
+import MemberCard from '@/app/components/MemberCard';
+import { eboard24fall, eboard25spring, eboard25fall, eboard26spring } from '../data';
 
 const dataMap = {
   "fall24": eboard24fall,

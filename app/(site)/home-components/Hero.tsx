@@ -1,9 +1,9 @@
 'use client'
 
 import Image from 'next/image'
-import StatCard from '@/components/StatCard'
-import { heroStats } from './heroData'
-import heroImg from "../public/hero.png"
+import StatCard from '@/app/components/StatCard'
+import { heroStats } from '@/app/(site)/data/heroData'
+import heroImg from "@/public/hero.png"
 
 export default function Hero() {
 

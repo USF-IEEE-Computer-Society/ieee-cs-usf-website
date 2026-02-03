@@ -1,8 +1,8 @@
 'use client'
 
 import CountUp from 'react-countup'
-import IEEElogo from "./assets/ieee-logo.png"
-import IEEECSlogo from "./assets/csociety_logo.webp"
+import IEEElogo from "@/app/(site)/assets/ieee-logo.png"
+import IEEECSlogo from "@/app/(site)/assets/csociety_logo.webp"
 
 export default function WhatIsIEEECS() {
     return (
