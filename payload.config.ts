@@ -25,12 +25,18 @@ import { fileURLToPath } from 'url'
 import { Users } from './collections/Users'
 import { Articles } from './collections/Articles'
 import { Media } from './collections/Media'
+import { resendAdapter } from '@payloadcms/email-resend'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || 'REPLACE_WITH_SECURE_SECRET',
+  email: resendAdapter({
+    defaultFromAddress: 'noreply@ieeecsusf.com',
+    defaultFromName: 'IEEE CS USF',
+    apiKey: process.env.RESEND_API_KEY || '',
+  }),
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL || '',
