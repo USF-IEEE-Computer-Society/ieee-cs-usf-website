@@ -1,10 +1,17 @@
 import Link from 'next/link'
 import Navbar from '@/app/components/Navbar'
 import Footer from '@/app/components/Footer'
+import { Montserrat } from "next/font/google";
+import '@/app/globals.css';
+
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+});
 
 export default function NotFound() {
   return (
-    <div className=" bg-white">
+    <div className={`${montserrat.className} antialiased bg-white`}>
       <Navbar />
       <div className="flex flex-col items-center justify-center px-4 py-32">
         <h1 className="text-9xl font-bold text-ieeeDark">404</h1>

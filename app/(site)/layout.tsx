@@ -1,6 +1,13 @@
 import Navbar from '@/app/components/Navbar';
 import Footer from '@/app/components/Footer';
 import { PostHogProvider } from './providers';
+import { Montserrat } from "next/font/google";
+import '@/app/globals.css';
+
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+});
 
 // Organization structured data for SEO
 const organizationJsonLd = {
@@ -37,16 +44,18 @@ export default function SiteLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <PostHogProvider>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(organizationJsonLd),
-        }}
-      />
-      <Navbar />
-      {children}
-      <Footer />
-    </PostHogProvider>
+    <div className={`${montserrat.className} antialiased`}>
+      <PostHogProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
+          }}
+        />
+        <Navbar />
+        {children}
+        <Footer />
+      </PostHogProvider>
+    </div>
   );
 }
