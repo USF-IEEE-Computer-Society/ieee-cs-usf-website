@@ -27,18 +27,19 @@ interface EventLocation {
 
 interface ParsedEvent {
   bullsconnectId: string;
-  name: string;
+  title: string;
   originalUrl: string;
-  finalUrl: string | null;
+  eventUrl: string | null;
   description: string | null;
-  image: string | null;
-  startDate: string | null;
-  endDate: string | null;
+  photoUrl: string | null;
+  startTime: string | null;
+  endTime: string | null;
   location: EventLocation | null;
-  registered: number | null;
+  rsvpCount: number | null;
   tags: string[];
-  category: string | null;
   timezone: string | null;
+  status: string | null;
+  eventType: string | null;
 }
 
 interface ApiEventItem {
@@ -376,18 +377,19 @@ function parseApiResponse(items: ApiEventItem[]): ParsedEvent[] {
     
     events.push({
       bullsconnectId: item.p2,
-      name: item.p3,
+      title: item.p3,
       originalUrl,
-      finalUrl: null, // Will be populated when fetching description
+      eventUrl: null, // Will be populated when fetching description
       description: null, // Will be populated when fetching description
-      image,
-      startDate,
-      endDate,
+      photoUrl: image,
+      startTime: startDate,
+      endTime: endDate,
       location,
-      registered,
+      rsvpCount: registered,
       tags,
-      category: item.p5 || null,
-      timezone: item.p28 || null
+      timezone: item.p28 || null,
+      status: item.p26 || null,
+      eventType: item.p19 || null
     });
   }
   
@@ -398,7 +400,7 @@ async function upsertEvent(event: ParsedEvent, sql: NeonQueryFunction<false, fal
   const bullsconnectId = event.bullsconnectId;
   
   if (!bullsconnectId) {
-    console.error(`  ❌ Missing bullsconnect_id for event: ${event.name}`);
+    console.error(`  ❌ Missing bullsconnect_id for event: ${event.title}`);
     return { action: 'skipped', id: null };
   }
   
@@ -412,16 +414,19 @@ async function upsertEvent(event: ParsedEvent, sql: NeonQueryFunction<false, fal
       // Update existing event
       await sql`
         UPDATE egor.events SET
-          name = ${event.name},
+          title = ${event.title},
           "originalURL" = ${event.originalUrl},
-          "finalURL" = ${event.finalUrl},
+          "eventURL" = ${event.eventUrl},
           description = ${event.description},
-          "imageURL" = ${event.image},
-          "startDate" = ${event.startDate},
-          "endDate" = ${event.endDate},
+          "photoUrl" = ${event.photoUrl},
+          "startTime" = ${event.startTime},
+          "endTime" = ${event.endTime},
           location = ${event.location ? JSON.stringify(event.location) : null},
           tags = ${event.tags.length > 0 ? JSON.stringify(event.tags) : null},
-          "registeredCount" = ${event.registered}
+          "rsvpCount" = ${event.rsvpCount},
+          timezone = ${event.timezone},
+          status = ${event.status},
+          "eventType" = ${event.eventType}
         WHERE bullsconnect_id = ${bullsconnectId}
       `;
       return { action: 'updated', id: bullsconnectId };
@@ -430,28 +435,34 @@ async function upsertEvent(event: ParsedEvent, sql: NeonQueryFunction<false, fal
       await sql`
         INSERT INTO egor.events (
           bullsconnect_id,
-          name,
+          title,
           "originalURL",
-          "finalURL",
+          "eventURL",
           description,
-          "imageURL",
-          "startDate",
-          "endDate",
+          "photoUrl",
+          "startTime",
+          "endTime",
           location,
           tags,
-          "registeredCount"
+          "rsvpCount",
+          timezone,
+          status,
+          "eventType"
         ) VALUES (
           ${bullsconnectId},
-          ${event.name},
+          ${event.title},
           ${event.originalUrl},
-          ${event.finalUrl},
+          ${event.eventUrl},
           ${event.description},
-          ${event.image},
-          ${event.startDate},
-          ${event.endDate},
+          ${event.photoUrl},
+          ${event.startTime},
+          ${event.endTime},
           ${event.location ? JSON.stringify(event.location) : null},
           ${event.tags.length > 0 ? JSON.stringify(event.tags) : null},
-          ${event.registered}
+          ${event.rsvpCount},
+          ${event.timezone},
+          ${event.status},
+          ${event.eventType}
         )
       `;
       return { action: 'inserted', id: bullsconnectId };
@@ -487,11 +498,12 @@ async function main() {
     
     for (let i = 0; i < events.length; i++) {
       const event = events[i];
-      console.log(`[${i + 1}/${events.length}] Processing: ${event.name}`);
+      console.log(`[${i + 1}/${events.length}] Processing: ${event.title}`);
       console.log(`  ID: ${event.bullsconnectId}`);
       console.log(`  URL: ${event.originalUrl}`);
-      console.log(`  Category: ${event.category || 'N/A'}`);
-      console.log(`  Registered: ${event.registered}`);
+      console.log(`  Event Type: ${event.eventType || 'N/A'}`);
+      console.log(`  Status: ${event.status || 'N/A'}`);
+      console.log(`  RSVP Count: ${event.rsvpCount}`);
       console.log(`  Tags: ${event.tags.length > 0 ? event.tags.join(', ') : 'none'}`);
       
       try {
@@ -499,14 +511,14 @@ async function main() {
         console.log(`  Fetching event details...`);
         const { description, image, finalUrl } = await fetchEventDetails(event.originalUrl);
         event.description = description;
-        event.finalUrl = finalUrl;
+        event.eventUrl = finalUrl;
         // Use image from detail page if available, otherwise keep the one from API
         if (image) {
-          event.image = image;
+          event.photoUrl = image;
         }
         console.log(`  Description: ${description ? description.substring(0, 50) + '...' : 'N/A'}`);
-        console.log(`  Image: ${event.image || 'N/A'}`);
-        console.log(`  Final URL: ${finalUrl}`);
+        console.log(`  Photo URL: ${event.photoUrl || 'N/A'}`);
+        console.log(`  Event URL: ${event.eventUrl}`);
         
         // Upsert to database
         const { action, id } = await upsertEvent(event, sql);
