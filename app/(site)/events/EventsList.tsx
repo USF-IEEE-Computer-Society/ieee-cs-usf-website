@@ -8,19 +8,19 @@ async function getEvents() {
     SELECT 
       id,
       bullsconnect_id,
-      name,
+      title,
       "originalURL",
-      "finalURL",
+      "eventURL",
       description,
-      "imageURL",
-      "startDate",
-      "endDate",
-      location,
+      "photoUrl",
+      "startTime",
+      "endTime",
+      venue,
       tags,
-      "registeredCount"
+      "rsvpCount"
     FROM egor.events
-    WHERE "endDate" >= NOW()
-    ORDER BY "startDate" ASC
+    WHERE "endTime" >= NOW()
+    ORDER BY "startTime" ASC
   `;
   return events;
 }
@@ -45,16 +45,16 @@ export default async function EventsList() {
           key={event.id}
           id={event.id}
           bullsconnect_id={event.bullsconnect_id}
-          name={event.name}
+          title={event.title}
           originalURL={event.originalURL}
-          finalURL={event.finalURL}
+          eventURL={event.eventURL}
           description={event.description}
-          imageURL={event.imageURL}
-          startDate={event.startDate}
-          endDate={event.endDate}
-          location={event.location}
+          photoUrl={event.photoUrl}
+          startTime={event.startTime}
+          endTime={event.endTime}
+          venue={event.venue}
           tags={event.tags}
-          registeredCount={event.registeredCount}
+          rsvpCount={event.rsvpCount}
         />
       ))}
     </div>
