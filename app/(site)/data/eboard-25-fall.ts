@@ -6,6 +6,7 @@ export const eboard25fall = [
     name: "Anzhelika Kurnikova",
     major: "Computer Science",
     year: "Senior",
+    country: "RU",
     linkedin: "https://www.linkedin.com/in/anzhelika-kurnikova/",
     imageUrl: "/members/anzhelika.webp"
   },
@@ -14,6 +15,7 @@ export const eboard25fall = [
     name: "Vama Shah",
     major: "Industrial Engineering",
     year: "Sophomore",
+    country: "IN",
     linkedin: "https://www.linkedin.com/in/vamashah08/",
     imageUrl: "/members/vama.webp"
   },
@@ -22,6 +24,7 @@ export const eboard25fall = [
     name: "Elan Berezovskiy",
     major: "Computer Engineering",
     year: "Sophomore",
+    country: "US",
     linkedin: "https://www.linkedin.com/in/elan-berezovskiy-5a7618263/",
     imageUrl: "/members/elan.webp"
   },
@@ -30,6 +33,7 @@ export const eboard25fall = [
     name: "Kimberly Bahena",
     major: "Artificial Intelligence",
     year: "Sophomore",
+    country: "US",
     linkedin: "https://www.linkedin.com/in/kimberly-bahena-03a310325/",
     imageUrl: "/members/kimberly.webp"
   },
@@ -38,6 +42,7 @@ export const eboard25fall = [
     name: "Cesar Calderon",
     major: "Computer Engineering",
     year: "Sophomore",
+    country: "US",
     linkedin: "https://www.linkedin.com/in/cesarcld/",
     imageUrl: "/members/cesar.webp"
   },
@@ -46,6 +51,7 @@ export const eboard25fall = [
     name: "Amber Nguyen",
     major: "Computer Engineering",
     year: "Senior",
+    country: "US",
     linkedin: "https://www.linkedin.com/in/ambern3/",
     imageUrl: "/members/amber.webp"
   },
@@ -54,6 +60,7 @@ export const eboard25fall = [
     name: "Sofia Mitsuyuki",
     major: "Computer Engineering",
     year: "Junior",
+    country: "BR",
     linkedin: "https://www.linkedin.com/in/sofiamitsu/",
     imageUrl: "/members/sofia.webp"
   },
@@ -62,6 +69,7 @@ export const eboard25fall = [
     name: "Doung (Eric) Mai",
     major: "Computer Science",
     year: "Senior",
+    country: "VN",
     linkedin: "https://www.linkedin.com/in/duongmai127/",
     imageUrl: "/members/eric.webp"
   },
@@ -70,6 +78,7 @@ export const eboard25fall = [
     name: "Zarina Zatildayeva",
     major: "Biomedical Sciences",
     year: "Senior",
+    country: "KZ",
     linkedin: "https://www.linkedin.com/in/zarina-zatildayeva-b928b826a/",
     imageUrl: "/members/zarina.webp"
   },
@@ -78,6 +87,7 @@ export const eboard25fall = [
     name: "Akmal Kurbanov",
     major: "Computer Science",
     year: "Senior",
+    country: "US",
     linkedin: "https://www.linkedin.com/in/akmal-kurbanov/",
     imageUrl: "/members/akmal.webp"
   },
@@ -86,6 +96,7 @@ export const eboard25fall = [
     name: "Egor Kharitonov",
     major: "Computer Science",
     year: "Junior",
+    country: "RU",
     linkedin: "https://www.linkedin.com/in/kharitonov-egor/",
     imageUrl: "/members/egor.webp"
   },
@@ -94,6 +105,7 @@ export const eboard25fall = [
     name: "Boburjon Usmonov",
     major: "Computer Science",
     year: "Senior",
+    country: "US",
     linkedin: "https://www.linkedin.com/in/boburjonusmonov/",
     imageUrl: "/members/boburjon.webp"
   },
@@ -102,6 +114,7 @@ export const eboard25fall = [
     name: "Caio Bahlis",
     major: "Computer Science",
     year: "Junior",
+    country: "BR",
     linkedin: "https://www.linkedin.com/in/cbahlis/",
     imageUrl: "/members/caio.webp"
   },
@@ -110,6 +123,7 @@ export const eboard25fall = [
     name: "Sebastian Pulgar",
     major: "Information Technology",
     year: "Sophomore",
+    country: "US",
     linkedin: "https://www.linkedin.com/in/sebastian-pulgar-9a8b1429b/",
     imageUrl: "/members/sebastian.webp"
   },
@@ -118,6 +132,7 @@ export const eboard25fall = [
     name: "Nadia Korostyleva",
     major: "Biomedical Engineering",
     year: "Master's",
+    country: "RU",
     linkedin: "https://www.linkedin.com/in/nadezhda890/",
     imageUrl: "/members/nadia.webp"
   },
@@ -126,6 +141,7 @@ export const eboard25fall = [
     name: "Sara Perez-Soto",
     major: "Computer Science",
     year: "Junior",
+    country: "BR",
     linkedin: "https://www.linkedin.com/in/sarapsoto/",
     imageUrl: "/members/sara.webp"
   },
@@ -134,6 +150,7 @@ export const eboard25fall = [
     name: "Leonardo Henriques",
     major: "Computer Science",
     year: "Freshman",
+    country: "BR",
     linkedin: "https://www.linkedin.com/in/leonardo-hln/",
     imageUrl: "/members/leonardo.webp"
   },
@@ -142,6 +159,7 @@ export const eboard25fall = [
     name: "Rodrigo Molero",
     major: "Computer Engineering",
     year: "Junior",
+    country: "BR",
     linkedin: "https://www.linkedin.com/in/rodrigomoleroroca",
     imageUrl: "/members/rodrigo.webp"
   },
@@ -150,6 +168,7 @@ export const eboard25fall = [
     name: "Bernardo Beligolli",
     major: "Computer Science",
     year: "Freshman",
+    country: "BR",
     linkedin: "https://www.linkedin.com/in/bernardo-beligolli-02536a387/",
     imageUrl: "/members/bernardo.webp"
   },
