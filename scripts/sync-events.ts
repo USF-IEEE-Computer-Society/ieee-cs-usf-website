@@ -20,9 +20,9 @@ function getDb(): NeonQueryFunction<false, false> {
   return neon(DATABASE_URL);
 }
 
-interface EventLocation {
-  name: string | null;
-  address: string | null;
+interface EventVenue {
+  name: string;
+  isOnline: boolean;
 }
 
 interface ParsedEvent {
@@ -34,7 +34,7 @@ interface ParsedEvent {
   photoUrl: string | null;
   startTime: string | null;
   endTime: string | null;
-  location: EventLocation | null;
+  venue: EventVenue;
   rsvpCount: number | null;
   tags: string[];
   timezone: string | null;
@@ -300,13 +300,13 @@ function parseDateTime(dateStr: string, timeStr: string): string | null {
   const month = monthNames[monthStr];
   if (month === undefined) return null;
   
-  // Format as ISO string with -05:00 timezone (EST)
+  // Format as local datetime string (no offset) — timezone conversion is handled in SQL
   const monthPadded = String(month + 1).padStart(2, '0');
   const dayPadded = String(day).padStart(2, '0');
   const hoursPadded = String(hours).padStart(2, '0');
   const minutesPadded = String(minutes).padStart(2, '0');
   
-  return `${year}-${monthPadded}-${dayPadded}T${hoursPadded}:${minutesPadded}:00-05:00`;
+  return `${year}-${monthPadded}-${dayPadded} ${hoursPadded}:${minutesPadded}:00`;
 }
 
 /**
@@ -367,11 +367,6 @@ function parseApiResponse(items: ApiEventItem[]): ParsedEvent[] {
     // Build original URL - format: /IEEECS/rsvp?event_uid={eventUid}
     const originalUrl = `${BULLSCONNECT_BASE_URL}/IEEECS/rsvp?event_uid=${item.p2}`;
     
-    // Parse location
-    const location: EventLocation | null = item.p6 
-      ? { name: item.p6, address: null }
-      : null;
-    
     // Parse registered count
     const registered = item.p10 ? parseInt(item.p10, 10) || 0 : 0;
     
@@ -384,12 +379,12 @@ function parseApiResponse(items: ApiEventItem[]): ParsedEvent[] {
       photoUrl: image,
       startTime: startDate,
       endTime: endDate,
-      location,
+      venue: { name: 'Register to see venue', isOnline: false },
       rsvpCount: registered,
       tags,
-      timezone: item.p28 || null,
-      status: item.p26 || null,
-      eventType: item.p19 || null
+      timezone: 'America/New_York',
+      status: 'active',
+      eventType: 'physical'
     });
   }
   
@@ -419,9 +414,9 @@ async function upsertEvent(event: ParsedEvent, sql: NeonQueryFunction<false, fal
           "eventURL" = ${event.eventUrl},
           description = ${event.description},
           "photoUrl" = ${event.photoUrl},
-          "startTime" = ${event.startTime},
-          "endTime" = ${event.endTime},
-          location = ${event.location ? JSON.stringify(event.location) : null},
+          "startTime" = ${event.startTime}::timestamp AT TIME ZONE 'America/New_York',
+          "endTime" = ${event.endTime}::timestamp AT TIME ZONE 'America/New_York',
+          venue = ${JSON.stringify(event.venue)},
           tags = ${event.tags.length > 0 ? JSON.stringify(event.tags) : null},
           "rsvpCount" = ${event.rsvpCount},
           timezone = ${event.timezone},
@@ -442,7 +437,7 @@ async function upsertEvent(event: ParsedEvent, sql: NeonQueryFunction<false, fal
           "photoUrl",
           "startTime",
           "endTime",
-          location,
+          venue,
           tags,
           "rsvpCount",
           timezone,
@@ -455,9 +450,9 @@ async function upsertEvent(event: ParsedEvent, sql: NeonQueryFunction<false, fal
           ${event.eventUrl},
           ${event.description},
           ${event.photoUrl},
-          ${event.startTime},
-          ${event.endTime},
-          ${event.location ? JSON.stringify(event.location) : null},
+          ${event.startTime}::timestamp AT TIME ZONE 'America/New_York',
+          ${event.endTime}::timestamp AT TIME ZONE 'America/New_York',
+          ${JSON.stringify(event.venue)},
           ${event.tags.length > 0 ? JSON.stringify(event.tags) : null},
           ${event.rsvpCount},
           ${event.timezone},
