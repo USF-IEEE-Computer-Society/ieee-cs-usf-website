@@ -26,6 +26,14 @@ export const eboard26spring = [
     imageUrl: "/members/zarina.webp"
   },
   {
+    role: "Graphic Design Chair",
+    name: "Paulette Saucedo",
+    major: "Architecture",
+    year: "Freshman",
+    linkedin: "https://www.linkedin.com/in//",
+    imageUrl: "/members/paulette.webp"
+  },
+  {
     role: "Media Manager",
     name: "Doung (Eric) Mai",
     major: "Computer Science",
