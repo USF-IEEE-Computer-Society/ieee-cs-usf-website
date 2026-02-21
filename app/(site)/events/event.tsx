@@ -44,7 +44,11 @@ export default function Event({
     const STOCK_IMAGE_LINK = "https://bullsconnect.usf.edu/upload/usf/2022/r3_image_upload_2821985_MicrosoftTeamsimage_12_316221455.png"
 
     let imageSrc = photoUrl;
-    if (imageSrc == STOCK_IMAGE_LINK) {
+    if (imageSrc == STOCK_IMAGE_LINK) { //exception to not display stock image 
+        imageSrc = null
+    }
+
+    if (imageSrc == "https://bullsconnect.usf.edu/images/groups/professional-02.png") { //special exception for leetcode event with ecouncil not posting flyer
         imageSrc = null
     }
     
@@ -55,7 +59,7 @@ export default function Event({
                     <Image src={imageSrc} width={350} height={50} alt={title} className="cursor-pointer hover:opacity-80 transition-opacity rounded-sm" />
                 </Link>
             ) : <div className="flex flex-col">
-                    <p className="p-4 w-full bg-gray-100 rounded-md text-center mb-3">No image 😭</p>
+                    <p className="p-4 w-full bg-gray-100 rounded-md text-center mb-3">No image yet  😭</p>
                     <h1 className="font-medium mb-3">{title}</h1>
                     <div className='mb-5'>
                         <h2>{moment(startTime).format('ddd, MMMM Do')}</h2>
