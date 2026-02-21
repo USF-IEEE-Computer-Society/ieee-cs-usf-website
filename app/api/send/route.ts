@@ -36,6 +36,37 @@ async function verifyTurnstileToken(token: string): Promise<boolean> {
   return data.success;
 }
 
+async function triggerWebhook(payload: {
+  name: string;
+  email: string;
+  message: string;
+  role: string;
+}): Promise<void> {
+  const webhookUrl = process.env.N8N_WEBHOOK_URL;
+  const webhookUser = process.env.N8N_WEBHOOK_USER;
+  const webhookPass = process.env.N8N_WEBHOOK_PASS;
+
+  if (!webhookUrl || !webhookUser || !webhookPass) {
+    console.error('n8n webhook environment variables are not configured');
+    return;
+  }
+
+  const credentials = Buffer.from(`${webhookUser}:${webhookPass}`).toString('base64');
+
+  const response = await fetch(webhookUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Basic ${credentials}`,
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    console.error(`n8n webhook failed with status ${response.status}`);
+  }
+}
+
 export async function POST(req: Request) {
   try {
     const { name, email, message, role, turnstileToken } = await req.json();
@@ -56,9 +87,11 @@ export async function POST(req: Request) {
       );
     }
 
+    await triggerWebhook({ name, email, message, role });
+
     const data = await resend.emails.send({
-      from: 'no-reply@ieeecsusf.com', // IEEE USF Website <no-reply@ieeecsusf.com>
-      to: ['ieeecsusf@outlook.com'], // ieeecsusf@outlook.com
+      from: 'no-reply@ieeecsusf.com',
+      to: ['ieeecsusf@outlook.com'],
       replyTo: email,
       subject: `IEEE CS USF x ${name}`,
       html: `
