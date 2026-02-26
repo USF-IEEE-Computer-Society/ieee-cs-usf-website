@@ -48,8 +48,8 @@ export default function Event({
         imageSrc = null
     }
 
-    if (imageSrc == "https://bullsconnect.usf.edu/images/groups/professional-02.png") { //special exception for leetcode event with ecouncil not posting flyer
-        imageSrc = null
+    if (imageSrc == "https://bullsconnect.usf.edu/upload/usf/2026/image_upload_4241129_Leetcode_Innovation_fest__224113227.png") { //special exception for leetcode event with ecouncil not posting flyer
+        imageSrc = "https://bullsconnect.usf.edu/upload/usf/2026/image_upload_4241129_Leetcode_Innovation_fest__224113037.png"
     }
     
     return (
