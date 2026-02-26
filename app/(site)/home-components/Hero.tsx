@@ -8,14 +8,14 @@ import heroImg from "@/public/hero.png"
 export default function Hero() {
 
     return (
-        <div className='w-full flex justify-center'>
+        <div className='w-full flex justify-center dark:bg-gray-900'>
         <div className='pt-2 md:pt-10 pb-14 w-full max-w-[1500px] flex flex-col xl:flex-row'>
   
           <div className='p-5 pl-5 pr-5 md:pl-1 md:pr-10 flex flex-col justify-center'>
   
             <div className='mb-5 md:mb-10'>
               <h1 className='font-bold text-ieeeDark text-5xl mb-4'>IEEE Computer Society at USF</h1>
-              <p className='font-medium text-md md:text-xl'>Premier tech student organization at the University of South Florida</p>
+              <p className='font-medium text-md md:text-xl dark:text-gray-300'>Premier tech student organization at the University of South Florida</p>
   
             </div>
   

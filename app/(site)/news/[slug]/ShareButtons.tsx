@@ -29,7 +29,7 @@ export default function ShareButtons({ title, slug }: ShareButtonsProps) {
 
   return (
     <div className="flex items-center gap-3">
-      <span className="text-gray-500 font-medium">Share:</span>
+      <span className="text-gray-500 dark:text-gray-400 font-medium">Share:</span>
       
       <button
         onClick={handleCopyLink}

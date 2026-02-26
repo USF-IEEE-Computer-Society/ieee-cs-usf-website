@@ -1,6 +1,7 @@
 import Navbar from '@/app/components/Navbar';
 import Footer from '@/app/components/Footer';
 import { PostHogProvider } from './providers';
+import { ThemeProvider } from '@/app/components/ThemeProvider';
 import { Montserrat } from "next/font/google";
 import '@/app/globals.css';
 
@@ -45,17 +46,19 @@ export default function SiteLayout({
 }>) {
   return (
     <div className={`${montserrat.className} antialiased`}>
-      <PostHogProvider>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationJsonLd),
-          }}
-        />
-        <Navbar />
-        {children}
-        <Footer />
-      </PostHogProvider>
+      <ThemeProvider>
+        <PostHogProvider>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(organizationJsonLd),
+            }}
+          />
+          <Navbar />
+          {children}
+          <Footer />
+        </PostHogProvider>
+      </ThemeProvider>
     </div>
   );
 }

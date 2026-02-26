@@ -25,10 +25,10 @@ const partners = [
 
 export default function Partners() {
   return (
-    <main className="min-h-screen pt-16 pb-12 px-8 bg-white text-black">
+    <main className="min-h-screen pt-16 pb-12 px-8 bg-white dark:bg-gray-900 text-black dark:text-white">
       <div className="max-w-5xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">Partners</h1>
-        <p className="text-gray-600 mb-12 text-lg">Our valued partners and sponsors.</p>
+        <p className="text-gray-600 dark:text-gray-400 mb-12 text-lg">Our valued partners and sponsors.</p>
 
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 items-center justify-items-center">
           {partners.map((partner, index) => (
@@ -37,7 +37,7 @@ export default function Partners() {
               href={partner.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-full h-32 p-0 md:p-4 rounded-lg transition-opacity duration-200 hover:opacity-70"
+              className="flex items-center justify-center w-full h-32 p-0 md:p-4 rounded-lg transition-opacity duration-200 hover:opacity-70 dark:bg-white dark:rounded-xl"
             >
               <Image
                 src={`/assets/logos/${partner.logo}`}

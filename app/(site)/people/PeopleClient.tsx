@@ -15,15 +15,15 @@ export default function PeopleClient() {
   const currentList = dataMap[selectedYear as keyof typeof dataMap];
 
   return (
-    <main className="min-h-screen pt-16 pb-12 px-8 bg-gray-50">
+    <main className="min-h-screen pt-16 pb-12 px-8 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-6xl mx-auto">
         <div className="flex justify-between items-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold">Meet the Team</h1>
+          <h1 className="text-4xl md:text-5xl font-bold dark:text-white">Meet the Team</h1>
           {/* Dropdown for year choosing */}
           <select 
             value={selectedYear}
             onChange={(e) => setSelectedYear(e.target.value)}
-            className="p-2 border border-gray-300 rounded-md bg-white text-gray-700"
+            className="p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200"
           >
             <option value="spring26">Spring 2026</option>
             <option value="fall25">Fall 2025</option>

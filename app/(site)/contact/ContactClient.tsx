@@ -165,10 +165,10 @@ export default function ContactClient() {
   };
 
   return (
-    <main className="min-h-screen pt-16 pb-12 px-8 bg-white text-black">
+    <main className="min-h-screen pt-16 pb-12 px-8 bg-white dark:bg-gray-900 text-black dark:text-white">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
-        <p className="text-gray-600 mb-12 text-lg">Select who you are so we can help you better.</p>
+        <p className="text-gray-600 dark:text-gray-400 mb-12 text-lg">Select who you are so we can help you better.</p>
 
         {/* Role Selection Grid */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-12">
@@ -178,8 +178,8 @@ export default function ContactClient() {
               onClick={() => setActiveRole(role)}
               className={`flex flex-col items-center p-4 rounded-xl border-2 transition-all ${
                 activeRole.id === role.id 
-                ? 'border-ieeeDark bg-orange-50 text-ieeeDark' 
-                : 'border-gray-100 hover:border-orange-200 text-ieeeCoolGray'
+                ? 'border-ieeeDark bg-orange-50 dark:bg-ieeeDark/20 text-ieeeDark' 
+                : 'border-gray-100 dark:border-gray-700 hover:border-orange-200 dark:hover:border-orange-400 text-ieeeCoolGray'
               }`}
             >
               <div className="mb-2">{role.icon}</div>
@@ -189,13 +189,13 @@ export default function ContactClient() {
         </div>
 
         {/* Dynamic Content Box */}
-        <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100 mb-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl border border-gray-100 dark:border-gray-700 mb-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
           <h2 className="text-xl font-bold mb-2">For {activeRole.pluralLabel}:</h2>
-          <p className="text-gray-700 leading-relaxed">{activeRole.text}</p>
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{activeRole.text}</p>
         </div>
 
         {/* The Form */}
-        <form onSubmit={handleSubmit} className="space-y-6 bg-white border border-gray-200 p-8 rounded-2xl shadow-sm">
+        <form onSubmit={handleSubmit} className="space-y-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-8 rounded-2xl shadow-sm">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-bold mb-2">Full Name</label>
@@ -203,7 +203,7 @@ export default function ContactClient() {
                 name="name"
                 required
                 type="text" 
-                className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full p-3 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none dark:text-white"
                 placeholder="John Doe"
               />
             </div>
@@ -213,7 +213,7 @@ export default function ContactClient() {
                 name="email"
                 required
                 type="email"
-                className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full p-3 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none dark:text-white"
                 placeholder="john@usf.edu"
               />
             </div>
@@ -224,7 +224,7 @@ export default function ContactClient() {
               name="message"
               required
               rows={4}
-              className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+              className="w-full p-3 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none dark:text-white"
               placeholder={`Hi IEEE Computer Society at USF! I am a ${activeRole.label.toLowerCase()} and I'd like to...`}
             ></textarea>
           </div>
@@ -237,7 +237,7 @@ export default function ContactClient() {
           <button
             type="submit"
             disabled={loading || !turnstileToken}
-            className={`w-full py-4 bg-ieeeDarkblue/80 text-white font-bold rounded-lg hover:bg-ieeeDarkblue transition-colors shadow-lg shadow-blue-200 ${loading || !turnstileToken ? 'opacity-50 cursor-not-allowed' : ''}`}
+            className={`w-full py-4 bg-ieeeDarkblue/80 text-white font-bold rounded-lg hover:bg-ieeeDarkblue transition-colors shadow-lg shadow-blue-200 dark:shadow-blue-900/30 ${loading || !turnstileToken ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
             {loading ? 'Sending...' : 'Send Message'}
           </button>

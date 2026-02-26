@@ -1,7 +1,10 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
+  --foreground: #171717;
 
   --ieee-orange: #f9a31b;
   --ieee-dark: #E87722;
@@ -20,6 +23,11 @@
   --ieee-light-blue: #00B5E2;
   --ieee-black: #000000;
   --ieee-cool-gray: #75787B;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 @theme inline {
@@ -52,6 +60,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Custom scrollbar styling */

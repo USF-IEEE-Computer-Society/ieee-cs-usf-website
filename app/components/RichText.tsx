@@ -83,7 +83,7 @@ function renderNode(node: Record<string, unknown>): React.ReactNode {
     return (
       <blockquote
         key={Math.random()}
-        className="border-l-4 border-gray-500 pl-4 italic my-4"
+        className="border-l-4 border-gray-500 dark:border-gray-400 pl-4 italic my-4"
       >
         {children?.map(renderNode)}
       </blockquote>

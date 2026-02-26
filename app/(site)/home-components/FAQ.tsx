@@ -15,7 +15,7 @@ export default function FAQ() {
 
   return (
     <div className='w-full flex flex-col items-center'>
-      <div className='w-full flex justify-center bg-gray-100/50'>
+      <div className='w-full flex justify-center bg-gray-100/50 dark:bg-gray-900'>
         <div className='pt-16 pb-16 w-full max-w-[1500px] px-4'>
           <h2 className="text-[2.5rem] font-semibold text-ieeeDark text-center mb-12">FAQ</h2>
           
@@ -28,14 +28,14 @@ export default function FAQ() {
                   {/* Header */}
                   <div
                     className={[
-                      'flex flex-col border border-black bg-white hover:bg-ieeeOrange transition-colors',
+                      'flex flex-col border border-black dark:border-gray-600  hover:bg-ieeeOrange dark:hover:bg-ieeeDark transition-colors',
                       open ? 'rounded-t-xl shadow-[0_8px_32px_rgba(0,0,0,0.12)]' : 'rounded-xl',
                     ].join(' ')}
                   >
                     <button
                       onClick={() => ToggleButton(q.id)}
                       aria-expanded={open}
-                      className="relative w-full flex items-center justify-between px-4 py-4 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-ieeeOrange focus-visible:ring-inset rounded-xl"
+                      className="relative w-full flex items-center justify-between px-4 py-4 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-ieeeOrange focus-visible:ring-inset rounded-xl dark:text-gray-100"
                     >
                       <div className="flex items-center gap-3">
                         <div className='min-w-5'>
@@ -61,7 +61,7 @@ export default function FAQ() {
 
                   <div
                     className={[
-                      'border-x border-b border-black rounded-b-xl bg-white',
+                      'border-x border-b border-black dark:border-gray-600 rounded-b-xl bg-white dark:bg-gray-800',
                       'transition-[grid-template-rows,opacity] duration-200 ease-out',
                       'grid',
                       open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0',
@@ -69,7 +69,7 @@ export default function FAQ() {
                   >
                     <div className="overflow-hidden">
                       <div className="px-6 py-5">
-                        <p className="text-base leading-7 text-black/80" dangerouslySetInnerHTML={{ __html: q.Response }}></p>
+                        <p className="text-base leading-7 text-black/80 dark:text-gray-300" dangerouslySetInnerHTML={{ __html: q.Response }}></p>
                       </div>
                     </div>
                   </div>

@@ -41,14 +41,14 @@ export default async function NewsPage({
 
   return (
     <NewsContent>
-      <div className="min-h-screen bg-white text-black">
+      <div className="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white">
         <div className="container max-w-7xl mx-auto px-8 py-16">
           <h1 className="text-4xl md:text-5xl font-bold mb-8">News</h1>
 
         {articles.docs.length === 0 ? (
           <div className="text-center py-16">
             <p className="text-gray-400 text-lg">No articles published yet.</p>
-            <p className="text-gray-500 mt-2">Check back soon for updates!</p>
+            <p className="text-gray-500 dark:text-gray-400 mt-2">Check back soon for updates!</p>
           </div>
         ) : (
           <>
@@ -61,7 +61,7 @@ export default async function NewsPage({
                   <NewsArticleLink
                     key={typedArticle.id}
                     href={`/news/${typedArticle.slug}`}
-                    className="block bg-gray-50/10 rounded-lg overflow-hidden transition-colors shadow-md border border-gray-200"
+                    className="block bg-gray-50/10 dark:bg-gray-800 rounded-lg overflow-hidden transition-colors shadow-md border border-gray-200 dark:border-gray-700"
                     currentPage={currentPage}
                   >
                     {featuredImage?.url && (
@@ -85,7 +85,7 @@ export default async function NewsPage({
                           }
                         )}
                       </time>
-                      <h2 className="text-xl font-semibold mt-2 transition-colors text-black">
+                      <h2 className="text-xl font-semibold mt-2 transition-colors text-black dark:text-white">
                         {typedArticle.title}
                       </h2>
                     </div>
@@ -101,8 +101,8 @@ export default async function NewsPage({
                   href={currentPage > 1 ? `/news?page=${currentPage - 1}` : '#'}
                   className={`px-4 py-2 rounded-lg border-2 transition-colors ${
                     currentPage === 1
-                      ? 'border-gray-200 text-gray-300 pointer-events-none'
-                      : 'border-gray-300 text-black hover:border-ieeeDark hover:text-ieeeDark'
+                      ? 'border-gray-200 dark:border-gray-700 text-gray-300 dark:text-gray-600 pointer-events-none'
+                      : 'border-gray-300 dark:border-gray-600 text-black dark:text-white hover:border-ieeeDark hover:text-ieeeDark'
                   }`}
                   aria-disabled={currentPage === 1}
                 >
@@ -117,7 +117,7 @@ export default async function NewsPage({
                       className={`w-10 h-10 flex items-center justify-center rounded-lg border-2 transition-colors ${
                         pageNum === currentPage
                           ? 'bg-ieeeDark border-ieeeDark text-white'
-                          : 'border-gray-300 text-black hover:border-ieeeDark hover:text-ieeeDark'
+                          : 'border-gray-300 dark:border-gray-600 text-black dark:text-white hover:border-ieeeDark hover:text-ieeeDark'
                       }`}
                     >
                       {pageNum}
@@ -129,8 +129,8 @@ export default async function NewsPage({
                   href={currentPage < totalPages ? `/news?page=${currentPage + 1}` : '#'}
                   className={`px-4 py-2 rounded-lg border-2 transition-colors ${
                     currentPage === totalPages
-                      ? 'border-gray-200 text-gray-300 pointer-events-none'
-                      : 'border-gray-300 text-black hover:border-ieeeDark hover:text-ieeeDark'
+                      ? 'border-gray-200 dark:border-gray-700 text-gray-300 dark:text-gray-600 pointer-events-none'
+                      : 'border-gray-300 dark:border-gray-600 text-black dark:text-white hover:border-ieeeDark hover:text-ieeeDark'
                   }`}
                   aria-disabled={currentPage === totalPages}
                 >

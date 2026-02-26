@@ -53,15 +53,15 @@ export default function Event({
     }
     
     return (
-        <div className={`w-[350px] h-auto bg-gray-50 rounded-sm shadow-md flex flex-col gap-6 items-center justify-center ${imageSrc ? '' : 'p-5'}`}>
+        <div className={`w-[350px] h-auto bg-gray-50 dark:bg-gray-800 rounded-sm shadow-md flex flex-col gap-6 items-center justify-center ${imageSrc ? '' : 'p-5'}`}>
             {imageSrc ? (
                 <Link href={eventUrl} target="_blank" rel="noopener noreferrer">
                     <Image src={imageSrc} width={350} height={50} alt={title} className="cursor-pointer hover:opacity-80 transition-opacity rounded-sm" />
                 </Link>
             ) : <div className="flex flex-col">
-                    <p className="p-4 w-full bg-gray-100 rounded-md text-center mb-3">No image yet  😭</p>
-                    <h1 className="font-medium mb-3">{title}</h1>
-                    <div className='mb-5'>
+                    <p className="p-4 w-full bg-gray-100 dark:bg-gray-700 rounded-md text-center mb-3 dark:text-gray-200">No image yet  😭</p>
+                    <h1 className="font-medium mb-3 dark:text-white">{title}</h1>
+                    <div className='mb-5 dark:text-gray-300'>
                         <h2>{moment(startTime).format('ddd, MMMM Do')}</h2>
                         <h2>{moment(startTime).format("LT")} - {moment(endTime).format("LT")}</h2>
                     </div>

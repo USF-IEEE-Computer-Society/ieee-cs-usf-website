@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import ThemeToggle from './ThemeToggle';
 
 interface NavLink {
   name: string;
@@ -40,7 +41,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="w-full flex justify-center items-center text-white">
+    <nav className="w-full flex justify-center items-center text-white dark:bg-gray-900">
       <div className="relative flex flex-row w-[95%] md:w-[80%] max-w-[1600px] justify-between items-center p-6 mt-3 mb-3 bg-ieeeBlue rounded-xl">
         {/* Logo */}
         <div>
@@ -66,6 +67,7 @@ const Navbar = () => {
               </Link>
             </div>
           ))}
+          <ThemeToggle />
         </div>
 
         {/* Mobile Navigation */}
@@ -79,6 +81,8 @@ const Navbar = () => {
           >
             Home
           </Link>
+
+          <ThemeToggle />
 
           {/* Hamburger Button */}
           <button

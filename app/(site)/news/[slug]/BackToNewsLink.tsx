@@ -20,7 +20,7 @@ export default function BackToNewsLink() {
   return (
     <Link
       href={href}
-      className="inline-flex items-center gap-2 text-gray-400 hover:text-black transition-colors mb-8"
+      className="inline-flex items-center gap-2 text-gray-400 hover:text-black dark:hover:text-white transition-colors mb-8"
     >
       <ArrowLeft size={20} />
       Back to News
