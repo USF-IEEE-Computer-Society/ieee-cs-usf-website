@@ -1,4 +1,5 @@
 import { Users, ScrollText, UserLock, LucideIcon } from 'lucide-react'
+import { eboard26spring } from './eboard-26-spring'
 
 export interface StatData {
   icon: LucideIcon
@@ -22,7 +23,7 @@ export const heroStats: StatData[] = [
   },
   {
     icon: UserLock,
-    value: 17,
+    value: eboard26spring.length,
     label: 'E-board members',
     showPlus: false
   }
