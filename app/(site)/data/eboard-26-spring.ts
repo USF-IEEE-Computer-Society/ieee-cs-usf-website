@@ -26,6 +26,22 @@ export const eboard26spring = [
     imageUrl: "/members/zarina.webp"
   },
   {
+    role: "Outreach Chair",
+    name: "Egor Kharitonov",
+    major: "Computer Science",
+    year: "Junior",
+    linkedin: "https://www.linkedin.com/in/kharitonov-egor/",
+    imageUrl: "/members/egor.webp"
+  },
+  {
+    role: "Marketing Chair",
+    name: "Cesar Calderon",
+    major: "Computer Engineering",
+    year: "Sophomore",
+    linkedin: "https://www.linkedin.com/in/cesarcld/",
+    imageUrl: "/members/cesar.webp"
+  },
+  {
     role: "Graphic Design Chair",
     name: "Paulette Saucedo",
     major: "Architecture",
@@ -48,22 +64,6 @@ export const eboard26spring = [
     year: "Sophomore",
     linkedin: "https://www.linkedin.com/in/kimberly-bahena-03a310325/",
     imageUrl: "/members/kimberly.webp"
-  },
-  {
-    role: "Outreach Chair",
-    name: "Egor Kharitonov",
-    major: "Computer Science",
-    year: "Junior",
-    linkedin: "https://www.linkedin.com/in/kharitonov-egor/",
-    imageUrl: "/members/egor.webp"
-  },
-  {
-    role: "Marketing Chair",
-    name: "Cesar Calderon",
-    major: "Computer Engineering",
-    year: "Sophomore",
-    linkedin: "https://www.linkedin.com/in/cesarcld/",
-    imageUrl: "/members/cesar.webp"
   },
   {
     role: "Marketing Assistant",

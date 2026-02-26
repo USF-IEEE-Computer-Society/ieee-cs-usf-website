@@ -12,8 +12,8 @@ interface MemberProps {
 
 export default function MemberCard({ role, name, major, year, linkedin, imageUrl }: MemberProps) {
   return (
-    <div className="flex flex-col items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-2 transition-transform transition-shadow duration-700 border border-gray-100">
-      <div className="relative w-40 h-40 mb-4 overflow-hidden rounded-xl border-2 border-ieeeBlue">
+    <div className="flex flex-col items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-1 transition-transform duration-700 border border-gray-100">
+      <div className="relative size-37 md:size-40 mb-4 overflow-hidden rounded-xl border-2 border-ieeeBlue">
         <Image 
           src={imageUrl} 
           alt={name} 
