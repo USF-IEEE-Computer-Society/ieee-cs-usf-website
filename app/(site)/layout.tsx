@@ -2,13 +2,6 @@ import Navbar from '@/app/components/Navbar';
 import Footer from '@/app/components/Footer';
 import { PostHogProvider } from './providers';
 import { ThemeProvider } from '@/app/components/ThemeProvider';
-import { Montserrat } from "next/font/google";
-import '@/app/globals.css';
-
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"],
-});
 
 // Organization structured data for SEO
 const organizationJsonLd = {
@@ -45,7 +38,7 @@ export default function SiteLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className={`${montserrat.className} antialiased`}>
+    <div>
       <ThemeProvider>
         <PostHogProvider>
           <script

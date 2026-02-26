@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
 import React from "react";
+import { Montserrat } from "next/font/google";
+import '@/app/globals.css';
+
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.ieeecsusf.com'),
@@ -73,7 +80,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body>
+      <body className={`${montserrat.className} antialiased`}>
         {children}
       </body>
     </html>
