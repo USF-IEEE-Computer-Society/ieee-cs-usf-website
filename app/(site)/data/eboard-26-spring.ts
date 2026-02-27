@@ -1,4 +1,4 @@
-// Total members: 17
+// Total members: 20
 
 export const eboard26spring = [
   {
@@ -144,5 +144,13 @@ export const eboard26spring = [
     year: "Junior",
     linkedin: "https://www.linkedin.com/in/sarapsoto/",
     imageUrl: "/members/sara.webp"
+  },
+  {
+    role: "TechX Ambassador",
+    name: "Nguyen Phuc Trab (Tran)",
+    major: "Computer Science",
+    year: "Junior",
+    linkedin: "https://www.linkedin.com/in/nguyen-phuc-tran-0000b0381/",
+    imageUrl: "/members/aaChipCat.jpeg"
   },
 ];
