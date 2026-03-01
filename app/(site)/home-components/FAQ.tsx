@@ -2,83 +2,82 @@
 
 import { useState } from 'react'
 import { Questions } from '@/app/(site)/data/faqData'
+import FadeInSection from '@/app/components/FadeInSection'
 
 export default function FAQ() {
-  const [OpenMenus, setOpenMenus] = useState<Record<string, boolean>>({})
+  const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({})
 
-  const ToggleButton = (id: string) => {
-    setOpenMenus(prev => ({
-      ...prev,
-      [id]: !prev[id]
-    }))
+  const toggle = (id: string) => {
+    setOpenMenus(prev => ({ ...prev, [id]: !prev[id] }))
   }
 
   return (
-    <div className='w-full flex flex-col items-center'>
-      <div className='w-full flex justify-center bg-gray-100/50 dark:bg-gray-900'>
-        <div className='pt-16 pb-16 w-full max-w-[1500px] px-4'>
-          <h2 className="text-[2.5rem] font-semibold text-ieeeDark text-center mb-12">FAQ</h2>
-          
-          <div className="w-[90%] max-w-[1200px] grid grid-cols-1 md:grid-cols-2 gap-4 mx-auto">
-            {Questions.map(q => {
-              const open = OpenMenus[q.id]
+    <section className="relative w-full py-20 md:py-28 overflow-hidden">
+      <div className="absolute inset-0 bg-surfaceAlt/50 dark:bg-surfaceAlt/30" />
 
-              return (
-                <div key={q.id} className="w-full">
-                  {/* Header */}
-                  <div
-                    className={[
-                      'flex flex-col border border-black dark:border-gray-600  hover:bg-ieeeOrange dark:hover:bg-ieeeDark transition-colors',
-                      open ? 'rounded-t-xl shadow-[0_8px_32px_rgba(0,0,0,0.12)]' : 'rounded-xl',
-                    ].join(' ')}
+      <div className="relative max-w-[1400px] mx-auto px-6">
+        <FadeInSection>
+          <div className="text-center mb-14">
+            <span className="font-display text-xs font-bold uppercase tracking-[0.25em] text-ieeeOrange mb-3 block">
+              Questions
+            </span>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground">
+              FAQ
+            </h2>
+          </div>
+        </FadeInSection>
+
+        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
+          {Questions.map((q, index) => {
+            const open = openMenus[q.id]
+
+            return (
+              <FadeInSection key={q.id} delay={index * 0.05}>
+                <div className="w-full">
+                  <button
+                    onClick={() => toggle(q.id)}
+                    aria-expanded={open}
+                    className={`w-full flex items-center justify-between gap-3 px-5 py-4 text-left rounded-2xl border transition-all duration-300 group ${
+                      open
+                        ? 'bg-ieeeOrange/10 border-ieeeOrange/30 rounded-b-none'
+                        : 'bg-surface border-borderColor hover:border-ieeeOrange/30 hover:bg-ieeeOrange/5'
+                    }`}
                   >
-                    <button
-                      onClick={() => ToggleButton(q.id)}
-                      aria-expanded={open}
-                      className="relative w-full flex items-center justify-between px-4 py-4 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-ieeeOrange focus-visible:ring-inset rounded-xl dark:text-gray-100"
+                    <span className="font-display text-sm md:text-base font-semibold text-foreground leading-snug pr-2">
+                      {q.Question}
+                    </span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      className={`w-5 h-5 shrink-0 text-ieeeOrange transition-transform duration-300 ${open ? 'rotate-180' : ''}`}
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
                     >
-                      <div className="flex items-center gap-3">
-                        <div className='min-w-5'>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            className={['w-6 h-6 transition-transform duration-200', open ? 'rotate-180' : 'rotate-0'].join(' ')}
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            aria-hidden="true"
-                          >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 9l6 6 6-6" />
-                          </svg>
-
-                        </div>
-
-
-                        <span className="text-lg md:text-xl leading-7">{q.Question}</span>
-                      </div>
-                    </button>
-                  </div>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 9l6 6 6-6" />
+                    </svg>
+                  </button>
 
                   <div
-                    className={[
-                      'border-x border-b border-black dark:border-gray-600 rounded-b-xl bg-white dark:bg-gray-800',
-                      'transition-[grid-template-rows,opacity] duration-200 ease-out',
-                      'grid',
-                      open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0',
-                    ].join(' ')}
+                    className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
+                      open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                    }`}
                   >
                     <div className="overflow-hidden">
-                      <div className="px-6 py-5">
-                        <p className="text-base leading-7 text-black/80 dark:text-gray-300" dangerouslySetInnerHTML={{ __html: q.Response }}></p>
+                      <div className="px-5 py-4 bg-surface border border-t-0 border-borderColor rounded-b-2xl">
+                        <p
+                          className="text-sm leading-relaxed text-mutedStrong"
+                          dangerouslySetInnerHTML={{ __html: q.Response }}
+                        />
                       </div>
                     </div>
                   </div>
                 </div>
-              )
-            })}
-          </div>
+              </FadeInSection>
+            )
+          })}
         </div>
       </div>
-    </div>
+    </section>
   )
 }

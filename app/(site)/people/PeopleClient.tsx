@@ -15,15 +15,22 @@ export default function PeopleClient() {
   const currentList = dataMap[selectedYear as keyof typeof dataMap];
 
   return (
-    <main className="min-h-screen pt-16 pb-12 px-8 bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex justify-between items-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold dark:text-white">Meet the Team</h1>
-          {/* Dropdown for year choosing */}
-          <select 
+    <main className="min-h-screen pt-28 pb-16 px-6">
+      <div className="max-w-[1400px] mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-14">
+          <div>
+            <span className="font-display text-xs font-bold uppercase tracking-[0.25em] text-ieeeOrange mb-2 block">
+              Leadership
+            </span>
+            <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground">
+              Meet the Team
+            </h1>
+          </div>
+
+          <select
             value={selectedYear}
             onChange={(e) => setSelectedYear(e.target.value)}
-            className="p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200"
+            className="px-4 py-2.5 rounded-xl bg-surface border border-borderStrong text-foreground font-display text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ieeeOrange/40 transition-all cursor-pointer"
           >
             <option value="spring26">Spring 2026</option>
             <option value="fall25">Fall 2025</option>

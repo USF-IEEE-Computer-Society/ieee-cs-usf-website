@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
 import React from "react";
-import { Montserrat } from "next/font/google";
+import { Syne, DM_Sans } from "next/font/google";
 import '@/app/globals.css';
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+const syne = Syne({
+  variable: "--font-syne",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -80,7 +87,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${montserrat.className} antialiased`}>
+      <body className={`${syne.variable} ${dmSans.variable} font-body antialiased`}>
         {children}
       </body>
     </html>

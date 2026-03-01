@@ -25,26 +25,33 @@ const partners = [
 
 export default function Partners() {
   return (
-    <main className="min-h-screen pt-16 pb-12 px-8 bg-white dark:bg-gray-900 text-black dark:text-white">
-      <div className="max-w-5xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">Partners</h1>
-        <p className="text-gray-600 dark:text-gray-400 mb-12 text-lg">Our valued partners and sponsors.</p>
+    <main className="min-h-screen pt-28 pb-16 px-6">
+      <div className="max-w-[1400px] mx-auto">
+        <div className="mb-14">
+          <span className="font-display text-xs font-bold uppercase tracking-[0.25em] text-ieeeOrange mb-2 block">
+            Collaborations
+          </span>
+          <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-3">
+            Partners
+          </h1>
+          <p className="text-muted text-lg">Our valued partners and sponsors.</p>
+        </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 items-center justify-items-center">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-5">
           {partners.map((partner, index) => (
             <Link
               key={index}
               href={partner.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-full h-32 p-0 md:p-4 rounded-lg transition-opacity duration-200 hover:opacity-70 dark:bg-white dark:rounded-xl"
+              className="glass-card flex items-center justify-center h-36 p-6 group"
             >
               <Image
                 src={`/assets/logos/${partner.logo}`}
                 alt={partner.logo.replace(/\.(webp|svg|png|jpg)$/i, '').replace(/_/g, ' ')}
                 width={200}
                 height={100}
-                className="object-contain max-w-full max-h-full"
+                className="object-contain max-w-full max-h-full opacity-70 group-hover:opacity-100 transition-opacity duration-300 dark:brightness-0 dark:invert dark:opacity-60 dark:group-hover:opacity-90"
                 style={{ width: 'auto', height: 'auto' }}
               />
             </Link>

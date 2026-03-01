@@ -41,107 +41,113 @@ export default async function NewsPage({
 
   return (
     <NewsContent>
-      <div className="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white">
-        <div className="container max-w-7xl mx-auto px-8 py-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-8">News</h1>
-
-        {articles.docs.length === 0 ? (
-          <div className="text-center py-16">
-            <p className="text-gray-400 text-lg">No articles published yet.</p>
-            <p className="text-gray-500 dark:text-gray-400 mt-2">Check back soon for updates!</p>
+      <main className="min-h-screen pt-28 pb-16 px-6">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="mb-14">
+            <span className="font-display text-xs font-bold uppercase tracking-[0.25em] text-ieeeOrange mb-2 block">
+              Latest Updates
+            </span>
+            <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground">
+              News
+            </h1>
           </div>
-        ) : (
-          <>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {articles.docs.map((article) => {
-                const typedArticle = article as Article
-                const featuredImage = typedArticle.featuredImage as Media | null
 
-                return (
-                  <NewsArticleLink
-                    key={typedArticle.id}
-                    href={`/news/${typedArticle.slug}`}
-                    className="block bg-gray-50/10 dark:bg-gray-800 rounded-lg overflow-hidden transition-colors shadow-md border border-gray-200 dark:border-gray-700"
-                    currentPage={currentPage}
-                  >
-                    {featuredImage?.url && (
-                      <div className="relative h-48 w-full">
-                        <Image
-                          src={featuredImage.url}
-                          alt={featuredImage.alt || typedArticle.title}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      </div>
-                    )}
-                    <div className="p-6">
-                      <time className="text-sm text-ieeeDark">
-                        {new Date(typedArticle.publishedDate).toLocaleDateString(
-                          'en-US',
-                          {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric',
-                          }
-                        )}
-                      </time>
-                      <h2 className="text-xl font-semibold mt-2 transition-colors text-black dark:text-white">
-                        {typedArticle.title}
-                      </h2>
-                    </div>
-                  </NewsArticleLink>
-                )
-              })}
+          {articles.docs.length === 0 ? (
+            <div className="text-center py-20">
+              <p className="text-muted text-lg">No articles published yet.</p>
+              <p className="text-muted mt-2">Check back soon for updates!</p>
             </div>
+          ) : (
+            <>
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {articles.docs.map((article) => {
+                  const typedArticle = article as Article
+                  const featuredImage = typedArticle.featuredImage as Media | null
 
-            {/* Pagination */}
-            {totalPages > 1 && (
-              <nav className="flex justify-center items-center gap-2 mt-12">
-                <Link
-                  href={currentPage > 1 ? `/news?page=${currentPage - 1}` : '#'}
-                  className={`px-4 py-2 rounded-lg border-2 transition-colors ${
-                    currentPage === 1
-                      ? 'border-gray-200 dark:border-gray-700 text-gray-300 dark:text-gray-600 pointer-events-none'
-                      : 'border-gray-300 dark:border-gray-600 text-black dark:text-white hover:border-ieeeDark hover:text-ieeeDark'
-                  }`}
-                  aria-disabled={currentPage === 1}
-                >
-                  Previous
-                </Link>
-
-                <div className="flex items-center gap-1">
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
-                    <Link
-                      key={pageNum}
-                      href={`/news?page=${pageNum}`}
-                      className={`w-10 h-10 flex items-center justify-center rounded-lg border-2 transition-colors ${
-                        pageNum === currentPage
-                          ? 'bg-ieeeDark border-ieeeDark text-white'
-                          : 'border-gray-300 dark:border-gray-600 text-black dark:text-white hover:border-ieeeDark hover:text-ieeeDark'
-                      }`}
+                  return (
+                    <NewsArticleLink
+                      key={typedArticle.id}
+                      href={`/news/${typedArticle.slug}`}
+                      className="glass-card overflow-hidden group"
+                      currentPage={currentPage}
                     >
-                      {pageNum}
-                    </Link>
-                  ))}
-                </div>
+                      {featuredImage?.url && (
+                        <div className="relative h-48 w-full overflow-hidden">
+                          <Image
+                            src={featuredImage.url}
+                            alt={featuredImage.alt || typedArticle.title}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-700"
+                          />
+                        </div>
+                      )}
+                      <div className="p-6">
+                        <time className="text-xs font-bold uppercase tracking-wider text-ieeeOrange">
+                          {new Date(typedArticle.publishedDate).toLocaleDateString(
+                            'en-US',
+                            {
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric',
+                            }
+                          )}
+                        </time>
+                        <h2 className="font-display text-lg font-bold mt-2 text-foreground group-hover:text-ieeeOrange transition-colors">
+                          {typedArticle.title}
+                        </h2>
+                      </div>
+                    </NewsArticleLink>
+                  )
+                })}
+              </div>
 
-                <Link
-                  href={currentPage < totalPages ? `/news?page=${currentPage + 1}` : '#'}
-                  className={`px-4 py-2 rounded-lg border-2 transition-colors ${
-                    currentPage === totalPages
-                      ? 'border-gray-200 dark:border-gray-700 text-gray-300 dark:text-gray-600 pointer-events-none'
-                      : 'border-gray-300 dark:border-gray-600 text-black dark:text-white hover:border-ieeeDark hover:text-ieeeDark'
-                  }`}
-                  aria-disabled={currentPage === totalPages}
-                >
-                  Next
-                </Link>
-              </nav>
-            )}
-          </>
-        )}
+              {totalPages > 1 && (
+                <nav className="flex justify-center items-center gap-2 mt-16">
+                  <Link
+                    href={currentPage > 1 ? `/news?page=${currentPage - 1}` : '#'}
+                    className={`px-5 py-2.5 rounded-xl font-display text-sm font-bold uppercase tracking-wider border transition-all ${
+                      currentPage === 1
+                        ? 'border-borderColor text-muted pointer-events-none'
+                        : 'border-borderStrong text-foreground hover:border-ieeeOrange hover:text-ieeeOrange'
+                    }`}
+                    aria-disabled={currentPage === 1}
+                  >
+                    Previous
+                  </Link>
+
+                  <div className="flex items-center gap-1">
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+                      <Link
+                        key={pageNum}
+                        href={`/news?page=${pageNum}`}
+                        className={`w-10 h-10 flex items-center justify-center rounded-xl font-display text-sm font-bold border transition-all ${
+                          pageNum === currentPage
+                            ? 'bg-ieeeOrange border-ieeeOrange text-ieeeDarkblue'
+                            : 'border-borderStrong text-foreground hover:border-ieeeOrange hover:text-ieeeOrange'
+                        }`}
+                      >
+                        {pageNum}
+                      </Link>
+                    ))}
+                  </div>
+
+                  <Link
+                    href={currentPage < totalPages ? `/news?page=${currentPage + 1}` : '#'}
+                    className={`px-5 py-2.5 rounded-xl font-display text-sm font-bold uppercase tracking-wider border transition-all ${
+                      currentPage === totalPages
+                        ? 'border-borderColor text-muted pointer-events-none'
+                        : 'border-borderStrong text-foreground hover:border-ieeeOrange hover:text-ieeeOrange'
+                    }`}
+                    aria-disabled={currentPage === totalPages}
+                  >
+                    Next
+                  </Link>
+                </nav>
+              )}
+            </>
+          )}
         </div>
-      </div>
+      </main>
     </NewsContent>
   )
 }

@@ -3,7 +3,6 @@ import Footer from '@/app/components/Footer';
 import { PostHogProvider } from './providers';
 import { ThemeProvider } from '@/app/components/ThemeProvider';
 
-// Organization structured data for SEO
 const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -38,9 +37,9 @@ export default function SiteLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div>
-      <ThemeProvider>
-        <PostHogProvider>
+    <ThemeProvider>
+      <PostHogProvider>
+        <div className="relative min-h-screen flex flex-col">
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
@@ -48,10 +47,10 @@ export default function SiteLayout({
             }}
           />
           <Navbar />
-          {children}
+          <main className="flex-1">{children}</main>
           <Footer />
-        </PostHogProvider>
-      </ThemeProvider>
-    </div>
+        </div>
+      </PostHogProvider>
+    </ThemeProvider>
   );
 }
