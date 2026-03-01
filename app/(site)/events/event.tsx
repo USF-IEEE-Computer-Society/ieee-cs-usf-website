@@ -48,9 +48,6 @@ export default function Event({
         imageSrc = null
     }
 
-    if (imageSrc == "https://bullsconnect.usf.edu/upload/usf/2026/image_upload_4241129_Leetcode_Innovation_fest__224113227.png") { //special exception for leetcode event with ecouncil not posting flyer
-        imageSrc = "https://bullsconnect.usf.edu/upload/usf/2026/image_upload_4241129_Leetcode_Innovation_fest__224113037.png"
-    }
     
     return (
         <div className={`w-[350px] h-auto bg-gray-50 dark:bg-gray-800 rounded-sm shadow-md flex flex-col gap-6 items-center justify-center ${imageSrc ? '' : 'p-5'}`}>
@@ -59,7 +56,7 @@ export default function Event({
                     <Image src={imageSrc} width={350} height={50} alt={title} className="cursor-pointer hover:opacity-80 transition-opacity rounded-sm" />
                 </Link>
             ) : <div className="flex flex-col">
-                    <p className="p-4 w-full bg-gray-100 dark:bg-gray-700 rounded-md text-center mb-3 dark:text-gray-200">No image yet  😭</p>
+                    <p className="p-4 w-full bg-gray-100 dark:bg-gray-700 rounded-md text-center mb-3 dark:text-gray-200">No flyer yet  😭</p>
                     <h1 className="font-medium mb-3 dark:text-white">{title}</h1>
                     <div className='mb-5 dark:text-gray-300'>
                         <h2>{moment(startTime).format('ddd, MMMM Do')}</h2>

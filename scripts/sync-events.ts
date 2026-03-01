@@ -167,43 +167,96 @@ function fetchPage(urlString: string, maxRedirects = 10): Promise<{ html: string
  * Fetch description and image from event detail page
  */
 async function fetchEventDetails(eventUrl: string): Promise<{ description: string | null; image: string | null; finalUrl: string }> {
+  console.log(`  [photoUrl debug] Fetching detail page: ${eventUrl}`);
   try {
     const { html, finalUrl } = await fetchPage(eventUrl);
+    console.log(`  [photoUrl debug] Detail page final URL: ${finalUrl}`);
     const $ = cheerio.load(html);
     
     let description: string | null = null;
     let image: string | null = null;
-    
-    // Try to parse JSON-LD schema for description and image
-    $('script[type="application/ld+json"]').each((_, script) => {
-      try {
-        const jsonData = JSON.parse($(script).html() || '{}');
-        
-        // Handle both direct Event type and @graph array
-        let eventData = null;
-        if (jsonData['@type'] === 'Event') {
-          eventData = jsonData;
-        } else if (jsonData['@graph']) {
-          eventData = jsonData['@graph'].find((item: { '@type': string }) => item['@type'] === 'Event');
+
+    const isCoHosted = $('#event_host').text().toLowerCase().includes('co-hosted');
+    console.log(`  [photoUrl debug] Co-hosted event: ${isCoHosted}`);
+
+    if (isCoHosted) {
+      // Co-hosted events use a different image from the co-host org, so the
+      // JSON-LD image is wrong. Instead, grab the flyer from the Event Details section.
+      const detailImg = $('#event_details .text-center img').first();
+      if (detailImg.length) {
+        const src = detailImg.attr('src');
+        if (src) {
+          image = src.startsWith('http') ? src : `${BULLSCONNECT_BASE_URL}${src}`;
+          console.log(`  [photoUrl debug] Got image from Event Details section: ${image}`);
         }
-        
-        if (eventData) {
-          if (eventData.description) {
-            description = eventData.description;
-          }
-          // Image can be an array or string
-          if (eventData.image) {
-            image = Array.isArray(eventData.image) ? eventData.image[0] : eventData.image;
-          }
-          return false; // break loop
-        }
-      } catch {
-        // Skip parse errors
       }
-    });
+      if (!image) {
+        console.log(`  [photoUrl debug] Co-hosted event but no image found in Event Details section`);
+      }
+    }
+
+    // For non-co-hosted events (or as fallback), use JSON-LD
+    if (!image) {
+      const jsonLdScripts = $('script[type="application/ld+json"]');
+      console.log(`  [photoUrl debug] Found ${jsonLdScripts.length} JSON-LD script(s)`);
+
+      jsonLdScripts.each((idx, script) => {
+        try {
+          const jsonData = JSON.parse($(script).html() || '{}');
+          console.log(`  [photoUrl debug] JSON-LD #${idx} @type: ${jsonData['@type'] || '(none)'}, has @graph: ${!!jsonData['@graph']}`);
+          
+          let eventData = null;
+          if (jsonData['@type'] === 'Event') {
+            eventData = jsonData;
+          } else if (jsonData['@graph']) {
+            eventData = jsonData['@graph'].find((item: { '@type': string }) => item['@type'] === 'Event');
+            console.log(`  [photoUrl debug] Found Event in @graph: ${!!eventData}`);
+          }
+          
+          if (eventData) {
+            if (eventData.description) {
+              description = eventData.description;
+            }
+            if (eventData.image) {
+              const rawImage = eventData.image;
+              console.log(`  [photoUrl debug] JSON-LD image field type: ${Array.isArray(rawImage) ? 'array' : typeof rawImage}, value: ${JSON.stringify(rawImage).substring(0, 200)}`);
+              image = Array.isArray(rawImage) ? rawImage[0] : rawImage;
+            } else {
+              console.log(`  [photoUrl debug] JSON-LD Event has no image field`);
+            }
+            return false; // break loop
+          }
+        } catch (e) {
+          console.log(`  [photoUrl debug] JSON-LD parse error: ${(e as Error).message}`);
+        }
+      });
+    }
+
+    // Still grab description from JSON-LD if we used the co-hosted image path
+    if (isCoHosted && !description) {
+      $('script[type="application/ld+json"]').each((_, script) => {
+        try {
+          const jsonData = JSON.parse($(script).html() || '{}');
+          let eventData = null;
+          if (jsonData['@type'] === 'Event') {
+            eventData = jsonData;
+          } else if (jsonData['@graph']) {
+            eventData = jsonData['@graph'].find((item: { '@type': string }) => item['@type'] === 'Event');
+          }
+          if (eventData?.description) {
+            description = eventData.description;
+            return false;
+          }
+        } catch {
+          // skip
+        }
+      });
+    }
     
+    console.log(`  [photoUrl debug] Detail page result — image: ${image || '(null)'}`);
     return { description, image, finalUrl };
-  } catch {
+  } catch (e) {
+    console.log(`  [photoUrl debug] Detail page fetch failed: ${(e as Error).message}`);
     return { description: null, image: null, finalUrl: eventUrl };
   }
 }
@@ -363,6 +416,9 @@ function parseApiResponse(items: ApiEventItem[]): ParsedEvent[] {
     
     // Build image URL
     const image = item.p11 ? `${BULLSCONNECT_BASE_URL}${item.p11}` : null;
+    console.log(`  [photoUrl debug] API p11 raw: ${item.p11 || '(empty)'}`);
+    console.log(`  [photoUrl debug] API image URL: ${image || '(null)'}`);
+
     
     // Build original URL - format: /IEEECS/rsvp?event_uid={eventUid}
     const originalUrl = `${BULLSCONNECT_BASE_URL}/IEEECS/rsvp?event_uid=${item.p2}`;
@@ -508,9 +564,14 @@ async function main() {
         event.description = description;
         event.eventUrl = finalUrl;
         // Use image from detail page if available, otherwise keep the one from API
+        console.log(`  [photoUrl debug] Before override — API photoUrl: ${event.photoUrl || '(null)'}, detail page image: ${image || '(null)'}`);
         if (image) {
           event.photoUrl = image;
+          console.log(`  [photoUrl debug] Overrode with detail page image`);
+        } else {
+          console.log(`  [photoUrl debug] Kept API photoUrl (no detail page image)`);
         }
+        console.log(`  [photoUrl debug] FINAL photoUrl for DB: ${event.photoUrl || '(null)'}`);
         console.log(`  Description: ${description ? description.substring(0, 50) + '...' : 'N/A'}`);
         console.log(`  Photo URL: ${event.photoUrl || 'N/A'}`);
         console.log(`  Event URL: ${event.eventUrl}`);
