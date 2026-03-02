@@ -1,6 +1,10 @@
 # IEEE Computer Society at USF - Official Website
 
-The official website for the **IEEE Computer Society** student chapter at the **University of South Florida** (Tampa, Florida). Built with a modern stack to serve as the chapter's public face - showcasing events, news, leadership, partners, and more - while giving officers a powerful admin panel to manage content without touching code.
+The official website for the **IEEE Computer Society** student branch chapter at the **University of South Florida** (Tampa, Florida). Built with a modern stack to serve as the chapter's public face - showcasing events, news, leadership, partners, and more - while giving officers a powerful admin panel to manage content without touching code.
+
+<img width="2054" height="628" alt="image" src="https://github.com/user-attachments/assets/3c916974-33d1-49dc-af51-583c7e852b69" />
+
+
 
 ## Tech Stack
 
