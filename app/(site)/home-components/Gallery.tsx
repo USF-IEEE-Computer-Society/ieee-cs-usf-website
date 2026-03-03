@@ -123,7 +123,7 @@ export default function Gallery() {
                         {galleryImages.map((image, index) => (
                             <div 
                                 key={index} 
-                                className="shrink-0 w-[calc(100vw-4rem)] md:w-80 select-none"
+                                className="shrink-0 w-[calc(100vw-9rem)] sm:w-[calc(100vw-7rem)] md:w-80 select-none"
                             >
                                 <div className="relative aspect-4/3 overflow-hidden rounded-xl border-2 border-neutral-700 hover:border-ieeeOrange transition-colors duration-175 select-none">
                                     <Image 
@@ -131,7 +131,7 @@ export default function Gallery() {
                                         alt={image.name}
                                         fill
                                         className="object-cover pointer-events-none"
-                                        sizes="(max-width: 768px) 100vw, 320px"
+                                        sizes="(max-width: 768px) 68vw, 320px"
                                         draggable={false}
                                     />
                                 </div>
@@ -163,41 +163,6 @@ export default function Gallery() {
                     </button>
                 </div>
 
-                {/* Mobile Navigation Buttons - Below images */}
-                <div className="flex md:hidden justify-center gap-6 mt-4">
-                    <button
-                        onClick={() => scroll('left')}
-                        className="p-3 bg-neutral-800/90 hover:bg-ieeeOrange text-white rounded-full shadow-lg transition-all duration-300"
-                        aria-label="Scroll left"
-                    >
-                        <svg 
-                            xmlns="http://www.w3.org/2000/svg" 
-                            fill="none" 
-                            viewBox="0 0 24 24" 
-                            strokeWidth={2.5} 
-                            stroke="currentColor" 
-                            className="w-6 h-6"
-                        >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                        </svg>
-                    </button>
-                    <button
-                        onClick={() => scroll('right')}
-                        className="p-3 bg-neutral-800/90 hover:bg-ieeeOrange text-white rounded-full shadow-lg transition-all duration-300"
-                        aria-label="Scroll right"
-                    >
-                        <svg 
-                            xmlns="http://www.w3.org/2000/svg" 
-                            fill="none" 
-                            viewBox="0 0 24 24" 
-                            strokeWidth={2.5} 
-                            stroke="currentColor" 
-                            className="w-6 h-6"
-                        >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                        </svg>
-                    </button>
-                </div>
             </div>
         </div>
     )
