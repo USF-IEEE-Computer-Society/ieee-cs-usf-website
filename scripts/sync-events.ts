@@ -40,6 +40,8 @@ interface ParsedEvent {
   timezone: string | null;
   status: string | null;
   eventType: string | null;
+  cohosted: boolean;
+  cohostedName: string | null;
 }
 
 interface ApiEventItem {
@@ -84,6 +86,17 @@ interface ApiEventItem {
   p35?: string; // eventFlyerDescription
   p36?: string; // list_item_acc_label
   htmlFields?: string[];
+}
+
+async function ensureCohostedColumns(sql: NeonQueryFunction<false, false>): Promise<void> {
+  await sql`
+    ALTER TABLE egor.events
+    ADD COLUMN IF NOT EXISTS cohosted BOOLEAN DEFAULT FALSE
+  `;
+  await sql`
+    ALTER TABLE egor.events
+    ADD COLUMN IF NOT EXISTS cohosted_name TEXT DEFAULT NULL
+  `;
 }
 
 function fetchJson(urlString: string): Promise<ApiEventItem[]> {
@@ -166,7 +179,7 @@ function fetchPage(urlString: string, maxRedirects = 10): Promise<{ html: string
 /**
  * Fetch description and image from event detail page
  */
-async function fetchEventDetails(eventUrl: string): Promise<{ description: string | null; image: string | null; finalUrl: string }> {
+async function fetchEventDetails(eventUrl: string): Promise<{ description: string | null; image: string | null; finalUrl: string; cohosted: boolean; cohostedName: string | null }> {
   console.log(`  [photoUrl debug] Fetching detail page: ${eventUrl}`);
   try {
     const { html, finalUrl } = await fetchPage(eventUrl);
@@ -176,8 +189,26 @@ async function fetchEventDetails(eventUrl: string): Promise<{ description: strin
     let description: string | null = null;
     let image: string | null = null;
 
-    const isCoHosted = $('#event_host').text().toLowerCase().includes('co-hosted');
+    const hostText = $('#event_host').text();
+    const isCoHosted = hostText.toLowerCase().includes('co-hosted');
     console.log(`  [photoUrl debug] Co-hosted event: ${isCoHosted}`);
+
+    const IEEE_CS_NAME = 'IEEE - CS Student Branch Chapter at USF';
+    let cohostedName: string | null = null;
+    if (isCoHosted) {
+      const coHostMatch = hostText.match(/Co-hosted with:\s*(.+)/i);
+      const coHostLineValue = coHostMatch ? coHostMatch[1].trim() : null;
+
+      if (coHostLineValue?.toLowerCase() === IEEE_CS_NAME.toLowerCase()) {
+        const primaryHost = $('#event_host strong').first().text().trim();
+        if (primaryHost) {
+          cohostedName = primaryHost;
+        }
+      } else {
+        cohostedName = coHostLineValue;
+      }
+      console.log(`  [cohost] Co-host name: ${cohostedName || '(not found)'}`)
+    }
 
     if (isCoHosted) {
       // Co-hosted events use a different image from the co-host org, so the
@@ -254,10 +285,10 @@ async function fetchEventDetails(eventUrl: string): Promise<{ description: strin
     }
     
     console.log(`  [photoUrl debug] Detail page result — image: ${image || '(null)'}`);
-    return { description, image, finalUrl };
+    return { description, image, finalUrl, cohosted: isCoHosted, cohostedName };
   } catch (e) {
     console.log(`  [photoUrl debug] Detail page fetch failed: ${(e as Error).message}`);
-    return { description: null, image: null, finalUrl: eventUrl };
+    return { description: null, image: null, finalUrl: eventUrl, cohosted: false, cohostedName: null };
   }
 }
 
@@ -440,7 +471,9 @@ function parseApiResponse(items: ApiEventItem[]): ParsedEvent[] {
       tags,
       timezone: 'America/New_York',
       status: 'active',
-      eventType: 'physical'
+      eventType: 'physical',
+      cohosted: false,
+      cohostedName: null
     });
   }
   
@@ -477,7 +510,9 @@ async function upsertEvent(event: ParsedEvent, sql: NeonQueryFunction<false, fal
           "rsvpCount" = ${event.rsvpCount},
           timezone = ${event.timezone},
           status = ${event.status},
-          "eventType" = ${event.eventType}
+          "eventType" = ${event.eventType},
+          cohosted = ${event.cohosted},
+          cohosted_name = ${event.cohostedName}
         WHERE bullsconnect_id = ${bullsconnectId}
       `;
       return { action: 'updated', id: bullsconnectId };
@@ -498,7 +533,9 @@ async function upsertEvent(event: ParsedEvent, sql: NeonQueryFunction<false, fal
           "rsvpCount",
           timezone,
           status,
-          "eventType"
+          "eventType",
+          cohosted,
+          cohosted_name
         ) VALUES (
           ${bullsconnectId},
           ${event.title},
@@ -513,7 +550,9 @@ async function upsertEvent(event: ParsedEvent, sql: NeonQueryFunction<false, fal
           ${event.rsvpCount},
           ${event.timezone},
           ${event.status},
-          ${event.eventType}
+          ${event.eventType},
+          ${event.cohosted},
+          ${event.cohostedName}
         )
       `;
       return { action: 'inserted', id: bullsconnectId };
@@ -532,6 +571,7 @@ async function main() {
   const sql = getDb();
   
   try {
+    await ensureCohostedColumns(sql);
     console.log('Fetching events from BullsConnect API...\n');
     console.log(`URL: ${EVENTS_API_URL}\n`);
     
@@ -560,9 +600,11 @@ async function main() {
       try {
         // Fetch description and image from event detail page
         console.log(`  Fetching event details...`);
-        const { description, image, finalUrl } = await fetchEventDetails(event.originalUrl);
+        const { description, image, finalUrl, cohosted, cohostedName } = await fetchEventDetails(event.originalUrl);
         event.description = description;
         event.eventUrl = finalUrl;
+        event.cohosted = cohosted;
+        event.cohostedName = cohostedName;
         // Use image from detail page if available, otherwise keep the one from API
         console.log(`  [photoUrl debug] Before override — API photoUrl: ${event.photoUrl || '(null)'}, detail page image: ${image || '(null)'}`);
         if (image) {

@@ -17,7 +17,9 @@ async function getEvents() {
       "endTime",
       venue,
       tags,
-      "rsvpCount"
+      "rsvpCount",
+      cohosted,
+      cohosted_name
     FROM egor.events
     WHERE "endTime" >= NOW()
     ORDER BY "startTime" ASC
@@ -55,6 +57,8 @@ export default async function EventsList() {
           venue={event.venue}
           tags={event.tags}
           rsvpCount={event.rsvpCount}
+          cohosted={event.cohosted}
+          cohostedName={event.cohosted_name}
         />
       ))}
     </div>
