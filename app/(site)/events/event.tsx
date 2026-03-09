@@ -74,11 +74,11 @@ export default function Event({
                     {timeBadge}
                 </span>
             )}
-            {cohosted && cohostedName && (
+            {/* {cohosted && cohostedName && (
                 <span className="mb-2 px-3 py-1 text-xs font-semibold text-white bg-ieeeBlue/75 rounded-md max-w-[350px]">
                     Cohosted with {cohostedName}
                 </span>
-            )}
+            )} */}
             <div className={`w-[350px] flex-1 bg-gray-50 dark:bg-gray-800 rounded-sm shadow-md flex flex-col gap-6 items-center justify-center ${imageSrc ? '' : 'p-5'}`}>
                 {imageSrc ? (
                     <Link href={eventUrl} target="_blank" rel="noopener noreferrer">
