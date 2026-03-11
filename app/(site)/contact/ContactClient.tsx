@@ -244,7 +244,7 @@ export default function ContactClient() {
           <button
             type="submit"
             disabled={loading || !turnstileToken}
-            className={`w-full py-4 bg-ieeeDarkblue/80 text-white font-bold rounded-lg hover:bg-ieeeDarkblue transition-colors shadow-lg shadow-blue-200 dark:shadow-blue-900/30 ${loading || !turnstileToken ? 'opacity-50 cursor-not-allowed' : ''}`}
+            className={`w-full py-4 text-white font-bold rounded-lg transition-colors ${loading || !turnstileToken ? 'bg-ieeeDarkblue opacity-50 cursor-not-allowed' : 'bg-ieeeBlue hover:bg-ieeeBlue/95 dark:bg-ieeeBlue/60 dark:hover:bg-ieeeBlue/50'}`}
           >
             {loading ? 'Sending...' : 'Send Message'}
           </button>
