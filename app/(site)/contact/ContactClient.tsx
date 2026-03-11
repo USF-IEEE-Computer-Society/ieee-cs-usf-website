@@ -1,5 +1,3 @@
-// FIX ME : add backend, verify email, better design
-
 "use client";
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Briefcase, GraduationCap, Building2, Users2, School } from 'lucide-react';
@@ -45,7 +43,7 @@ const contactRoles = [
     label: 'Company',
     pluralLabel: 'Companies',
     icon: <Building2 />,
-    text: "Looking for campus outreach? In the past we've hosted Verizon, JP Morgan Chase, Cisco, and more."
+    text: "Looking for campus outreach? In the past we've collaborated with Verizon, JPMorgan Chase, Cisco, and more."
   },
   {
     id: 'org',
@@ -66,7 +64,7 @@ const contactRoles = [
     label: 'USF Staff',
     pluralLabel: 'USF Staff',
     icon: <School />,
-    text: "Professor or Staff? We have collaborated across departments, including the College of Engineering and the Bellini College of AI."
+    text: "Professor or Staff? We have collaborated across departments, including the USF College of Engineering and the USF Bellini College of AI."
   }
 ];
 
@@ -221,7 +219,7 @@ export default function ContactClient() {
                 required
                 type="email"
                 className="w-full p-3 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none dark:text-white"
-                placeholder="john@usf.edu"
+                placeholder="john@gmail.com"
               />
             </div>
           </div>
