@@ -52,7 +52,7 @@ export default function Footer() {
               </div>
               <button
                 onClick={() => alert('Meow! I am Nybbles, IEEE-CS USF mascot 🐱')}
-                className="flex-shrink-0 mt-4 cursor-pointer transition-opacity hover:opacity-100 opacity-70"
+                className="shrink-0 mt-4 cursor-pointer transition-opacity hover:opacity-100 opacity-70"
               >
                 <Image
                   src="/nybbles.png"
