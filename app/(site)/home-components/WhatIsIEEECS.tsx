@@ -7,8 +7,8 @@ import IEEECSlogoWhite from "@/app/(site)/assets/csociety_logo_white.png"
 import { useTheme } from "@/app/components/ThemeProvider"
 
 export default function WhatIsIEEECS() {
-    const { theme } = useTheme()
-    const IEEECSlogo = theme === 'dark' ? IEEECSlogoWhite : IEEECSlogoBlack
+    const { theme, mounted } = useTheme()
+    const IEEECSlogo = mounted && theme === 'dark' ? IEEECSlogoWhite : IEEECSlogoBlack
 
     return (
         <div className='w-full flex justify-center bg-gray-100/50 dark:bg-gray-900'>
