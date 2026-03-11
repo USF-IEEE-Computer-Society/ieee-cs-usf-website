@@ -83,7 +83,7 @@ export default function Footer() {
 
           <div className="mt-8 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-3">
             <p className="text-white/40 text-xs">
-              &copy; 2026 IEEE Computer Society at USF. All rights reserved.
+              &copy; {new Date().getFullYear()} IEEE Computer Society at USF. All rights reserved.
             </p>
             <p className="text-white/30 text-xs">
               No commercial use without permission.

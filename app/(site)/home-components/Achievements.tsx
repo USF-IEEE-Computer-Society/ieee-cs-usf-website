@@ -6,7 +6,7 @@ export default function Achievements() {
     return (
         <div className='w-full flex flex-col items-center'>
              <div className='w-full flex justify-center bg-gray-100/50 dark:bg-gray-900'>
-                <div className='pt-16 pb-10 w-full max-w-[1500px] px-4'>
+                <div className='pt-10 pb-6 w-full max-w-[1500px] px-4'>
                     <h2 className="text-[2.5rem] font-semibold text-ieeeDark text-center mb-8">Achievements</h2>
 
 

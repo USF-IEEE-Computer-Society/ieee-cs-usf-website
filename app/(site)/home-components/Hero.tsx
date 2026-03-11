@@ -9,9 +9,9 @@ export default function Hero() {
 
     return (
         <div className='w-full flex justify-center dark:bg-gray-900'>
-        <div className='pt-2 md:pt-10 pb-14 w-full max-w-[1500px] flex flex-col xl:flex-row'>
+        <div className='pt-2 md:pt-10 pb-4 w-full max-w-[1500px] flex flex-col xl:flex-row xl:items-center'>
   
-          <div className='p-5 pl-5 pr-5 md:pl-1 md:pr-10 flex flex-col justify-center'>
+          <div className='p-5 pl-5 pr-5 md:pl-1 md:pr-10 flex flex-col justify-center md:text-center xl:text-left'>
   
             <div className='mb-5 md:mb-10'>
               <h1 className='font-bold text-ieeeDark text-5xl mb-4'>IEEE Computer Society at USF</h1>

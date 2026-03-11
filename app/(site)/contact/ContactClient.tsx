@@ -242,7 +242,7 @@ export default function ContactClient() {
           <button
             type="submit"
             disabled={loading || !turnstileToken}
-            className={`w-full py-4 text-white font-bold rounded-lg transition-colors ${loading || !turnstileToken ? 'bg-ieeeDarkblue opacity-50 cursor-not-allowed' : 'bg-ieeeBlue hover:bg-ieeeBlue/95 dark:bg-ieeeBlue/60 dark:hover:bg-ieeeBlue/50'}`}
+            className={`w-full py-4 text-white font-bold rounded-lg transition-colors ${loading || !turnstileToken ? 'bg-ieeeDarkblue opacity-50 cursor-not-allowed' : 'bg-ieeeBlue hover:bg-ieeeBlue/80 dark:bg-ieeeBlue/60 dark:hover:bg-ieeeBlue/50'}`}
           >
             {loading ? 'Sending...' : 'Send Message'}
           </button>

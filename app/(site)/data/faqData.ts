@@ -12,7 +12,7 @@ export const Questions: Question[] = [
   },
   {
     id: '2',
-    Question: 'What if I am a student not from USF and I want to attend your events?',
+    Question: 'Can non-USF students / professionals attend events?',
     Response: 'We welcome all students at our events!'
   },
   {
@@ -28,7 +28,7 @@ export const Questions: Question[] = [
   {
     id: '5',
     Question: 'Can I join at any point in the semester?',
-    Response: 'Yes, you can see all upcoming events at the "Events" tab or on our Bullsconnect.'
+    Response: 'Yes, you can see all upcoming events at the <a href="/events">Events</a> tab or on our <a href="https://bullsconnect.usf.edu/feeds?type=club&type_id=58136&tab=events" target="_blank" rel="noopener noreferrer">BullsConnect</a>.'
   },
   {
     id: '6',

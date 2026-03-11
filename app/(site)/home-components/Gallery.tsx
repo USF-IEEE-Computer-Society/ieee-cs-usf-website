@@ -87,7 +87,7 @@ export default function Gallery() {
 
     return (
         <div className='w-full flex flex-col items-center bg-gray-100/50 dark:bg-gray-900'>
-            <div className='w-full py-10'>
+            <div className='w-full pt-6 pb-10'>
                 <h2 className="text-[2.5rem] font-semibold text-ieeeDark text-center mb-8">Gallery</h2>
 
                 {/* Carousel Container */}

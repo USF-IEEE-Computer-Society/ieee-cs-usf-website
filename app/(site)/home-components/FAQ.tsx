@@ -16,10 +16,10 @@ export default function FAQ() {
   return (
     <div className='w-full flex flex-col items-center'>
       <div className='w-full flex justify-center bg-gray-100/50 dark:bg-gray-900'>
-        <div className='pt-16 pb-16 w-full max-w-[1500px] px-4'>
+        <div className='pt-6 pb-14 w-full max-w-[1500px] px-4'>
           <h2 className="text-[2.5rem] font-semibold text-ieeeDark text-center mb-12">FAQ</h2>
           
-          <div className="w-[90%] max-w-[1200px] grid grid-cols-1 md:grid-cols-2 gap-4 mx-auto">
+          <div className="w-[90%] max-w-[1250px] grid grid-cols-1 md:grid-cols-2 gap-4 mx-auto">
             {Questions.map(q => {
               const open = OpenMenus[q.id]
 
@@ -28,7 +28,7 @@ export default function FAQ() {
                   {/* Header */}
                   <div
                     className={[
-                      'flex flex-col border border-black dark:border-gray-600  hover:bg-ieeeOrange dark:hover:bg-ieeeDark transition-colors',
+                      'flex flex-col border border-black dark:border-gray-600  hover:bg-ieeeOrange dark:hover:bg-ieeeDark/90 transition-colors',
                       open ? 'rounded-t-xl shadow-[0_8px_32px_rgba(0,0,0,0.12)]' : 'rounded-xl',
                     ].join(' ')}
                   >
@@ -69,7 +69,7 @@ export default function FAQ() {
                   >
                     <div className="overflow-hidden">
                       <div className="px-6 py-5">
-                        <p className="text-base leading-7 text-black/80 dark:text-gray-300" dangerouslySetInnerHTML={{ __html: q.Response }}></p>
+                        <p className="text-base leading-7 text-black/80 dark:text-gray-300 [&_a]:text-ieeeBlue [&_a]:underline [&_a]:hover:text-ieeeDark [&_a]:font-medium [&_a]:transition-colors" dangerouslySetInnerHTML={{ __html: q.Response }}></p>
                       </div>
                     </div>
                   </div>
