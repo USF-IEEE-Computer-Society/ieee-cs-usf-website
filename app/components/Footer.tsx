@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import { InstagramIcon, LinkedInIcon, LinktreeIcon } from "./icons/SocialIcons"
@@ -31,21 +33,34 @@ export default function Footer() {
               </p>
             </div>
 
-            <div>
-              <h3 className="font-display text-xs font-bold uppercase tracking-[0.2em] text-ieeeOrange mb-5">
-                Navigation
-              </h3>
-              <div className="grid grid-cols-2 gap-2">
-                {footerLinks.map((link) => (
-                  <Link
-                    key={link.path}
-                    href={link.path}
-                    className="text-white/60 hover:text-white text-sm transition-colors duration-200"
-                  >
-                    {link.name}
-                  </Link>
-                ))}
+            <div className="flex gap-19 items-start">
+              <div>
+                <h3 className="font-display text-xs font-bold uppercase tracking-[0.2em] text-ieeeOrange mb-5">
+                  Navigation
+                </h3>
+                <div className="grid grid-cols-2 gap-x-6 md:gap-x-15 gap-y-2">
+                  {footerLinks.map((link) => (
+                    <Link
+                      key={link.path}
+                      href={link.path}
+                      className="text-white/60 hover:text-white text-sm transition-colors duration-200"
+                    >
+                      {link.name}
+                    </Link>
+                  ))}
+                </div>
               </div>
+              <button
+                onClick={() => alert('Meow! I am Nybbles, IEEE-CS USF mascot 🐱')}
+                className="flex-shrink-0 mt-4 cursor-pointer transition-opacity hover:opacity-100 opacity-70"
+              >
+                <Image
+                  src="/nybbles.png"
+                  alt="Nybbles the cat"
+                  width={100}
+                  height={100}
+                />
+              </button>
             </div>
 
             <div>
