@@ -10,8 +10,14 @@ interface TurnstileVerifyResponse {
   hostname?: string;
 }
 
+// https://developers.cloudflare.com/turnstile/troubleshooting/testing/
+const TURNSTILE_TEST_SECRET_KEY = '1x0000000000000000000000000000000AA';
+
 async function verifyTurnstileToken(token: string): Promise<boolean> {
-  const secretKey = process.env.TURNSTILE_SECRET_KEY;
+  const secretKey =
+    process.env.NODE_ENV === 'development'
+      ? TURNSTILE_TEST_SECRET_KEY
+      : process.env.TURNSTILE_SECRET_KEY;
 
   if (!secretKey) {
     console.error('TURNSTILE_SECRET_KEY is not configured');

@@ -25,6 +25,13 @@ declare global {
   }
 }
 
+// https://developers.cloudflare.com/turnstile/troubleshooting/testing/
+const TURNSTILE_TEST_SITE_KEY = '1x00000000000000000000AA';
+const turnstileSiteKey =
+  process.env.NODE_ENV === 'development'
+    ? TURNSTILE_TEST_SITE_KEY
+    : process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!;
+
 const contactRoles = [
   {
     id: 'pro',
@@ -80,7 +87,7 @@ export default function ContactClient() {
       turnstileWidgetId.current = window.turnstile.render(
         turnstileContainerRef.current,
         {
-          sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!,
+          sitekey: turnstileSiteKey,
           callback: (token: string) => {
             setTurnstileToken(token);
           },
