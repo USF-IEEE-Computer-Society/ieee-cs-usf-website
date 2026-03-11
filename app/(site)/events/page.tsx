@@ -1,4 +1,5 @@
 import EventsList from "./EventsList"
+import SocialsBanner from "@/app/components/SocialsBanner"
 import type { Metadata } from 'next'
 
 // Force dynamic rendering - fetch fresh events on every page load
@@ -15,7 +16,10 @@ export default function Page() {
       <div>
 
         <h1 className="text-4xl md:text-5xl font-bold mb-3 dark:text-white">Upcoming Events</h1>
-        <p className="text-gray-600 dark:text-gray-400 mb-12">Select any event below to register through BullsConnect. Event location details will be available once you complete registration.</p>
+        <p className="text-gray-600 dark:text-gray-400 mb-4">Select any event below to register through BullsConnect. Event location details will be available once you complete registration.</p>
+
+        <SocialsBanner />
+
       <div>
         <EventsList/>
       </div>

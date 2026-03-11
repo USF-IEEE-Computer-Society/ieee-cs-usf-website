@@ -6,6 +6,7 @@ import type { Article, Media } from '@/payload-types'
 import type { Metadata } from 'next'
 import NewsArticleLink from './NewsArticleLink'
 import NewsContent from './NewsContent'
+import SocialsBanner from '@/app/components/SocialsBanner'
 
 export const metadata: Metadata = {
   title: 'News',
@@ -43,7 +44,9 @@ export default async function NewsPage({
     <NewsContent>
       <div className="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white">
         <div className="container max-w-7xl mx-auto px-8 py-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-8">News</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-3">News</h1>
+
+          <SocialsBanner />
 
         {articles.docs.length === 0 ? (
           <div className="text-center py-16">

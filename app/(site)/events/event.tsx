@@ -82,7 +82,7 @@ export default function Event({
                     Cohosted with {cohostedName}
                 </span>
             )} */}
-            <div className={`w-[350px] h-[200px] flex-1 bg-gray-50 dark:bg-gray-800 rounded-sm shadow-md flex flex-col gap-6 items-center justify-center ${imageSrc ? '' : 'p-5'}`}>
+            <div className={`w-[350px] flex-1 bg-gray-50 dark:bg-gray-800 rounded-sm shadow-md flex flex-col gap-6 items-center justify-center ${imageSrc ? '' : 'p-5'}`}>
                 {imageSrc ? (
                     <Link href={eventUrl} target="_blank" rel="noopener noreferrer">
                         <Image src={imageSrc} width={350} height={50} alt={title} className="cursor-pointer hover:opacity-80 transition-opacity rounded-sm" />
