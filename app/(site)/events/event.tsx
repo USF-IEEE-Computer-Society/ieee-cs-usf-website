@@ -34,7 +34,6 @@ function getTimeBadge(startTime: string | null): string | null {
     const diff = eventDay.diff(now, 'days');
     if (diff === 0) return 'TODAY';
     if (diff === 1) return 'TOMORROW';
-    if (diff >= 2 && diff <= 6) return 'THIS WEEK';
     return null;
 }
 
@@ -57,8 +56,10 @@ export default function Event({
     const eventUrl = originalURL || eventURL || '#';
     
     const STOCK_IMAGE_LINKS = [
-        "https://bullsconnect.usf.edu/upload/usf/2022/r3_image_upload_2821985_MicrosoftTeamsimage_12_316221455.png",
-    "https://bullsconnect.usf.edu/upload/usf/2021/r2_image_upload_2829082_Banner_829221414.png"]
+    "https://bullsconnect.usf.edu/upload/usf/2022/r3_image_upload_2821985_MicrosoftTeamsimage_12_316221455.png",
+    "https://bullsconnect.usf.edu/upload/usf/2021/r2_image_upload_2829082_Banner_829221414.png",
+    "https://bullsconnect.usf.edu/upload/usf/2021/r3_image_upload_2829082_Banner_829221414.png"
+    ]
 
     let imageSrc = photoUrl;
     if (imageSrc && STOCK_IMAGE_LINKS.includes(imageSrc)) { //exception to not display stock image 
@@ -70,16 +71,16 @@ export default function Event({
     return (
         <div className="flex flex-col items-start h-full">
             {timeBadge && (
-                <span className="mb-2 px-3 py-1 text-xs font-bold tracking-wide text-white bg-ieeeBlue rounded-md">
+                <div className="mb-2 px-3 py-1 text-xs font-bold tracking-wide text-white bg-ieeeBlue rounded-md">
                     {timeBadge}
-                </span>
+                </div>
             )}
             {/* {cohosted && cohostedName && (
                 <span className="mb-2 px-3 py-1 text-xs font-semibold text-white bg-ieeeBlue/75 rounded-md max-w-[350px]">
                     Cohosted with {cohostedName}
                 </span>
             )} */}
-            <div className={`w-[350px] flex-1 bg-gray-50 dark:bg-gray-800 rounded-sm shadow-md flex flex-col gap-6 items-center justify-center ${imageSrc ? '' : 'p-5'}`}>
+            <div className={`w-[350px] h-[200px] flex-1 bg-gray-50 dark:bg-gray-800 rounded-sm shadow-md flex flex-col gap-6 items-center justify-center ${imageSrc ? '' : 'p-5'}`}>
                 {imageSrc ? (
                     <Link href={eventUrl} target="_blank" rel="noopener noreferrer">
                         <Image src={imageSrc} width={350} height={50} alt={title} className="cursor-pointer hover:opacity-80 transition-opacity rounded-sm" />
