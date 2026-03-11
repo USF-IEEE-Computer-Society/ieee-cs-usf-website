@@ -41,7 +41,7 @@ export default async function EventsList() {
   }
 
   return (
-    <div className='flex flex-col md:grid md:grid-cols-3 gap-6 gap-y-10'>
+    <div className='flex flex-col md:grid md:grid-cols-3 gap-6'>
       {RegularEvents.map((event) => (
         <Event 
           key={event.id}

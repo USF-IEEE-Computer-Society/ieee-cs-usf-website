@@ -70,11 +70,13 @@ export default function Event({
 
     return (
         <div className="flex flex-col items-start h-full">
-            {timeBadge && (
-                <div className="mb-2 px-3 py-1 text-xs font-bold tracking-wide text-white bg-ieeeBlue rounded-md">
-                    {timeBadge}
-                </div>
-            )}
+            <div className="h-7 mb-2 flex items-center">
+                {timeBadge && (
+                    <div className="px-3 py-1 text-xs font-bold tracking-wide text-white bg-ieeeBlue rounded-md">
+                        {timeBadge}
+                    </div>
+                )}
+            </div>
             {/* {cohosted && cohostedName && (
                 <span className="mb-2 px-3 py-1 text-xs font-semibold text-white bg-ieeeBlue/75 rounded-md max-w-[350px]">
                     Cohosted with {cohostedName}
