@@ -14,7 +14,7 @@ export default function SocialsBanner() {
           <InstagramIcon size={20} color="currentColor" className="text-gray-600 dark:text-gray-400" />
         </a>
         <a
-          href="https://www.linkedin.com/company/ieee-cs-at-usf/posts/?feedView=all"
+          href="https://www.linkedin.com/company/ieee-cs-at-usf"
           target="_blank"
           rel="noopener noreferrer"
           className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors duration-200"

@@ -77,7 +77,7 @@ export default function Footer() {
                   <InstagramIcon color="#ffffff" />
                 </a>
                 <a
-                  href="https://www.linkedin.com/company/ieee-cs-at-usf/posts/?feedView=all"
+                  href="https://www.linkedin.com/company/ieee-cs-at-usf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2.5 rounded-xl bg-white/5 hover:bg-ieeeOrange/20 border border-white/10 hover:border-ieeeOrange/40 transition-all duration-300"
