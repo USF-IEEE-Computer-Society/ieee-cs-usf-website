@@ -11,7 +11,7 @@ export default function NotFound() {
     <ThemeProvider>
       <div className="min-h-screen flex flex-col dark:bg-gray-900">
         <Navbar />
-        <div className="flex-1 flex flex-col items-center justify-center px-4 pb-16">
+        <div className="flex-1 flex flex-col items-center justify-center px-4 pt-7 pb-16">
           <button
             onClick={() => alert('Meow! I am Nybbles, IEEE-CS USF mascot 🐱')}
             className="mb-4 cursor-pointer transition-transform hover:scale-105"

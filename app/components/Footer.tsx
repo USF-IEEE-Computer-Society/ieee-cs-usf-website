@@ -38,7 +38,7 @@ export default function Footer() {
                 <h3 className="font-display text-xs font-bold uppercase tracking-[0.2em] text-ieeeOrange mb-5">
                   Navigation
                 </h3>
-                <div className="grid grid-cols-2 gap-x-6 md:gap-x-15 gap-y-2">
+                <div className="grid grid-cols-2 gap-x-14 md:gap-x-19 gap-y-3">
                   {footerLinks.map((link) => (
                     <Link
                       key={link.path}
