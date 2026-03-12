@@ -12,6 +12,16 @@ const nextConfig: NextConfig = {
     ],
   },
 
+  async redirects() {
+    return [
+      {
+        source: '/mentorship/spring26',
+        destination: '/mentorship',
+        permanent: false,
+      },
+    ];
+  },
+
   async rewrites() {
     return [
       {
