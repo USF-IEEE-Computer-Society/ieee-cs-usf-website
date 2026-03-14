@@ -8,15 +8,15 @@ export const metadata: Metadata = {
 }
 
 const milestones = [
-  { milestone: 'Student application opens (link below)', date: 'March 14' },
-  { milestone: 'Student application closes', date: 'April 1' },
-  { milestone: 'Round 1 pairing', date: 'Monday, April 6' },
-  { milestone: 'Round 2 pairing', date: 'Monday, May 4' },
-  { milestone: 'Round 3 pairing', date: 'Monday, June 1' },
-  { milestone: 'Certificates issued', date: 'Saturday, June 13' },
+  { milestone: 'Student application opens (link below)', date: 'March 14, Saturday' },
+  { milestone: 'Student application closes', date: 'April 1, Wednesday' },
+  { milestone: 'Round 1 pairing', date: 'April 6, Monday' },
+  { milestone: 'Round 2 pairing', date: 'May 4, Monday' },
+  { milestone: 'Round 3 pairing', date: 'June 1, Monday' },
+  { milestone: 'Certificates issued', date: 'June 13, Saturday' },
   {
     milestone: 'Online closing ceremony (optional attendance)',
-    date: 'Saturday, June 13',
+    date: 'June 13, Saturday',
   },
 ]
 
