@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Button from '@/app/components/Button'
 
 export const metadata: Metadata = {
   title: 'Mentorship Program',
@@ -7,7 +8,7 @@ export const metadata: Metadata = {
 }
 
 const milestones = [
-  { milestone: 'Student application opens', date: 'March 14' },
+  { milestone: 'Student application opens (link below)', date: 'March 14' },
   { milestone: 'Student application closes', date: 'April 1' },
   { milestone: 'Round 1 pairing', date: 'Monday, April 6' },
   { milestone: 'Round 2 pairing', date: 'Monday, May 4' },
@@ -59,14 +60,23 @@ export default function MentorshipPage() {
           </table>
         </div>
 
-        <div className="mt-12 text-center py-10 border-t border-gray-200 dark:border-gray-700">
+        <div className="mt-8 flex justify-center">
+            <Button
+              text="Apply for Mentorship Program"
+              href="https://forms.gle/cjhHXuggDUUPfGTUA"
+            />
+          </div>
+
+        <div className="text-center py-10 border-gray-200 dark:border-gray-700">
           <p className="text-gray-500 dark:text-gray-400 text-lg">
             More details about the Mentorship Program are on the way.
           </p>
           <p className="text-gray-400 dark:text-gray-500 mt-2 text-sm">
             Check back soon for updates!
           </p>
+
         </div>
+
       </article>
     </div>
   )

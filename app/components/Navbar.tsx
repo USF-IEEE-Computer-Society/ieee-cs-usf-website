@@ -16,6 +16,7 @@ const navLinks: NavLink[] = [
   { name: 'People', path: '/people' },
   { name: 'Events', path: '/events' },
   { name: 'News', path: '/news' },
+  { name: 'Mentorship', path: '/mentorship' },
   { name: 'Partners', path: '/partners' },
   { name: 'Contact', path: '/contact' },
 ];
@@ -24,6 +25,7 @@ const mobileMenuLinks: NavLink[] = [
   { name: 'People', path: '/people' },
   { name: 'Events', path: '/events' },
   { name: 'News', path: '/news' },
+  { name: 'Mentorship', path: '/mentorship' },
   { name: 'Partners', path: '/partners' },
   { name: 'Contact', path: '/contact' },
 ];
